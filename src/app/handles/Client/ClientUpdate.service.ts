@@ -16,9 +16,6 @@ export class ClientUpdateService implements ClientUpdateServiceInterface {
     clientId: string,
     dataClient: ClientUpdateDTO,
   ): Promise<ClientPresenter> {
-    // valida se existe Barbershop
-    await this.clientFindService.findOneClientById(clientId);
-
     const barbershopUpdated = await this.clientRepository.update(clientId, {
       ...dataClient,
       user: {

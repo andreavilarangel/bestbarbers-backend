@@ -25,10 +25,6 @@ export class BarbershopEntity implements Barbershop {
 
   @IsOptional()
   @ApiPropertyOptional()
-  opening_hours: string;
-
-  @IsOptional()
-  @ApiPropertyOptional()
   cnpj: string;
 
   @IsOptional()

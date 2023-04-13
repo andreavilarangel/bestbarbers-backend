@@ -48,9 +48,8 @@ model Barbershop {
   user_id String?
   user    User?   @relation(fields: [user_id], references: [id])
 
-  name          String?
-  description   String?
-  opening_hours String?
+  name        String?
+  description String?
 
   cnpj String?
 
@@ -76,23 +75,45 @@ model Barbershop {
 
   inactive Boolean? @default(false)
 
-  created_at                  DateTime                       @default(now())
-  updated_at                  DateTime                       @default(now()) @updatedAt
-  ProductAndService           ProductAndService[]
-  PaymentMethod               PaymentMethod[]
-  BlockedTime                 BlockedTime[]
-  Address                     Address[]
-  BarbershopClient            BarbershopClient[]
-  BarbershopClientObservation BarbershopClientObservation[]
-  BarbershopSignatureMember   BarbershopSignatureMember[]
-  Appointment                 Appointment[]
-  BarbershopTransaction       BarbershopTransaction[]
-  AppoitnmentServices         AppoitnmentProductAndService[]
-  AppoitnmentPaymentMethod    AppoitnmentPaymentMethod[]
-  AppointmentReview           AppointmentReview[]
-  Employer                    Employer[]
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  BarbershopOpeningHour        BarbershopOpeningHour[]
+  Employer                     Employer[]
+  ProductAndService            ProductAndService[]
+  PaymentMethod                PaymentMethod[]
+  BlockedTime                  BlockedTime[]
+  Address                      Address[]
+  BarbershopClient             BarbershopClient[]
+  BarbershopClientObservation  BarbershopClientObservation[]
+  BarbershopSignatureMember    BarbershopSignatureMember[]
+  Appointment                  Appointment[]
+  BarbershopTransaction        BarbershopTransaction[]
+  AppoitnmentProductAndService AppoitnmentProductAndService[]
+  AppoitnmentPaymentMethod     AppoitnmentPaymentMethod[]
+  AppointmentReview            AppointmentReview[]
 
   @@map("barbershops")
+}
+
+model BarbershopOpeningHour {
+  id String @id @default(uuid())
+
+  barbershop_id String
+  barbershop    Barbershop @relation(fields: [barbershop_id], references: [id])
+
+  day           String
+  day_reference String
+
+  start_hour  String @default("08:00:00")
+  finish_hour String @default("20:00:00")
+
+  is_closed Boolean
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("barbershop_opening_hours")
 }
 
 model Employer {
@@ -104,7 +125,7 @@ model Employer {
   user    User?   @relation(fields: [user_id], references: [id])
   user_id String?
 
-  asaas_employee_id  String?
+  asaas_employer_id  String?
   created_by_user_id String?
 
   inactive              Boolean?                       @default(false)
@@ -327,6 +348,7 @@ model Appointment {
   BarbershopTransaction    BarbershopTransaction[]
   AppoitnmentServices      AppoitnmentProductAndService[]
   AppoitnmentPaymentMethod AppoitnmentPaymentMethod[]
+  barbershopOpeningHoursId String?
 
   @@map("appointments")
 }
@@ -362,9 +384,10 @@ model BarbershopTransaction {
   payment_method_value Float
   net_value            Float
 
-  inactive   Boolean? @default(false)
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  inactive                 Boolean? @default(false)
+  created_at               DateTime @default(now())
+  updated_at               DateTime @default(now()) @updatedAt
+  barbershopOpeningHoursId String?
 
   @@map("barbershop_transactions")
 }
@@ -383,8 +406,9 @@ model AppoitnmentProductAndService {
   employer_percentage Float
   employer_value      Float
 
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  created_at               DateTime @default(now())
+  updated_at               DateTime @default(now()) @updatedAt
+  barbershopOpeningHoursId String?
 
   @@map("appointments_products_and_services")
 }
@@ -419,8 +443,9 @@ model AppointmentReview {
   rate    String
   comment String?
 
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  created_at               DateTime @default(now())
+  updated_at               DateTime @default(now()) @updatedAt
+  barbershopOpeningHoursId String?
 
   @@map("appointments_reviews")
 }

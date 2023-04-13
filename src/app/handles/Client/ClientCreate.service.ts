@@ -4,7 +4,7 @@ import { ClientPresenter } from 'src/app/presenter/Client.presenter';
 import { ClientRepository } from 'src/core/repositories/Client.repository';
 import { ClientCreateServiceInterface } from './ClientHandle.interface';
 import { UserFindService } from '../User/UserFind.service';
-import { ClientAlreadyExistException } from 'src/app/errors/Client.error';
+import { UserAlreadyExistException } from 'src/app/errors/User.error';
 
 @Injectable()
 export class ClientCreateService implements ClientCreateServiceInterface {
@@ -19,14 +19,11 @@ export class ClientCreateService implements ClientCreateServiceInterface {
       newClient.user.phone,
     );
 
-    if (user) {
-      const client = await this.clientRepository.findByUserId(user.id);
-      if (client) throw new ClientAlreadyExistException();
-    }
+    if (user) throw new UserAlreadyExistException();
 
     const createdClient = await this.clientRepository.create({
       ...newClient,
-      user: user ? { connect: { id: user.id } } : { create: newClient.user },
+      user: { create: newClient.user },
     });
 
     return createdClient;
