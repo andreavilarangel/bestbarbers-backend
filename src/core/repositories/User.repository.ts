@@ -23,21 +23,21 @@ export class UserRepository implements UserRepositoryInterface {
   }
 
   async update(
-    userId: string,
+    user_id: string,
     dataUser: Prisma.UserUpdateInput,
   ): Promise<UserRepositoryResponseType> {
     return this.prisma.user.update({
       where: {
-        id: userId,
+        id: user_id,
       },
       data: dataUser,
     });
   }
 
-  async findOne(userId?: string): Promise<UserRepositoryResponseType> {
+  async findOne(user_id?: string): Promise<UserRepositoryResponseType> {
     return this.prisma.user.findUnique({
       where: {
-        id: userId || undefined,
+        id: user_id || undefined,
       },
     });
   }
@@ -72,10 +72,10 @@ export class UserRepository implements UserRepositoryInterface {
     ]);
   }
 
-  async delete(userId: string): Promise<UserRepositoryResponseType> {
+  async delete(user_id: string): Promise<UserRepositoryResponseType> {
     return this.prisma.user.delete({
       where: {
-        id: userId,
+        id: user_id,
       },
     });
   }

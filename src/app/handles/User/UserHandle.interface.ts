@@ -15,13 +15,13 @@ export interface UserCreateServiceInterface {
 
 export interface UserUpdateServiceInterface {
   updateOneUser(
-    userId: string,
+    user_id: string,
     dataUser: UserUpdateDTO,
   ): Promise<UserPresenter>;
 }
 
 export interface UserFindServiceInterface {
-  findOneUserById(userId: string): Promise<UserPresenter>;
+  findOneUserById(user_id: string): Promise<UserPresenter>;
   findOneUserByPhone(phone: string): Promise<UserPresenterWithPassword>;
   findOneUserByEmail(email: string): Promise<UserPresenterWithPassword>;
   // findAllUser(params: UserFindAllDTO): Promise<FindAllPresent<UserPresenter>>;

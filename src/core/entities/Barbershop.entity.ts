@@ -14,6 +14,7 @@ export class BarbershopEntity implements Barbershop {
   user_id: string;
 
   @IsString()
+  @IsOptional()
   @ApiPropertyOptional()
   name: string;
 

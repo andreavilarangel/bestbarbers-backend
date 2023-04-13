@@ -6,7 +6,6 @@ export class BarbershopCreateDTO extends OmitType(BarbershopEntity, [
   'id',
   'created_at',
   'updated_at',
-  'inactive',
 ]) {}
 
 export class BarbershopUpdateDTO extends PartialType(BarbershopCreateDTO) {}

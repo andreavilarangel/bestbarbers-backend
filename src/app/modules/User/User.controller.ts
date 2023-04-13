@@ -46,15 +46,15 @@ export class UserController implements UserControllerInterface {
     return this.userHandle.createOneUser(newUser);
   }
 
-  @Put('/:userId')
+  @Put('/:user_id')
   @ApiOperation({ summary: 'Atualizar dados de um usuario' })
   @ApiResponse({ type: UserPresenter })
   @ApiException(() => [UserNotFoundException])
   async updateOneUser(
-    @Param('userId') userId: string,
+    @Param('user_id') user_id: string,
     @Body() dataUser: UserUpdateDTO,
   ): Promise<UserPresenterResponse> {
-    return this.userHandle.updateOneUser(userId, dataUser);
+    return this.userHandle.updateOneUser(user_id, dataUser);
   }
 
   @Get()
@@ -67,13 +67,13 @@ export class UserController implements UserControllerInterface {
   // ): Promise<FindAllPresent<UserPresenterResponse>> {
   //   return this.userHandle.findAllUser(queries);
   // }
-  @Get('/:userId')
+  @Get('/:user_id')
   @ApiOperation({ summary: 'obter dados de um usuario' })
   @ApiResponse({ type: UserPresenter })
   @ApiException(() => [UserNotFoundException])
   async getOneUserById(
-    @Param('userId') userId: string,
+    @Param('user_id') user_id: string,
   ): Promise<UserPresenterResponse> {
-    return this.userHandle.findOneUserById(userId);
+    return this.userHandle.findOneUserById(user_id);
   }
 }

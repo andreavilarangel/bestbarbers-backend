@@ -27,14 +27,14 @@ export class UserHandle implements UserHandleInterface {
   }
 
   async updateOneUser(
-    userId: string,
+    user_id: string,
     dataUser: UserUpdateDTO,
   ): Promise<UserPresenter> {
-    return this.userUpdate.updateOneUser(userId, dataUser);
+    return this.userUpdate.updateOneUser(user_id, dataUser);
   }
 
-  async findOneUserById(userId: string): Promise<UserPresenter> {
-    return this.userFind.findOneUserById(userId);
+  async findOneUserById(user_id: string): Promise<UserPresenter> {
+    return this.userFind.findOneUserById(user_id);
   }
 
   async findOneUserByPhone(phone: string): Promise<UserPresenterWithPassword> {

@@ -45,11 +45,10 @@ model User {
 model Barbershop {
   id String @id @default(uuid())
 
-  user_id  String?
-  user     User?      @relation(fields: [user_id], references: [id])
-  employer Employer[]
+  user_id String?
+  user    User?   @relation(fields: [user_id], references: [id])
 
-  name          String
+  name          String?
   description   String?
   opening_hours String?
 
@@ -91,6 +90,7 @@ model Barbershop {
   AppoitnmentServices         AppoitnmentProductAndService[]
   AppoitnmentPaymentMethod    AppoitnmentPaymentMethod[]
   AppointmentReview           AppointmentReview[]
+  Employer                    Employer[]
 
   @@map("barbershops")
 }

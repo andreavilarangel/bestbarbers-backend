@@ -10,10 +10,10 @@ export type UserPresenterResponse = Omit<UserPresenter, 'password'>;
 export interface UserControllerInterface {
   createOneUser(newUser: UserCreateDTO): Promise<UserPresenterResponse>;
   updateOneUser(
-    userId: string,
+    user_id: string,
     dataUser: UserUpdateDTO,
   ): Promise<UserPresenterResponse>;
-  getOneUserById(userId: string): Promise<UserPresenterResponse>;
+  getOneUserById(user_id: string): Promise<UserPresenterResponse>;
   // getAllUser(
   //   queries: UserFindAllDTO,
   // ): Promise<FindAllPresent<UserPresenterResponse>>;

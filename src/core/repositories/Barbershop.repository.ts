@@ -17,6 +17,7 @@ export class BarbershopRepository implements BarbershopRepositoryInterface {
   ): Promise<BarbershopEntity> {
     return this.prisma.barbershop.create({
       data: newBarbershop,
+      include: { user: true },
     });
   }
 
@@ -29,6 +30,7 @@ export class BarbershopRepository implements BarbershopRepositoryInterface {
         id: barbershopId,
       },
       data: dataBarbershop,
+      include: { user: true },
     });
   }
 

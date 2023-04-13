@@ -10,11 +10,11 @@ export type UserRepositoryResponseType = UserEntity;
 export interface UserRepositoryInterface {
   create(newUser: Prisma.UserCreateInput): Promise<UserRepositoryResponseType>;
   update(
-    userId: string,
+    user_id: string,
     dataUser: Prisma.UserUpdateInput,
   ): Promise<UserRepositoryResponseType>;
   findOne(
-    userId?: string,
+    user_id?: string,
     username?: string,
   ): Promise<UserRepositoryResponseType>;
   findOneByEmail(email: string): Promise<UserRepositoryResponseType>;
@@ -22,5 +22,5 @@ export interface UserRepositoryInterface {
   findAll(
     params: FindAllParamsType<Prisma.UserWhereInput>,
   ): Promise<FindAllResponseType<Omit<UserRepositoryResponseType, 'password'>>>;
-  delete(userId: string): Promise<UserRepositoryResponseType>;
+  delete(user_id: string): Promise<UserRepositoryResponseType>;
 }

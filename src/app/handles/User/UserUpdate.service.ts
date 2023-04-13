@@ -14,13 +14,13 @@ export class UserUpdateService implements UserUpdateServiceInterface {
   ) {}
 
   async updateOneUser(
-    userId: string,
+    user_id: string,
     dataUser: UserUpdateDTO,
   ): Promise<UserPresenter> {
     // valida se usuario existe
-    await this.userFind.findOneUserById(userId);
+    await this.userFind.findOneUserById(user_id);
 
-    const userUpdated = await this.userRepository.update(userId, {
+    const userUpdated = await this.userRepository.update(user_id, {
       ...dataUser,
     });
 
