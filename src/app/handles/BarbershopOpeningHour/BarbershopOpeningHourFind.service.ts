@@ -34,7 +34,7 @@ export class BarbershopOpeningHourFindService
   }
 
   async findOneBarbershopOpeningHourByDay(
-    barbershopOpeningHourDay: string,
+    barbershopOpeningHourDay: number,
     barbershop_id: string,
   ): Promise<BarbershopOpeningHourPresenter> {
     const barbershopOpeningHour =

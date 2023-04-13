@@ -45,7 +45,7 @@ export class BarbershopOpeningHourRepository
   }
 
   async findByDay(
-    barbershopOpeningHourDay: string,
+    barbershopOpeningHourDay: number,
     barbershop_id: string,
   ): Promise<BarbershopOpeningHourEntity> {
     return this.prisma.barbershopOpeningHour.findFirst({

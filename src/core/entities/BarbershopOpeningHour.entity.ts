@@ -13,8 +13,8 @@ export class BarbershopOpeningHourEntity implements BarbershopOpeningHour {
   barbershop_id: string;
 
   @IsString()
-  @ApiPropertyOptional({ example: '1' })
-  day: string;
+  @ApiPropertyOptional({ example: 1 })
+  day: number;
 
   @IsOptional()
   @ApiPropertyOptional({ example: 'monday' })

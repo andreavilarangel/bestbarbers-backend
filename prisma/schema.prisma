@@ -102,13 +102,13 @@ model BarbershopOpeningHour {
   barbershop_id String
   barbershop    Barbershop @relation(fields: [barbershop_id], references: [id])
 
-  day           String
+  day           Int
   day_reference String
 
   start_hour  String @default("08:00:00")
   finish_hour String @default("20:00:00")
 
-  is_closed Boolean
+  is_closed Boolean @default(true)
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
