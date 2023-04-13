@@ -1,6 +1,6 @@
 import {
   UserCreateDTO,
-  UserFindAllDTO,
+  // UserFindAllDTO,
   UserUpdateDTO,
 } from 'src/app/dtos/User.dto';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
@@ -24,7 +24,7 @@ export interface UserFindServiceInterface {
   findOneUserById(userId: string): Promise<UserPresenter>;
   findOneUserByPhone(phone: string): Promise<UserPresenterWithPassword>;
   findOneUserByEmail(email: string): Promise<UserPresenterWithPassword>;
-  findAllUser(params: UserFindAllDTO): Promise<FindAllPresent<UserPresenter>>;
+  // findAllUser(params: UserFindAllDTO): Promise<FindAllPresent<UserPresenter>>;
 }
 
 export interface UserHandleInterface

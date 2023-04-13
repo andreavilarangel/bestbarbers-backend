@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import {
   UserCreateDTO,
   UserUpdateDTO,
-  UserFindAllDTO,
+  // UserFindAllDTO,
 } from 'src/app/dtos/User.dto';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
 import {
@@ -45,9 +45,9 @@ export class UserHandle implements UserHandleInterface {
     return this.userFind.findOneUserByEmail(email);
   }
 
-  async findAllUser(
-    params: UserFindAllDTO,
-  ): Promise<FindAllPresent<UserPresenter>> {
-    return this.userFind.findAllUser(params);
-  }
+  // async findAllUser(
+  //   params: UserFindAllDTO,
+  // ): Promise<FindAllPresent<UserPresenter>> {
+  //   return this.userFind.findAllUser(params);
+  // }
 }

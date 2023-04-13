@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { omit } from 'radash';
-import { UserFindAllDTO } from 'src/app/dtos/User.dto';
+// import { UserFindAllDTO } from 'src/app/dtos/User.dto';
 import { UserNotFoundException } from 'src/app/errors/User.error';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
 import {
@@ -29,20 +29,20 @@ export class UserFindService implements UserFindServiceInterface {
     return this.userRepository.findOneByEmail(email);
   }
 
-  async findAllUser(
-    params: UserFindAllDTO,
-  ): Promise<FindAllPresent<UserPresenter>> {
-    const [data, total] = await this.userRepository.findAll({
-      skip: params.skip,
-      take: params.take,
-      where: {
-        email: { contains: params.email, mode: 'insensitive' },
-      },
-    });
+  // async findAllUser(
+  //   params: UserFindAllDTO,
+  // ): Promise<FindAllPresent<UserPresenter>> {
+  //   const [data, total] = await this.userRepository.findAll({
+  //     skip: params.skip,
+  //     take: params.take,
+  //     where: {
+  //       email: { contains: params.email, mode: 'insensitive' },
+  //     },
+  //   });
 
-    return {
-      data,
-      total,
-    };
-  }
+  //   return {
+  //     data,
+  //     total,
+  //   };
+  // }
 }

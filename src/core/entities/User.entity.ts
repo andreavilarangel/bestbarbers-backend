@@ -61,14 +61,14 @@ export class UserEntity implements User {
   cupom: string;
 
   @IsBoolean()
-  @ApiProperty({ example: false })
+  @ApiProperty({ default: false })
   inactive: boolean;
 
   @IsOptional()
-  @ApiProperty({ example: '2023-03-16T21:21:51.875Z' })
-  createdAt: Date;
+  @ApiProperty({ example: '2023-03-16T21:21:51.875Z', default: new Date() })
+  created_at: Date;
 
   @IsOptional()
-  @ApiProperty({ example: '2023-03-16T21:21:51.875Z' })
-  updatedAt: Date;
+  @ApiProperty({ example: '2023-03-16T21:21:51.875Z', default: new Date() })
+  updated_at: Date;
 }

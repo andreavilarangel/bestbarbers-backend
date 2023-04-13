@@ -4,7 +4,6 @@ import { AuthHandle } from 'src/app/handles/Auth/Auth.handle';
 import { JwtStrategy } from 'src/app/handles/Auth/jwt.strategy';
 import { UserHandleModule } from 'src/app/handles/User/UserHandle.module';
 import { RepositoriesModule } from 'src/core/repositories/repositories.module';
-import { UserModule } from '../User/User.module';
 import { AuthController } from './Auth.controller';
 
 @Module({

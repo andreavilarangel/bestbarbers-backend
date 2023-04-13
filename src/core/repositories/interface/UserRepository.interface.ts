@@ -18,7 +18,7 @@ export interface UserRepositoryInterface {
     username?: string,
   ): Promise<UserRepositoryResponseType>;
   findOneByEmail(email: string): Promise<UserRepositoryResponseType>;
-  findOneByCellphone(cellphone: string): Promise<UserRepositoryResponseType>;
+  findOneByCellphone(phone: string): Promise<UserRepositoryResponseType>;
   findAll(
     params: FindAllParamsType<Prisma.UserWhereInput>,
   ): Promise<FindAllResponseType<Omit<UserRepositoryResponseType, 'password'>>>;

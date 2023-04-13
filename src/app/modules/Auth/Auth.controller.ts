@@ -1,15 +1,8 @@
 import { Body, Controller, Injectable, Post } from '@nestjs/common';
-import {
-  ApiForbiddenResponse,
-  ApiNotFoundResponse,
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/app/decorators/public';
 import { AuthSignInDTO } from 'src/app/dtos/Auth.dto';
 import { AuthPasswordWrongException } from 'src/app/errors/Auth.error';
-import { UsuarioNotFoundException } from 'src/app/errors/Usuario.error';
 import { AuthHandle } from 'src/app/handles/Auth/Auth.handle';
 import { AuthPresenter } from 'src/app/presenter/Auth.presenter';
 import { AuthControllerInterface } from './AuthController.interface';

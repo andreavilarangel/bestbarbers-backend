@@ -25,9 +25,7 @@ export class UserCreateService implements UserCreateServiceInterface {
     );
     if (userFoundByCellphone) throw new UserAlreadyExistException({ phone });
 
-    const createdUser = await this.userRepository.create({
-      ...newUser,
-    });
+    const createdUser = await this.userRepository.create(newUser);
 
     return omit(createdUser, ['password']);
   }

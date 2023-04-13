@@ -11,12 +11,12 @@ model User {
   id String @id @default(uuid())
 
   name              String
-  cpf               String
+  cpf               String?
   birth_date        String?
   image_profile_url String?
 
-  phone String @unique
-  email String @unique
+  phone String
+  email String
   type  String
 
   password String
@@ -34,10 +34,10 @@ model User {
   employer   Employer[]
   client     Client[]
 
-  inactive Boolean @default(false)
+  inactive Boolean? @default(false)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("users")
 }
@@ -51,9 +51,8 @@ model Barbershop {
 
   name          String
   description   String?
-  opening_hours Json?
+  opening_hours String?
 
-  cpf  DateTime?
   cnpj String?
 
   rating          Float?
@@ -73,10 +72,10 @@ model Barbershop {
   asaas_barbershop_id String?
   asaas_token_access  String?
 
-  payment_on_app_enabled Boolean @default(false)
-  signature_club_enabled Boolean @default(false)
+  payment_on_app_enabled String?
+  signature_club_enabled Boolean? @default(false)
 
-  inactive Boolean @default(false)
+  inactive Boolean? @default(false)
 
   created_at                  DateTime                       @default(now())
   updated_at                  DateTime                       @default(now()) @updatedAt
@@ -108,9 +107,9 @@ model Employer {
   asaas_employee_id  String?
   created_by_user_id String?
 
-  inactive              Boolean                        @default(false)
-  createdAt             DateTime                       @default(now())
-  updatedAt             DateTime                       @default(now()) @updatedAt
+  inactive              Boolean?                       @default(false)
+  created_at            DateTime                       @default(now())
+  updated_at            DateTime                       @default(now()) @updatedAt
   BlockedTime           BlockedTime[]
   Appointment           Appointment[]
   BarbershopTransaction BarbershopTransaction[]
@@ -129,11 +128,11 @@ model Client {
   asaas_client_id    String?
   created_by_user_id String?
 
-  payment_card_info Json?
+  payment_card_info String?
 
-  inactive                    Boolean                       @default(false)
-  createdAt                   DateTime                      @default(now())
-  updatedAt                   DateTime                      @default(now()) @updatedAt
+  inactive                    Boolean?                      @default(false)
+  created_at                  DateTime                      @default(now())
+  updated_at                  DateTime                      @default(now()) @updatedAt
   Address                     Address[]
   BarbershopClient            BarbershopClient[]
   BarbershopClientObservation BarbershopClientObservation[]
@@ -161,15 +160,15 @@ model ProductAndService {
   time_required String
   type          ProductAndServiceType @default(service)
 
-  promotion_days  Json?
+  promotion_days  String?
   promotion_value Float?
 
   product_category_id String?
   image_url           String?
 
-  inactive                     Boolean                        @default(false)
-  createdAt                    DateTime                       @default(now())
-  updatedAt                    DateTime                       @default(now()) @updatedAt
+  inactive                     Boolean?                       @default(false)
+  created_at                   DateTime                       @default(now())
+  updated_at                   DateTime                       @default(now()) @updatedAt
   BarbershopSignatureMember    BarbershopSignatureMember[]
   AppoitnmentProductAndService AppoitnmentProductAndService[]
 
@@ -186,9 +185,9 @@ model PaymentMethod {
 
   discounted_from_barber Boolean @default(true)
 
-  inactive                 Boolean                    @default(false)
-  createdAt                DateTime                   @default(now())
-  updatedAt                DateTime                   @default(now()) @updatedAt
+  inactive                 Boolean?                   @default(false)
+  created_at               DateTime                   @default(now())
+  updated_at               DateTime                   @default(now()) @updatedAt
   AppoitnmentPaymentMethod AppoitnmentPaymentMethod[]
 
   @@map("payment_methods")
@@ -210,8 +209,8 @@ model BlockedTime {
   repeat_every_day      Boolean
   repeat_every_week_day String
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("blocked_times")
 }
@@ -235,8 +234,8 @@ model Address {
   longitude     String
   geo_point     String
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("address")
 }
@@ -250,8 +249,8 @@ model BarbershopClient {
 
   isFavorite Boolean @default(false)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("barbershop_clients")
 }
@@ -266,8 +265,8 @@ model BarbershopClientObservation {
   observation String
   image_url   String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("barbershop_clients_observations")
 }
@@ -287,9 +286,9 @@ model BarbershopSignatureMember {
   start_date  String
   finish_date String?
 
-  inactive  Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  inactive   Boolean? @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("barbershop_signature_members")
 }
@@ -322,9 +321,9 @@ model Appointment {
   type   AppointmentTypes  @default(normal)
   status AppointmentStatus @default(awaiting)
 
-  inactive                 Boolean                        @default(false)
-  createdAt                DateTime                       @default(now())
-  updatedAt                DateTime                       @default(now()) @updatedAt
+  inactive                 Boolean?                       @default(false)
+  created_at               DateTime                       @default(now())
+  updated_at               DateTime                       @default(now()) @updatedAt
   BarbershopTransaction    BarbershopTransaction[]
   AppoitnmentServices      AppoitnmentProductAndService[]
   AppoitnmentPaymentMethod AppoitnmentPaymentMethod[]
@@ -363,9 +362,9 @@ model BarbershopTransaction {
   payment_method_value Float
   net_value            Float
 
-  inactive  Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  inactive   Boolean? @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("barbershop_transactions")
 }
@@ -384,8 +383,8 @@ model AppoitnmentProductAndService {
   employer_percentage Float
   employer_value      Float
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("appointments_products_and_services")
 }
@@ -402,8 +401,8 @@ model AppoitnmentPaymentMethod {
   payment_method_percentage Float
   payment_method_value      Float
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("appointments_payment_methods")
 }
@@ -420,8 +419,8 @@ model AppointmentReview {
   rate    String
   comment String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("appointments_reviews")
 }

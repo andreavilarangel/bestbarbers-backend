@@ -22,7 +22,7 @@ export class AuthHandle implements AuthHandleInterface {
   async signIn(username: string, password: string): Promise<AuthPresenter> {
     const user = isEmail(username)
       ? await this.userHandle.findOneUserByEmail(username)
-      : await this.userHandle.findOneUserByUsername(username);
+      : await this.userHandle.findOneUserByPhone(username);
 
     if (!user) throw new UserNotFoundException({ username });
 
