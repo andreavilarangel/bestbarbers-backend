@@ -1,23 +1,21 @@
-import { Injectable } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
-import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service'
+import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 import {
   FindAllParamsType,
   FindAllResponseType,
-} from 'src/shared/interfaces/FindAll.type'
-import { ClientRepositoryInterface } from './interface/ClientRepository.interface'
-import { ClientEntity } from '../entities/Client.entity'
+} from 'src/shared/interfaces/FindAll.type';
+import { ClientRepositoryInterface } from './interface/ClientRepository.interface';
+import { ClientEntity } from '../entities/Client.entity';
 
 @Injectable()
 export class ClientRepository implements ClientRepositoryInterface {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(
-    newClient: Prisma.ClientCreateInput,
-  ): Promise<ClientEntity> {
+  async create(newClient: Prisma.ClientCreateInput): Promise<ClientEntity> {
     return this.prisma.client.create({
       data: newClient,
-    })
+    });
   }
 
   async update(
@@ -29,15 +27,23 @@ export class ClientRepository implements ClientRepositoryInterface {
         id: clientId,
       },
       data: dataClient,
-    })
+    });
   }
 
   async findOne(clientId: string): Promise<ClientEntity> {
-    return this.prisma. client.findUnique({
+    return this.prisma.client.findUnique({
       where: {
-        id: clientId
+        id: clientId,
       },
-    })
+    });
+  }
+
+  async findByUserId(user_id: string): Promise<ClientEntity> {
+    return this.prisma.client.findFirst({
+      where: {
+        user_id,
+      },
+    });
   }
 
   async findAll(
@@ -50,7 +56,7 @@ export class ClientRepository implements ClientRepositoryInterface {
         where: params.where,
       }),
       this.prisma.client.count({ where: params.where }),
-    ])
+    ]);
   }
 
   async delete(clientId: string): Promise<ClientEntity> {
@@ -58,7 +64,6 @@ export class ClientRepository implements ClientRepositoryInterface {
       where: {
         id: clientId,
       },
-    })
+    });
   }
 }
-

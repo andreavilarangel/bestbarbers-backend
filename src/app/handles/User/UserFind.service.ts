@@ -14,6 +14,20 @@ import { UserFindServiceInterface } from './UserHandle.interface';
 export class UserFindService implements UserFindServiceInterface {
   constructor(private readonly userRepository: UserRepository) {}
 
+  async checkUserExist(
+    email?: string,
+    phone?: string,
+  ): Promise<UserPresenterWithPassword> {
+    let user = null;
+    if (email) {
+      user = this.userRepository.findOneByEmail(email);
+    }
+    if (phone) {
+      user = this.userRepository.findOneByCellphone(phone);
+    }
+    return user;
+  }
+
   async findOneUserById(user_id: string): Promise<UserPresenter> {
     const user = await this.userRepository.findOne(user_id);
     if (!user) throw new UserNotFoundException();

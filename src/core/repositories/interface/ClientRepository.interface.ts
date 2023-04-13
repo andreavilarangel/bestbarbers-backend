@@ -1,19 +1,20 @@
-import { Prisma } from '@prisma/client'
-import { ClientEntity } from 'src/core/entities/Client.entity'
+import { Prisma } from '@prisma/client';
+import { ClientEntity } from 'src/core/entities/Client.entity';
 import {
   FindAllParamsType,
   FindAllResponseType,
-} from 'src/shared/interfaces/FindAll.type'
+} from 'src/shared/interfaces/FindAll.type';
 
 export interface ClientRepositoryInterface {
-  create(newClient: Prisma.ClientCreateInput): Promise<ClientEntity>
+  create(newClient: Prisma.ClientCreateInput): Promise<ClientEntity>;
   update(
     clientId: string,
     dataClient: Prisma.ClientUpdateInput,
-  ): Promise<ClientEntity>
-  findOne(clientId: string): Promise<ClientEntity>
+  ): Promise<ClientEntity>;
+  findByUserId(user_id: string): Promise<ClientEntity>;
+  findOne(clientId: string): Promise<ClientEntity>;
   findAll(
     params: FindAllParamsType<Prisma.ClientWhereInput>,
-  ): Promise<FindAllResponseType<ClientEntity>>
-  delete(clientId: string): Promise<ClientEntity>
+  ): Promise<FindAllResponseType<ClientEntity>>;
+  delete(clientId: string): Promise<ClientEntity>;
 }

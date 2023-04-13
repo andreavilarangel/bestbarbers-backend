@@ -42,6 +42,14 @@ export class BarbershopRepository implements BarbershopRepositoryInterface {
     });
   }
 
+  async findByUserId(user_id: string): Promise<BarbershopEntity> {
+    return this.prisma.barbershop.findFirst({
+      where: {
+        user_id,
+      },
+    });
+  }
+
   async findAll(
     params: FindAllParamsType<Prisma.BarbershopWhereInput>,
   ): Promise<FindAllResponseType<BarbershopEntity>> {

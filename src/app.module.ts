@@ -4,9 +4,10 @@ import { JwtAuthGuard } from './app/handles/Auth/jwt-auth.guard';
 import { AuthModule } from './app/modules/Auth/Auth.module';
 import { UserModule } from './app/modules/User/User.module';
 import { BarbershopModule } from './app/modules/Barbershop/Barbershop.module';
+import { ClientModule } from './app/modules/Client/Client.module';
 
 @Module({
-  imports: [AuthModule, UserModule, BarbershopModule],
+  imports: [AuthModule, UserModule, BarbershopModule, ClientModule],
   controllers: [],
   providers: [
     {

@@ -1,5 +1,4 @@
-
-import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator'
+import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator';
 import {
   Body,
   Controller,
@@ -9,19 +8,24 @@ import {
   Post,
   Put,
   Query,
-} from '@nestjs/common'
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { ClientCreateDTO, ClientUpdateDTO, ClientFindAllDTO} from 'src/app/dtos/Client.dto'
-import { ClientPresenter } from 'src/app/presenter/Client.presenter'
-import { ClientHandle } from 'src/app/handles/Client/Client.handle'
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter'
-import { ClientControllerInterface } from './ClientController.interface'
-import { ClientNotFoundException } from 'src/app/errors/Client.error'
-
+} from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ClientCreateDTO,
+  ClientUpdateDTO,
+  ClientFindAllDTO,
+} from 'src/app/dtos/Client.dto';
+import { ClientPresenter } from 'src/app/presenter/Client.presenter';
+import { ClientHandle } from 'src/app/handles/Client/Client.handle';
+import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { ClientControllerInterface } from './ClientController.interface';
+import { ClientNotFoundException } from 'src/app/errors/Client.error';
+import { Public } from 'src/app/decorators/public';
 
 @Injectable()
 @ApiTags('Client')
 @Controller('client')
+@Public()
 export class ClientController implements ClientControllerInterface {
   constructor(private readonly clientHandle: ClientHandle) {}
 
@@ -29,8 +33,10 @@ export class ClientController implements ClientControllerInterface {
   @ApiOperation({ summary: 'Cria um Client' })
   @ApiResponse({ type: ClientPresenter })
   @ApiException(() => [])
-  async createOneClient(@Body() newClient: ClientCreateDTO): Promise<ClientPresenter> {
-    return this.clientHandle.createOneClient(newClient)
+  async createOneClient(
+    @Body() newClient: ClientCreateDTO,
+  ): Promise<ClientPresenter> {
+    return this.clientHandle.createOneClient(newClient);
   }
 
   @Put('/:clientId')
@@ -41,22 +47,25 @@ export class ClientController implements ClientControllerInterface {
     @Param('clientId') clientId: string,
     @Body() dataClient: ClientUpdateDTO,
   ): Promise<ClientPresenter> {
-    return this.clientHandle.updateOneClient(clientId, dataClient)
+    return this.clientHandle.updateOneClient(clientId, dataClient);
   }
-
 
   @Get()
   @ApiOperation({ summary: 'Lista de todos os Clients' })
   @ApiResponse({ type: FindAllPresent.forEntity(ClientPresenter) })
-  async getAllClient(@Query() queries: ClientFindAllDTO): Promise<FindAllPresent<ClientPresenter>> {
-    return this.clientHandle.findAllClient(queries)
+  async getAllClient(
+    @Query() queries: ClientFindAllDTO,
+  ): Promise<FindAllPresent<ClientPresenter>> {
+    return this.clientHandle.findAllClient(queries);
   }
 
   @Get('/:clientId')
   @ApiOperation({ summary: 'Obtém dados de um Client' })
   @ApiResponse({ type: ClientPresenter })
   @ApiException(() => [ClientNotFoundException])
-  async getOneClientById(@Param('clientId') clientId: string): Promise<ClientPresenter> {
-    return this.clientHandle.findOneClientById(clientId)
+  async getOneClientById(
+    @Param('clientId') clientId: string,
+  ): Promise<ClientPresenter> {
+    return this.clientHandle.findOneClientById(clientId);
   }
 }

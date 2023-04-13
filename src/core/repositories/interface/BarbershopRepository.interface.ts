@@ -13,6 +13,7 @@ export interface BarbershopRepositoryInterface {
     barbershopId: string,
     dataBarbershop: Prisma.BarbershopUpdateInput,
   ): Promise<BarbershopEntity>;
+  findByUserId(user_id: string): Promise<BarbershopEntity>;
   findOne(barbershopId: string): Promise<BarbershopEntity>;
   findAll(
     params: FindAllParamsType<Prisma.BarbershopWhereInput>,

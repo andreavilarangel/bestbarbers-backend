@@ -21,6 +21,16 @@ export class BarbershopUpdateService
     // valida se existe Barbershop
     await this.barbershopFindService.findOneBarbershopById(barbershopId);
 
-    return this.barbershopRepository.update(barbershopId, dataBarbershop);
+    const barbershopUpdated = await this.barbershopRepository.update(
+      barbershopId,
+      {
+        ...dataBarbershop,
+        user: {
+          update: dataBarbershop.user,
+        },
+      },
+    );
+
+    return barbershopUpdated;
   }
 }

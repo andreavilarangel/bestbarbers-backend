@@ -14,9 +14,7 @@ export class BarbershopFindService implements BarbershopFindServiceInterface {
     barbershopId: string,
   ): Promise<BarbershopPresenter> {
     const barbershop = await this.barbershopRepository.findOne(barbershopId);
-
     if (!barbershop) throw new BarbershopNotFoundException({ barbershopId });
-
     return barbershop;
   }
 

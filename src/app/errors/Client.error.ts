@@ -1,11 +1,10 @@
-
 import {
   AlreadyExistException,
   BadException,
   NotFoundException,
-} from './error.exception'
+} from './error.exception';
 
-const prefix = 'C'
+const prefix = 'C';
 
 export class ClientNotFoundException extends NotFoundException {
   constructor(data?: any) {
@@ -15,7 +14,7 @@ export class ClientNotFoundException extends NotFoundException {
         prefix,
       },
       data,
-    )
+    );
   }
 }
 
@@ -27,7 +26,7 @@ export class ClientAlreadyExistException extends AlreadyExistException {
         prefix,
       },
       data,
-    )
+    );
   }
 }
 
@@ -39,6 +38,6 @@ export class ClientBadRequestException extends BadException {
         prefix,
       },
       data,
-    )
+    );
   }
-}  
+}
