@@ -7,6 +7,9 @@ import { BarbershopModule } from './app/modules/Barbershop/Barbershop.module';
 import { ClientModule } from './app/modules/Client/Client.module';
 import { EmployerModule } from './app/modules/Employer/Employer.module';
 import { BarbershopOpeningHourModule } from './app/modules/BarbershopOpeningHour/BarbershopOpeningHour.module';
+import { ProductAndServiceModule } from './app/modules/ProductAndService/ProductAndService.module';
+import { PaymentMethodModule } from './app/modules/PaymentMethod/PaymentMethod.module';
+import { BlockedTimeModule } from './app/modules/BlockedTime/BlockedTime.module';
 
 @Module({
   imports: [
@@ -16,6 +19,9 @@ import { BarbershopOpeningHourModule } from './app/modules/BarbershopOpeningHour
     ClientModule,
     EmployerModule,
     BarbershopOpeningHourModule,
+    ProductAndServiceModule,
+    PaymentMethodModule,
+    BlockedTimeModule,
   ],
   controllers: [],
   providers: [

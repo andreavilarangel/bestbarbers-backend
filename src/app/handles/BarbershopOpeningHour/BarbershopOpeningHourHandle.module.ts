@@ -4,6 +4,7 @@ import { BarbershopOpeningHourHandle } from './BarbershopOpeningHour.handle';
 import { BarbershopOpeningHourCreateService } from './BarbershopOpeningHourCreate.service';
 import { BarbershopOpeningHourFindService } from './BarbershopOpeningHourFind.service';
 import { BarbershopOpeningHourUpdateService } from './BarbershopOpeningHourUpdate.service';
+import { BarbershopFindService } from '../Barbershop/BarbershopFind.service';
 
 @Module({
   imports: [RepositoriesModule],
@@ -12,6 +13,7 @@ import { BarbershopOpeningHourUpdateService } from './BarbershopOpeningHourUpdat
     BarbershopOpeningHourCreateService,
     BarbershopOpeningHourUpdateService,
     BarbershopOpeningHourFindService,
+    BarbershopFindService,
   ],
   exports: [
     BarbershopOpeningHourHandle,

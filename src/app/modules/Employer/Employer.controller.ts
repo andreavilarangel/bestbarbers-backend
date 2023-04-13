@@ -20,10 +20,12 @@ import { EmployerHandle } from 'src/app/handles/Employer/Employer.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
 import { EmployerControllerInterface } from './EmployerController.interface';
 import { EmployerNotFoundException } from 'src/app/errors/Employer.error';
+import { Public } from 'src/app/decorators/public';
 
 @Injectable()
 @ApiTags('Employer')
 @Controller('employer')
+@Public()
 export class EmployerController implements EmployerControllerInterface {
   constructor(private readonly employerHandle: EmployerHandle) {}
 

@@ -5,6 +5,9 @@ import { BarbershopRepository } from './Barbershop.repository';
 import { ClientRepository } from './Client.repository';
 import { EmployerRepository } from './Employer.repository';
 import { BarbershopOpeningHourRepository } from './BarbershopOpeningHour.repository';
+import { ProductAndServiceRepository } from './ProductAndService.repository';
+import { PaymentMethodRepository } from './PaymentMethod.repository';
+import { BlockedTimeRepository } from './BlockedTime.repository';
 
 @Module({
   imports: [DatabaseModule],
@@ -14,6 +17,9 @@ import { BarbershopOpeningHourRepository } from './BarbershopOpeningHour.reposit
     ClientRepository,
     EmployerRepository,
     BarbershopOpeningHourRepository,
+    ProductAndServiceRepository,
+    PaymentMethodRepository,
+    BlockedTimeRepository,
   ],
   exports: [
     UserRepository,
@@ -21,6 +27,9 @@ import { BarbershopOpeningHourRepository } from './BarbershopOpeningHour.reposit
     ClientRepository,
     EmployerRepository,
     BarbershopOpeningHourRepository,
+    ProductAndServiceRepository,
+    PaymentMethodRepository,
+    BlockedTimeRepository,
   ],
 })
 export class RepositoriesModule {}

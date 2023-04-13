@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { omit } from 'radash';
 import { EmployerCreateDTO } from 'src/app/dtos/Employer.dto';
 import { EmployerPresenter } from 'src/app/presenter/Employer.presenter';
 import { EmployerRepository } from 'src/core/repositories/Employer.repository';
@@ -23,12 +24,12 @@ export class EmployerCreateService implements EmployerCreateServiceInterface {
 
     if (user) throw new UserAlreadyExistException();
 
-    const createdClient = await this.employerRepository.create({
-      ...newEmployer,
+    const createdEmployer = await this.employerRepository.create({
+      ...omit(newEmployer, ['barbershop_id']),
       user: { create: newEmployer.user },
       barbershop: { connect: { id: newEmployer.barbershop_id } },
     });
 
-    return createdClient;
+    return createdEmployer;
   }
 }
