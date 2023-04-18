@@ -2,7 +2,12 @@ import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
 import { EmployerEntity } from 'src/core/entities/Employer.entity';
 import { PaginationDTO } from './Pagination.dto';
 import { Type } from 'class-transformer';
-import { IsNotEmptyObject, IsOptional, ValidateNested } from 'class-validator';
+import {
+  IsNotEmptyObject,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { UserCreateDTO, UserUpdateDTO } from './User.dto';
 
 export class EmployerCreateDTO extends OmitType(EmployerEntity, [
@@ -26,5 +31,7 @@ export class EmployerUpdateDTO extends PartialType(
   @Type(() => UserUpdateDTO)
   user: UserUpdateDTO;
 }
-
-export class EmployerFindAllDTO extends PaginationDTO {}
+export class EmployerFindAllDTO extends PaginationDTO {
+  @IsString()
+  barbershop_id: string;
+}

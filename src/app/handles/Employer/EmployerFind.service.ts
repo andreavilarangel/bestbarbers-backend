@@ -18,13 +18,30 @@ export class EmployerFindService implements EmployerFindServiceInterface {
     return employer;
   }
 
+  async findEmployersByBarbershopId(
+    params: EmployerFindAllDTO,
+  ): Promise<FindAllPresent<EmployerPresenter>> {
+    const [data, total] = await this.employerRepository.findAll({
+      skip: params.skip,
+      take: params.take,
+      where: {
+        barbershop_id: params.barbershop_id,
+      },
+    });
+
+    return {
+      data,
+      total,
+    };
+  }
+
   async findAllEmployer(
     params: EmployerFindAllDTO,
   ): Promise<FindAllPresent<EmployerPresenter>> {
     const [data, total] = await this.employerRepository.findAll({
       skip: params.skip,
       take: params.take,
-      where: {},
+      where: { barbershop_id: params.barbershop_id },
     });
 
     return {

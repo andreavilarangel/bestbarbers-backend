@@ -48,6 +48,7 @@ export class EmployerRepository implements EmployerRepositoryInterface {
         skip: params.skip,
         take: params.take,
         where: params.where,
+        include: { user: true },
       }),
       this.prisma.employer.count({ where: params.where }),
     ]);

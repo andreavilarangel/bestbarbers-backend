@@ -1,11 +1,10 @@
-
 import {
   AlreadyExistException,
   BadException,
   NotFoundException,
-} from './error.exception'
+} from './error.exception';
 
-const prefix = 'E'
+const prefix = 'E';
 
 export class EmployerNotFoundException extends NotFoundException {
   constructor(data?: any) {
@@ -15,7 +14,7 @@ export class EmployerNotFoundException extends NotFoundException {
         prefix,
       },
       data,
-    )
+    );
   }
 }
 
@@ -27,7 +26,7 @@ export class EmployerAlreadyExistException extends AlreadyExistException {
         prefix,
       },
       data,
-    )
+    );
   }
 }
 
@@ -39,6 +38,6 @@ export class EmployerBadRequestException extends BadException {
         prefix,
       },
       data,
-    )
+    );
   }
-}  
+}
