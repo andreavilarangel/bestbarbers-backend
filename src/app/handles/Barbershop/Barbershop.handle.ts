@@ -35,6 +35,12 @@ export class BarbershopHandle implements BarbershopHandleInterface {
     );
   }
 
+  async findOneBarbershopByUserId(
+    userId: string,
+  ): Promise<BarbershopPresenter> {
+    return this.barbershopFind.findOneBarbershopByUserId(userId);
+  }
+
   async findOneBarbershopById(
     barbershopId: string,
   ): Promise<BarbershopPresenter> {

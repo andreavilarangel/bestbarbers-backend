@@ -21,6 +21,7 @@ export interface BarbershopUpdateServiceInterface {
 
 export interface BarbershopFindServiceInterface {
   findOneBarbershopById(barbershopId: string): Promise<BarbershopPresenter>;
+  findOneBarbershopByUserId(userId: string): Promise<BarbershopPresenter>;
   findAllBarbershop(
     params: BarbershopFindAllDTO,
   ): Promise<FindAllPresent<BarbershopPresenter>>;

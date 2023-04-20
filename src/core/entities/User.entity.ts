@@ -34,7 +34,7 @@ export class UserEntity implements User {
 
   @IsOptional()
   @ApiPropertyOptional({ example: 'hhtp://suaimagem.com' })
-  image_profile_url: string;
+  profile_image_url: string;
 
   @IsString()
   @ApiProperty({ example: 'barbershop' })

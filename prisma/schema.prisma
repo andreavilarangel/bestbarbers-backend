@@ -13,7 +13,7 @@ model User {
   name              String
   cpf               String?
   birth_date        String?
-  image_profile_url String?
+  profile_image_url String?
 
   phone String
   email String
@@ -53,10 +53,11 @@ model Barbershop {
 
   cnpj String?
 
-  rating          Float?
-  agenda_interval Int?
-  status          String?
-  slug            String?
+  rating            Float?
+  agenda_interval   Int?
+  status            String?
+  slug              String?
+  profile_image_url String?
 
   trial_start_date    String?
   trial_end_date      String?

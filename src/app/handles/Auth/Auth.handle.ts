@@ -5,6 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthPasswordWrongException } from 'src/app/errors/Auth.error';
 import { Injectable } from '@nestjs/common';
 import { UserHandle } from '../User/User.handle';
+import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 import { isEmail } from 'src/common/castHelper';
 import { UserNotFoundException } from 'src/app/errors/User.error';
 import { isMatch } from 'src/common/encrypt';
@@ -16,29 +17,34 @@ const md5 = require('md5');
 export class AuthHandle implements AuthHandleInterface {
   constructor(
     private readonly userHandle: UserHandle,
+    private readonly barbershopHandle: BarbershopHandle,
     private readonly jwtService: JwtService,
   ) {}
 
-  async signIn(username: string, password: string): Promise<AuthPresenter> {
-    const user = isEmail(username)
-      ? await this.userHandle.findOneUserByEmail(username)
-      : await this.userHandle.findOneUserByPhone(username);
+  async signIn(user: string, password: string): Promise<AuthPresenter> {
+    const checkUser = isEmail(user)
+      ? await this.userHandle.findOneUserByEmail(user)
+      : await this.userHandle.findOneUserByPhone(user);
 
-    if (!user) throw new UserNotFoundException({ username });
+    if (!checkUser) throw new UserNotFoundException({ user });
 
-    const isPasswordMatch = await isMatch(password, user.password);
+    const isPasswordMatch = await isMatch(password, checkUser.password);
     if (!isPasswordMatch) throw new AuthPasswordWrongException();
 
+    const barbershop = await this.barbershopHandle.findOneBarbershopByUserId(
+      checkUser.id,
+    );
+
     const payload = {
-      username,
-      id: user.id,
+      user,
+      id: checkUser.id,
     };
     const accessToken = this.jwtService.sign(payload);
 
     return {
-      username,
-      access_token: accessToken,
-      user,
+      token: accessToken,
+      user: checkUser,
+      barbershop,
     };
   }
 }

@@ -54,6 +54,7 @@ export class ClientRepository implements ClientRepositoryInterface {
         skip: params.skip,
         take: params.take,
         where: params.where,
+        include: { user: true },
       }),
       this.prisma.client.count({ where: params.where }),
     ]);

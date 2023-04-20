@@ -24,14 +24,6 @@ export class AuthController implements AuthControllerInterface {
   @ApiOkResponse({ type: AuthPresenter })
   @ApiException(() => [UserNotFoundException, AuthPasswordWrongException])
   async signIn(@Body() body: AuthSignInDTO): Promise<AuthPresenter> {
-    return this.authHandle.signIn(body.username, body.password);
-  }
-
-  async resetPassword(body: {
-    username: string;
-    newPassword: string;
-    code: string;
-  }): Promise<void> {
-    throw new Error('Method not implemented.');
+    return this.authHandle.signIn(body.user, body.password);
   }
 }

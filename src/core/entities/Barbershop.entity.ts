@@ -44,6 +44,10 @@ export class BarbershopEntity implements Barbershop {
   slug: string;
 
   @IsOptional()
+  @ApiPropertyOptional({ example: 'hhtp://suaimagem.com' })
+  profile_image_url: string;
+
+  @IsOptional()
   @ApiProperty({ example: '2023-03-16' })
   trial_start_date: string;
 

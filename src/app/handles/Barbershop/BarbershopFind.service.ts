@@ -18,6 +18,14 @@ export class BarbershopFindService implements BarbershopFindServiceInterface {
     return barbershop;
   }
 
+  async findOneBarbershopByUserId(
+    userId: string,
+  ): Promise<BarbershopPresenter> {
+    const barbershop = await this.barbershopRepository.findByUserId(userId);
+    if (!barbershop) throw new BarbershopNotFoundException({ userId });
+    return barbershop;
+  }
+
   async findAllBarbershop(
     params: BarbershopFindAllDTO,
   ): Promise<FindAllPresent<BarbershopPresenter>> {

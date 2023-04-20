@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 export class AuthSignInDTO {
-  @ApiProperty({ example: 'username' })
+  @ApiProperty({ example: 'email or phone' })
   @IsString()
-  username: string;
+  user: string;
 
   @ApiProperty({ example: 'password' })
   @IsString()
