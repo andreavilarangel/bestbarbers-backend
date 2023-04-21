@@ -57,11 +57,11 @@ export class UserController implements UserControllerInterface {
     return this.userHandle.updateOneUser(user_id, dataUser);
   }
 
-  @Get()
-  @ApiOperation({ summary: 'Lista de usuario' })
-  @ApiResponse({
-    type: FindAllPresent.forEntity(UserPresenter),
-  })
+  // @Get()
+  // @ApiOperation({ summary: 'Lista de usuario' })
+  // @ApiResponse({
+  //   type: FindAllPresent.forEntity(UserPresenter),
+  // })
   // async getAllUser(
   //   @Query() queries: UserFindAllDTO,
   // ): Promise<FindAllPresent<UserPresenterResponse>> {

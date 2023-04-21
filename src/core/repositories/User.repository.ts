@@ -37,7 +37,7 @@ export class UserRepository implements UserRepositoryInterface {
   async findOne(user_id?: string): Promise<UserRepositoryResponseType> {
     return this.prisma.user.findUnique({
       where: {
-        id: user_id || undefined,
+        id: user_id,
       },
     });
   }
