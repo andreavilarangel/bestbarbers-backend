@@ -29,6 +29,10 @@ export class BarbershopEntity implements Barbershop {
 
   @IsOptional()
   @ApiPropertyOptional()
+  phone: string;
+
+  @IsOptional()
+  @ApiPropertyOptional()
   rating: number;
 
   @IsOptional()

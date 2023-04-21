@@ -51,7 +51,8 @@ model Barbershop {
   name        String
   description String?
 
-  cnpj String?
+  cnpj  String?
+  phone String?
 
   rating            Float?
   agenda_interval   Int?
