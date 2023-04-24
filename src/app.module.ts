@@ -10,9 +10,11 @@ import { BarbershopOpeningHourModule } from './app/modules/BarbershopOpeningHour
 import { ProductAndServiceModule } from './app/modules/ProductAndService/ProductAndService.module';
 import { PaymentMethodModule } from './app/modules/PaymentMethod/PaymentMethod.module';
 import { BlockedTimeModule } from './app/modules/BlockedTime/BlockedTime.module';
+import { AddressModule } from './app/modules/Address/Address.module';
 
 @Module({
   imports: [
+    AddressModule,
     AuthModule,
     UserModule,
     BarbershopModule,

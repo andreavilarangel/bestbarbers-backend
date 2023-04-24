@@ -68,4 +68,14 @@ export class AddressController implements AddressControllerInterface {
   ): Promise<AddressPresenter> {
     return this.addressHandle.findOneAddressById(addressId);
   }
+
+  @Get('/barbershop/:barbershopId')
+  @ApiOperation({ summary: 'Obtém dados de um Address pelo barbershop_id' })
+  @ApiResponse({ type: AddressPresenter })
+  @ApiException(() => [AddressNotFoundException])
+  async getOneAddressByBarbershopId(
+    @Param('barbershopId') barbershop_id: string,
+  ): Promise<AddressPresenter> {
+    return this.addressHandle.findOneAddressByBarbershopId(barbershop_id);
+  }
 }

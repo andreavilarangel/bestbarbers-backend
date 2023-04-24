@@ -32,6 +32,12 @@ export class AddressHandle implements AddressHandleInterface {
     return this.addressUpdate.updateOneAddress(addressId, dataAddress);
   }
 
+  async findOneAddressByBarbershopId(
+    barbershop_id: string,
+  ): Promise<AddressPresenter> {
+    return this.addressFind.findOneAddressByBarbershopId(barbershop_id);
+  }
+
   async findOneAddressById(addressId: string): Promise<AddressPresenter> {
     return this.addressFind.findOneAddressById(addressId);
   }

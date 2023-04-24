@@ -12,9 +12,17 @@ export class AddressFindService implements AddressFindServiceInterface {
 
   async findOneAddressById(addressId: string): Promise<AddressPresenter> {
     const address = await this.addressRepository.findOne(addressId);
-
     if (!address) throw new AddressNotFoundException({ addressId });
+    return address;
+  }
 
+  async findOneAddressByBarbershopId(
+    barbershop_id: string,
+  ): Promise<AddressPresenter> {
+    const address = await this.addressRepository.findByBarbershopId(
+      barbershop_id,
+    );
+    if (!address) throw new AddressNotFoundException({ barbershop_id });
     return address;
   }
 

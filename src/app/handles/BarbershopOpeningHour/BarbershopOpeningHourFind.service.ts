@@ -57,7 +57,9 @@ export class BarbershopOpeningHourFindService
     const [data, total] = await this.barbershopOpeningHourRepository.findAll({
       skip: params.skip,
       take: params.take,
-      where: {},
+      where: {
+        barbershop_id: params.barbershop_id,
+      },
     });
 
     return {

@@ -38,6 +38,14 @@ export class AddressRepository implements AddressRepositoryInterface {
     });
   }
 
+  async findByBarbershopId(barbershop_id: string): Promise<AddressEntity> {
+    return this.prisma.address.findFirst({
+      where: {
+        barbershop_id,
+      },
+    });
+  }
+
   async findAll(
     params: FindAllParamsType<Prisma.AddressWhereInput>,
   ): Promise<FindAllResponseType<AddressEntity>> {

@@ -8,10 +8,12 @@ import { BarbershopOpeningHourRepository } from './BarbershopOpeningHour.reposit
 import { ProductAndServiceRepository } from './ProductAndService.repository';
 import { PaymentMethodRepository } from './PaymentMethod.repository';
 import { BlockedTimeRepository } from './BlockedTime.repository';
+import { AddressRepository } from './Address.repository';
 
 @Module({
   imports: [DatabaseModule],
   providers: [
+    AddressRepository,
     UserRepository,
     BarbershopRepository,
     ClientRepository,
@@ -22,6 +24,7 @@ import { BlockedTimeRepository } from './BlockedTime.repository';
     BlockedTimeRepository,
   ],
   exports: [
+    AddressRepository,
     UserRepository,
     BarbershopRepository,
     ClientRepository,

@@ -19,6 +19,9 @@ export interface AddressUpdateServiceInterface {
 
 export interface AddressFindServiceInterface {
   findOneAddressById(addressId: string): Promise<AddressPresenter>;
+  findOneAddressByBarbershopId(
+    barbershop_id: string,
+  ): Promise<AddressPresenter>;
   findAllAddress(
     params: AddressFindAllDTO,
   ): Promise<FindAllPresent<AddressPresenter>>;

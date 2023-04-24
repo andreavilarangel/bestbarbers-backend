@@ -245,6 +245,7 @@ model Address {
   client_id     String?
   client        Client?     @relation(fields: [client_id], references: [id])
 
+  zip_code      String
   title         String?
   street        String
   street_number String
@@ -253,9 +254,9 @@ model Address {
   city          String
   state         String
   country       String
-  latitude      String
-  longitude     String
-  geo_point     String
+  latitude      Float
+  longitude     Float
+  geo_point     String?
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt

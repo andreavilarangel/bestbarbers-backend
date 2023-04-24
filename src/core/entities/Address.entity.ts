@@ -19,6 +19,10 @@ export class AddressEntity implements Address {
   client_id: string;
 
   @IsOptional()
+  @ApiPropertyOptional({ example: '30112-020' })
+  zip_code: string;
+
+  @IsOptional()
   @ApiPropertyOptional({ example: 'Casa' })
   title: string;
 
@@ -45,10 +49,10 @@ export class AddressEntity implements Address {
   country: string;
 
   @ApiPropertyOptional({ example: 'Latitude' })
-  latitude: string;
+  latitude: number;
 
   @ApiPropertyOptional({ example: 'longitude' })
-  longitude: string;
+  longitude: number;
 
   @ApiPropertyOptional({ example: 'Ponto geográfico' })
   geo_point: string;
