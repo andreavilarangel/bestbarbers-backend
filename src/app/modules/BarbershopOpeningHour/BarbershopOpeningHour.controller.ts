@@ -59,6 +59,17 @@ export class BarbershopOpeningHourController
     );
   }
 
+  @Put()
+  @ApiOperation({ summary: 'Atualiza todos os horarios de uma barbearia' })
+  @ApiResponse({ type: BarbershopOpeningHourPresenter })
+  @ApiException(() => [BarbershopOpeningHourNotFoundException])
+  async updateAllBarbershopOpeningHour(@Body() data: any): Promise<any> {
+    console.log(data);
+    return this.barbershopOpeningHourHandle.updateAllBarbershopOpeningHour(
+      data,
+    );
+  }
+
   @Get()
   @ApiOperation({ summary: 'Lista de todos os BarbershopOpeningHours' })
   @ApiResponse({

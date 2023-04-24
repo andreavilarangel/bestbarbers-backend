@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { omit } from 'radash';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 import {
@@ -32,6 +33,23 @@ export class BarbershopOpeningHourRepository
       },
       data: dataBarbershopOpeningHour,
     });
+  }
+
+  async updateMany(hoursList: any): Promise<any> {
+    const data = await hoursList.map(async (day: any) => {
+      const response = await this.prisma.barbershopOpeningHour.update({
+        where: {
+          id: day.id,
+        },
+        data: {
+          finish_hour: day.finish_hour,
+          start_hour: day.start_hour,
+          is_closed: day.is_closed,
+        },
+      });
+      return response;
+    });
+    return data;
   }
 
   async findOne(

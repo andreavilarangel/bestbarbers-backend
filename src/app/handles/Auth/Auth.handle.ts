@@ -6,7 +6,6 @@ import { AuthPasswordWrongException } from 'src/app/errors/Auth.error';
 import { Injectable } from '@nestjs/common';
 import { UserHandle } from '../User/User.handle';
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
-import { isEmail } from 'src/common/castHelper';
 import { UserNotFoundException } from 'src/app/errors/User.error';
 import { isMatch } from 'src/common/encrypt';
 
@@ -22,9 +21,11 @@ export class AuthHandle implements AuthHandleInterface {
   ) {}
 
   async signIn(user: string, password: string): Promise<AuthPresenter> {
-    const checkUser = isEmail(user)
-      ? await this.userHandle.findOneUserByEmail(user)
-      : await this.userHandle.findOneUserByPhone(user);
+    const [checkByEmail, checkByPhone] = await Promise.all([
+      await this.userHandle.findOneUserByEmail(user),
+      await this.userHandle.findOneUserByPhone(user),
+    ]);
+    const checkUser = checkByEmail || checkByPhone;
 
     if (!checkUser) throw new UserNotFoundException({ user });
 

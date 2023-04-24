@@ -32,4 +32,29 @@ export class BarbershopOpeningHourCreateService
       barbershop: { connect: { id: barbershop_id } },
     });
   }
+
+  async createAllBarbershopOpeningHour(
+    newBarbershopOpeningHour: BarbershopOpeningHourCreateDTO,
+  ): Promise<any> {
+    const { barbershop_id } = newBarbershopOpeningHour;
+    await this.barbershopFindService.findOneBarbershopById(barbershop_id);
+
+    const days = [
+      { day: 1, day_reference: 'monday' },
+      { day: 2, day_reference: 'tuesday' },
+      { day: 3, day_reference: 'wednesday' },
+      { day: 4, day_reference: 'thursday' },
+      { day: 5, day_reference: 'friday' },
+      { day: 6, day_reference: 'saturday' },
+      { day: 7, day_reference: 'sunday' },
+    ];
+    const created = days.map((item) => {
+      return this.barbershopOpeningHourRepository.create({
+        ...item,
+        barbershop: { connect: { id: barbershop_id } },
+      });
+    });
+
+    return created;
+  }
 }

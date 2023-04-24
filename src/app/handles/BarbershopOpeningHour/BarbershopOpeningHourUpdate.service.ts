@@ -28,4 +28,8 @@ export class BarbershopOpeningHourUpdateService
       dataBarbershopOpeningHour,
     );
   }
+
+  async updateAllBarbershopOpeningHour(data: any): Promise<any> {
+    return this.barbershopOpeningHourRepository.updateMany(data);
+  }
 }

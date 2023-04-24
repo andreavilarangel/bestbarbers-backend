@@ -39,6 +39,12 @@ export class BarbershopOpeningHourHandle
     );
   }
 
+  async updateAllBarbershopOpeningHour(data: any): Promise<any> {
+    return this.barbershopOpeningHourUpdate.updateAllBarbershopOpeningHour(
+      data,
+    );
+  }
+
   async findOneBarbershopOpeningHourById(
     barbershopOpeningHourId: string,
   ): Promise<BarbershopOpeningHourPresenter> {
