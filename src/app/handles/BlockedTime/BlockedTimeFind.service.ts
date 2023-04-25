@@ -26,7 +26,7 @@ export class BlockedTimeFindService implements BlockedTimeFindServiceInterface {
     const [data, total] = await this.blockedTimeRepository.findAll({
       skip: params.skip,
       take: params.take,
-      where: {},
+      where: { barbershop_id: params.barbershop_id },
     });
 
     return {
