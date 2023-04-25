@@ -42,10 +42,8 @@ export class BlockedTimeEntity implements BlockedTime {
   @ApiPropertyOptional({ example: false, default: false })
   repeat_every_day: boolean;
 
-  @IsString()
   @IsOptional()
-  @ApiPropertyOptional({ example: '6' })
-  repeat_every_week_day: string;
+  repeat_every_week_day: number;
 
   @IsOptional()
   @ApiProperty({ example: '2023-03-16T21:21:51.875Z' })

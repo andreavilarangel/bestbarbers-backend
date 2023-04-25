@@ -223,14 +223,14 @@ model BlockedTime {
   employer_id   String?
   employer      Employer?  @relation(fields: [employer_id], references: [id])
 
-  all_employees Boolean
+  all_employees Boolean?
 
-  date        String
+  date        String?
   start_hour  String
   finish_hour String
 
   repeat_every_day      Boolean
-  repeat_every_week_day String
+  repeat_every_week_day Int?
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt

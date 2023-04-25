@@ -16,7 +16,7 @@ CREATE TABLE "users" (
     "name" TEXT NOT NULL,
     "cpf" TEXT,
     "birth_date" TEXT,
-    "image_profile_url" TEXT,
+    "profile_image_url" TEXT,
     "phone" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "type" TEXT NOT NULL,
@@ -36,14 +36,16 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "barbershops" (
     "id" TEXT NOT NULL,
-    "user_id" TEXT,
-    "name" TEXT,
+    "user_id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "description" TEXT,
     "cnpj" TEXT,
+    "phone" TEXT,
     "rating" DOUBLE PRECISION,
     "agenda_interval" INTEGER,
     "status" TEXT,
     "slug" TEXT,
+    "profile_image_url" TEXT,
     "trial_start_date" TEXT,
     "trial_end_date" TEXT,
     "account_status" TEXT,
@@ -143,12 +145,12 @@ CREATE TABLE "blocked_times" (
     "id" TEXT NOT NULL,
     "barbershop_id" TEXT NOT NULL,
     "employer_id" TEXT,
-    "all_employees" BOOLEAN NOT NULL,
-    "date" TEXT NOT NULL,
+    "all_employees" BOOLEAN,
+    "date" TEXT,
     "start_hour" TEXT NOT NULL,
     "finish_hour" TEXT NOT NULL,
     "repeat_every_day" BOOLEAN NOT NULL,
-    "repeat_every_week_day" TEXT NOT NULL,
+    "repeat_every_week_day" INTEGER,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -160,6 +162,7 @@ CREATE TABLE "address" (
     "id" TEXT NOT NULL,
     "barbershop_id" TEXT,
     "client_id" TEXT,
+    "zip_code" TEXT NOT NULL,
     "title" TEXT,
     "street" TEXT NOT NULL,
     "street_number" TEXT NOT NULL,
@@ -168,9 +171,9 @@ CREATE TABLE "address" (
     "city" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "country" TEXT NOT NULL,
-    "latitude" TEXT NOT NULL,
-    "longitude" TEXT NOT NULL,
-    "geo_point" TEXT NOT NULL,
+    "latitude" DOUBLE PRECISION NOT NULL,
+    "longitude" DOUBLE PRECISION NOT NULL,
+    "geo_point" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -309,7 +312,7 @@ CREATE TABLE "appointments_reviews" (
 );
 
 -- AddForeignKey
-ALTER TABLE "barbershops" ADD CONSTRAINT "barbershops_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "barbershops" ADD CONSTRAINT "barbershops_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "barbershop_opening_hours" ADD CONSTRAINT "barbershop_opening_hours_barbershop_id_fkey" FOREIGN KEY ("barbershop_id") REFERENCES "barbershops"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
