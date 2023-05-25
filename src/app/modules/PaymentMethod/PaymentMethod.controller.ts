@@ -18,7 +18,7 @@ import {
 import { PaymentMethodPresenter } from 'src/app/presenter/PaymentMethod.presenter';
 import { PaymentMethodHandle } from 'src/app/handles/PaymentMethod/PaymentMethod.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { PaymentMethodControllerInterface } from './PaymentMethodController.interface';
+
 import { PaymentMethodNotFoundException } from 'src/app/errors/PaymentMethod.error';
 import { Public } from 'src/app/decorators/public';
 
@@ -26,9 +26,7 @@ import { Public } from 'src/app/decorators/public';
 @ApiTags('PaymentMethod')
 @Controller('paymentMethod')
 @Public()
-export class PaymentMethodController
-  implements PaymentMethodControllerInterface
-{
+export class PaymentMethodController {
   constructor(private readonly paymentMethodHandle: PaymentMethodHandle) {}
 
   @Post()

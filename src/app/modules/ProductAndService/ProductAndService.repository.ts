@@ -5,13 +5,10 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { ProductAndServiceRepositoryInterface } from '../../../core/repositories/interface/ProductAndServiceRepository.interface';
 import { ProductAndServiceEntity } from './ProductAndService.entity';
 
 @Injectable()
-export class ProductAndServiceRepository
-  implements ProductAndServiceRepositoryInterface
-{
+export class ProductAndServiceRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(

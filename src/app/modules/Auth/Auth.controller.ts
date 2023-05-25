@@ -5,7 +5,6 @@ import { AuthSignInDTO } from 'src/app/dtos/Auth.dto';
 import { AuthPasswordWrongException } from 'src/app/errors/Auth.error';
 import { AuthHandle } from 'src/app/handles/Auth/Auth.handle';
 import { AuthPresenter } from 'src/app/modules/Auth/Auth.presenter';
-import { AuthControllerInterface } from './AuthController.interface';
 import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator';
 import { UserNotFoundException } from 'src/app/errors/User.error';
 
@@ -13,7 +12,7 @@ import { UserNotFoundException } from 'src/app/errors/User.error';
 @Controller('auth')
 @ApiTags('Autenticação')
 @Public()
-export class AuthController implements AuthControllerInterface {
+export class AuthController {
   constructor(private readonly authHandle: AuthHandle) {}
 
   @Post()

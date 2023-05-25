@@ -5,11 +5,10 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { AddressRepositoryInterface } from '../../../core/repositories/interface/AddressRepository.interface';
 import { AddressEntity } from './Address.entity';
 
 @Injectable()
-export class AddressRepository implements AddressRepositoryInterface {
+export class AddressRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(newAddress: Prisma.AddressCreateInput): Promise<AddressEntity> {

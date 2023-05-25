@@ -18,7 +18,6 @@ import {
 import { BlockedTimePresenter } from 'src/app/presenter/BlockedTime.presenter';
 import { BlockedTimeHandle } from 'src/app/handles/BlockedTime/BlockedTime.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { BlockedTimeControllerInterface } from './BlockedTimeController.interface';
 import { BlockedTimeNotFoundException } from 'src/app/errors/BlockedTime.error';
 import { Public } from 'src/app/decorators/public';
 
@@ -26,7 +25,7 @@ import { Public } from 'src/app/decorators/public';
 @ApiTags('BlockedTime')
 @Controller('blockedTime')
 @Public()
-export class BlockedTimeController implements BlockedTimeControllerInterface {
+export class BlockedTimeController {
   constructor(private readonly blockedTimeHandle: BlockedTimeHandle) {}
 
   @Post()

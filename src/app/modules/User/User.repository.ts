@@ -5,13 +5,10 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import {
-  UserRepositoryInterface,
-  UserRepositoryResponseType,
-} from '../../../core/repositories/interface/UserRepository.interface';
+import { UserRepositoryResponseType } from '../../../core/repositories/interface/UserRepository.interface';
 
 @Injectable()
-export class UserRepository implements UserRepositoryInterface {
+export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(

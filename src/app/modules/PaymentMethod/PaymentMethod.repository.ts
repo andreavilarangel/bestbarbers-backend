@@ -5,13 +5,10 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { PaymentMethodRepositoryInterface } from '../../../core/repositories/interface/PaymentMethodRepository.interface';
 import { PaymentMethodEntity } from './PaymentMethod.entity';
 
 @Injectable()
-export class PaymentMethodRepository
-  implements PaymentMethodRepositoryInterface
-{
+export class PaymentMethodRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(

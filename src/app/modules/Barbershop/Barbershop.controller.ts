@@ -18,7 +18,6 @@ import {
 import { BarbershopPresenter } from 'src/app/presenter/Barbershop.presenter';
 import { BarbershopHandle } from 'src/app/handles/Barbershop/Barbershop.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { BarbershopControllerInterface } from './BarbershopController.interface';
 import { BarbershopNotFoundException } from 'src/app/errors/Barbershop.error';
 import { Public } from 'src/app/decorators/public';
 
@@ -26,7 +25,7 @@ import { Public } from 'src/app/decorators/public';
 @ApiTags('Barbershop')
 @Controller('barbershop')
 @Public()
-export class BarbershopController implements BarbershopControllerInterface {
+export class BarbershopController {
   constructor(private readonly barbershopHandle: BarbershopHandle) {}
 
   @Post()

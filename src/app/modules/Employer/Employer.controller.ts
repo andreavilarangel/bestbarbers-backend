@@ -18,7 +18,6 @@ import {
 import { EmployerPresenter } from 'src/app/presenter/Employer.presenter';
 import { EmployerHandle } from 'src/app/handles/Employer/Employer.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { EmployerControllerInterface } from './EmployerController.interface';
 import { EmployerNotFoundException } from 'src/app/errors/Employer.error';
 import { Public } from 'src/app/decorators/public';
 
@@ -26,7 +25,7 @@ import { Public } from 'src/app/decorators/public';
 @ApiTags('Employer')
 @Controller('employer')
 @Public()
-export class EmployerController implements EmployerControllerInterface {
+export class EmployerController {
   constructor(private readonly employerHandle: EmployerHandle) {}
 
   @Post()

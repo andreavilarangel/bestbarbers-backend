@@ -5,11 +5,10 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { BlockedTimeRepositoryInterface } from '../../../core/repositories/interface/BlockedTimeRepository.interface';
 import { BlockedTimeEntity } from './BlockedTime.entity';
 
 @Injectable()
-export class BlockedTimeRepository implements BlockedTimeRepositoryInterface {
+export class BlockedTimeRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(

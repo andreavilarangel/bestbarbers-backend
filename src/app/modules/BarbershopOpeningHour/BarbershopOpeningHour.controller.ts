@@ -18,7 +18,6 @@ import {
 import { BarbershopOpeningHourPresenter } from 'src/app/presenter/BarbershopOpeningHour.presenter';
 import { BarbershopOpeningHourHandle } from 'src/app/handles/BarbershopOpeningHour/BarbershopOpeningHour.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { BarbershopOpeningHourControllerInterface } from './BarbershopOpeningHourController.interface';
 import { BarbershopOpeningHourNotFoundException } from 'src/app/errors/BarbershopOpeningHour.error';
 import { Public } from 'src/app/decorators/public';
 
@@ -26,9 +25,7 @@ import { Public } from 'src/app/decorators/public';
 @ApiTags('BarbershopOpeningHour')
 @Controller('barbershopOpeningHour')
 @Public()
-export class BarbershopOpeningHourController
-  implements BarbershopOpeningHourControllerInterface
-{
+export class BarbershopOpeningHourController {
   constructor(
     private readonly barbershopOpeningHourHandle: BarbershopOpeningHourHandle,
   ) {}

@@ -18,7 +18,6 @@ import {
 import { ProductAndServicePresenter } from 'src/app/presenter/ProductAndService.presenter';
 import { ProductAndServiceHandle } from 'src/app/handles/ProductAndService/ProductAndService.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { ProductAndServiceControllerInterface } from './ProductAndServiceController.interface';
 import { ProductAndServiceNotFoundException } from 'src/app/errors/ProductAndService.error';
 import { Public } from 'src/app/decorators/public';
 
@@ -26,9 +25,7 @@ import { Public } from 'src/app/decorators/public';
 @ApiTags('ProductAndService')
 @Controller('productAndService')
 @Public()
-export class ProductAndServiceController
-  implements ProductAndServiceControllerInterface
-{
+export class ProductAndServiceController {
   constructor(
     private readonly productAndServiceHandle: ProductAndServiceHandle,
   ) {}

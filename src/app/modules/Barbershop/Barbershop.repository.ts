@@ -5,11 +5,10 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { BarbershopRepositoryInterface } from '../../../core/repositories/interface/BarbershopRepository.interface';
 import { BarbershopEntity } from './Barbershop.entity';
 
 @Injectable()
-export class BarbershopRepository implements BarbershopRepositoryInterface {
+export class BarbershopRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(

@@ -5,11 +5,10 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { EmployerRepositoryInterface } from '../../../core/repositories/interface/EmployerRepository.interface';
 import { EmployerEntity } from './Employer.entity';
 
 @Injectable()
-export class EmployerRepository implements EmployerRepositoryInterface {
+export class EmployerRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(

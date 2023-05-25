@@ -5,11 +5,10 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { ClientRepositoryInterface } from '../../../core/repositories/interface/ClientRepository.interface';
 import { ClientEntity } from './Client.entity';
 
 @Injectable()
-export class ClientRepository implements ClientRepositoryInterface {
+export class ClientRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(newClient: Prisma.ClientCreateInput): Promise<ClientEntity> {

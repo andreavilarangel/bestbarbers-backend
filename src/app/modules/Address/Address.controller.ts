@@ -18,7 +18,6 @@ import {
 import { AddressPresenter } from 'src/app/modules/Address/Address.presenter';
 import { AddressHandle } from 'src/app/handles/Address/Address.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { AddressControllerInterface } from './AddressController.interface';
 import { AddressNotFoundException } from 'src/app/errors/Address.error';
 import { Public } from 'src/app/decorators/public';
 
@@ -26,7 +25,7 @@ import { Public } from 'src/app/decorators/public';
 @ApiTags('Address')
 @Controller('address')
 @Public()
-export class AddressController implements AddressControllerInterface {
+export class AddressController {
   constructor(private readonly addressHandle: AddressHandle) {}
 
   @Post()

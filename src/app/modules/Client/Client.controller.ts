@@ -18,7 +18,7 @@ import {
 import { ClientPresenter } from 'src/app/presenter/Client.presenter';
 import { ClientHandle } from 'src/app/handles/Client/Client.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { ClientControllerInterface } from './ClientController.interface';
+
 import { ClientNotFoundException } from 'src/app/errors/Client.error';
 import { Public } from 'src/app/decorators/public';
 
@@ -26,7 +26,7 @@ import { Public } from 'src/app/decorators/public';
 @ApiTags('Client')
 @Controller('client')
 @Public()
-export class ClientController implements ClientControllerInterface {
+export class ClientController {
   constructor(private readonly clientHandle: ClientHandle) {}
 
   @Post()
