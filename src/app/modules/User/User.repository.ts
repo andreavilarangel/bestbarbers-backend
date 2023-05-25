@@ -8,7 +8,7 @@ import {
 import {
   UserRepositoryInterface,
   UserRepositoryResponseType,
-} from './interface/UserRepository.interface';
+} from '../../../core/repositories/interface/UserRepository.interface';
 
 @Injectable()
 export class UserRepository implements UserRepositoryInterface {

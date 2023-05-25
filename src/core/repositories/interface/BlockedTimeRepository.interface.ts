@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { BlockedTimeEntity } from 'src/core/entities/BlockedTime.entity';
+import { BlockedTimeEntity } from 'src/app/modules/BlockedTime/BlockedTime.entity';
 import {
   FindAllParamsType,
   FindAllResponseType,

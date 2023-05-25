@@ -1,5 +1,5 @@
 import { OmitType } from '@nestjs/swagger';
-import { UserEntity } from 'src/core/entities/User.entity';
+import { UserEntity } from 'src/app/modules/User/User.entity';
 
 export class UserPresenter extends OmitType(UserEntity, ['password']) {}
 

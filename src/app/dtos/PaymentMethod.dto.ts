@@ -1,6 +1,6 @@
 import { OmitType, PartialType } from '@nestjs/swagger';
 import { PaginationDTO } from './Pagination.dto';
-import { PaymentMethodEntity } from 'src/core/entities/PaymentMethod.entity';
+import { PaymentMethodEntity } from 'src/app/modules/PaymentMethod/PaymentMethod.entity';
 
 export class PaymentMethodCreateDTO extends OmitType(PaymentMethodEntity, [
   'id',

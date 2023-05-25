@@ -3,7 +3,7 @@ import {
   AddressUpdateDTO,
   AddressFindAllDTO,
 } from 'src/app/dtos/Address.dto';
-import { AddressPresenter } from 'src/app/presenter/Address.presenter';
+import { AddressPresenter } from 'src/app/modules/Address/Address.presenter';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
 
 export interface AddressControllerInterface {

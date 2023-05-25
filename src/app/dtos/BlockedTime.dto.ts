@@ -1,6 +1,6 @@
 import { OmitType, PartialType } from '@nestjs/swagger';
 import { PaginationDTO } from './Pagination.dto';
-import { BlockedTimeEntity } from 'src/core/entities/BlockedTime.entity';
+import { BlockedTimeEntity } from 'src/app/modules/BlockedTime/BlockedTime.entity';
 import { IsString } from 'class-validator';
 
 export class BlockedTimeCreateDTO extends OmitType(BlockedTimeEntity, [

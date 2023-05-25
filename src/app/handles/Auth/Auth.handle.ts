@@ -1,5 +1,4 @@
-import { AuthPresenter } from 'src/app/presenter/Auth.presenter';
-import { AuthHandleInterface } from './Auth.interface';
+import { AuthPresenter } from 'src/app/modules/Auth/Auth.presenter';
 
 import { JwtService } from '@nestjs/jwt';
 import { AuthPasswordWrongException } from 'src/app/errors/Auth.error';
@@ -13,7 +12,7 @@ import { isMatch } from 'src/common/encrypt';
 const md5 = require('md5');
 
 @Injectable()
-export class AuthHandle implements AuthHandleInterface {
+export class AuthHandle {
   constructor(
     private readonly userHandle: UserHandle,
     private readonly barbershopHandle: BarbershopHandle,

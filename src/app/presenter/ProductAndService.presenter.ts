@@ -1,3 +1,3 @@
-import { ProductAndServiceEntity } from 'src/core/entities/ProductAndService.entity';
+import { ProductAndServiceEntity } from 'src/app/modules/ProductAndService/ProductAndService.entity';
 
 export class ProductAndServicePresenter extends ProductAndServiceEntity {}

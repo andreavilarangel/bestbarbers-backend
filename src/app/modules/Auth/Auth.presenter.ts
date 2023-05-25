@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserEntity } from 'src/core/entities/User.entity';
-import { BarbershopEntity } from 'src/core/entities/Barbershop.entity';
+import { UserEntity } from 'src/app/modules/User/User.entity';
+import { BarbershopEntity } from 'src/app/modules/Barbershop/Barbershop.entity';
 
 export class AuthPresenter {
   @ApiProperty({

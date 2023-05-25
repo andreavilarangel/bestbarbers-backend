@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { BarbershopEntity } from 'src/core/entities/Barbershop.entity';
+import { BarbershopEntity } from 'src/app/modules/Barbershop/Barbershop.entity';
 import {
   FindAllParamsType,
   FindAllResponseType,

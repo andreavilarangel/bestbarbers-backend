@@ -5,8 +5,8 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { BarbershopRepositoryInterface } from './interface/BarbershopRepository.interface';
-import { BarbershopEntity } from '../entities/Barbershop.entity';
+import { BarbershopRepositoryInterface } from '../../../core/repositories/interface/BarbershopRepository.interface';
+import { BarbershopEntity } from './Barbershop.entity';
 
 @Injectable()
 export class BarbershopRepository implements BarbershopRepositoryInterface {

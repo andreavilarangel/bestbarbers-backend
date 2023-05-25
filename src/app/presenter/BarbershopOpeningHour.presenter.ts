@@ -1,3 +1,3 @@
-import { BarbershopOpeningHourEntity } from 'src/core/entities/BarbershopOpeningHour.entity';
+import { BarbershopOpeningHourEntity } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.entity';
 
 export class BarbershopOpeningHourPresenter extends BarbershopOpeningHourEntity {}

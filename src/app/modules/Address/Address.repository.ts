@@ -5,8 +5,8 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { AddressRepositoryInterface } from './interface/AddressRepository.interface';
-import { AddressEntity } from '../entities/Address.entity';
+import { AddressRepositoryInterface } from '../../../core/repositories/interface/AddressRepository.interface';
+import { AddressEntity } from './Address.entity';
 
 @Injectable()
 export class AddressRepository implements AddressRepositoryInterface {

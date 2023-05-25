@@ -1,3 +1,3 @@
-import { PaymentMethodEntity } from 'src/core/entities/PaymentMethod.entity'
+import { PaymentMethodEntity } from 'src/app/modules/PaymentMethod/PaymentMethod.entity';
 
 export class PaymentMethodPresenter extends PaymentMethodEntity {}

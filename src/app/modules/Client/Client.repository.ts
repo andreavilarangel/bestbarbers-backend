@@ -5,8 +5,8 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { ClientRepositoryInterface } from './interface/ClientRepository.interface';
-import { ClientEntity } from '../entities/Client.entity';
+import { ClientRepositoryInterface } from '../../../core/repositories/interface/ClientRepository.interface';
+import { ClientEntity } from './Client.entity';
 
 @Injectable()
 export class ClientRepository implements ClientRepositoryInterface {

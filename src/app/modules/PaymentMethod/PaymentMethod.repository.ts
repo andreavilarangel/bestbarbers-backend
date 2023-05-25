@@ -1,15 +1,17 @@
-import { Injectable } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
-import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service'
+import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service';
 import {
   FindAllParamsType,
   FindAllResponseType,
-} from 'src/shared/interfaces/FindAll.type'
-import { PaymentMethodRepositoryInterface } from './interface/PaymentMethodRepository.interface'
-import { PaymentMethodEntity } from '../entities/PaymentMethod.entity'
+} from 'src/shared/interfaces/FindAll.type';
+import { PaymentMethodRepositoryInterface } from '../../../core/repositories/interface/PaymentMethodRepository.interface';
+import { PaymentMethodEntity } from './PaymentMethod.entity';
 
 @Injectable()
-export class PaymentMethodRepository implements PaymentMethodRepositoryInterface {
+export class PaymentMethodRepository
+  implements PaymentMethodRepositoryInterface
+{
   constructor(private readonly prisma: PrismaService) {}
 
   async create(
@@ -17,7 +19,7 @@ export class PaymentMethodRepository implements PaymentMethodRepositoryInterface
   ): Promise<PaymentMethodEntity> {
     return this.prisma.paymentMethod.create({
       data: newPaymentMethod,
-    })
+    });
   }
 
   async update(
@@ -29,15 +31,15 @@ export class PaymentMethodRepository implements PaymentMethodRepositoryInterface
         id: paymentMethodId,
       },
       data: dataPaymentMethod,
-    })
+    });
   }
 
   async findOne(paymentMethodId: string): Promise<PaymentMethodEntity> {
-    return this.prisma. paymentMethod.findUnique({
+    return this.prisma.paymentMethod.findUnique({
       where: {
-        id: paymentMethodId
+        id: paymentMethodId,
       },
-    })
+    });
   }
 
   async findAll(
@@ -50,7 +52,7 @@ export class PaymentMethodRepository implements PaymentMethodRepositoryInterface
         where: params.where,
       }),
       this.prisma.paymentMethod.count({ where: params.where }),
-    ])
+    ]);
   }
 
   async delete(paymentMethodId: string): Promise<PaymentMethodEntity> {
@@ -58,7 +60,6 @@ export class PaymentMethodRepository implements PaymentMethodRepositoryInterface
       where: {
         id: paymentMethodId,
       },
-    })
+    });
   }
 }
-

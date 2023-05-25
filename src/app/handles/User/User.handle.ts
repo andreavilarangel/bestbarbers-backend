@@ -1,48 +1,76 @@
 import { Injectable } from '@nestjs/common';
+import { omit } from 'radash';
 import {
   UserCreateDTO,
   UserUpdateDTO,
   // UserFindAllDTO,
 } from 'src/app/dtos/User.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import {
+  UserAlreadyExistException,
+  UserNotFoundException,
+} from 'src/app/errors/User.error';
 import {
   UserPresenter,
   UserPresenterWithPassword,
 } from 'src/app/presenter/User.presenter';
-import { UserCreateService } from './UserCreate.service';
-import { UserFindService } from './UserFind.service';
-import { UserHandleInterface } from './UserHandle.interface';
-import { UserUpdateService } from './UserUpdate.service';
+
+import { UserRepository } from 'src/app/modules/User/User.repository';
 
 @Injectable()
-export class UserHandle implements UserHandleInterface {
-  constructor(
-    private readonly userCreate: UserCreateService,
-    private readonly userUpdate: UserUpdateService,
-    private readonly userFind: UserFindService,
-  ) {}
+export class UserHandle {
+  constructor(private readonly userRepository: UserRepository) {}
+
+  async checkUserExist(
+    email?: string,
+    phone?: string,
+  ): Promise<UserPresenterWithPassword> {
+    let user = null;
+    if (email) {
+      user = this.userRepository.findOneByEmail(email);
+    }
+    if (phone) {
+      user = this.userRepository.findOneByCellphone(phone);
+    }
+    return user;
+  }
 
   async createOneUser(newUser: UserCreateDTO): Promise<UserPresenter> {
-    return this.userCreate.createOneUser(newUser);
+    const { email, phone } = newUser;
+
+    const user = await this.checkUserExist(email, phone);
+    if (user) throw new UserAlreadyExistException();
+
+    const createdUser = await this.userRepository.create(newUser);
+    return omit(createdUser, ['password']);
   }
 
   async updateOneUser(
     user_id: string,
     dataUser: UserUpdateDTO,
   ): Promise<UserPresenter> {
-    return this.userUpdate.updateOneUser(user_id, dataUser);
+    // valida se usuario existe
+    await this.findOneUserById(user_id);
+
+    const userUpdated = await this.userRepository.update(user_id, {
+      ...dataUser,
+    });
+
+    return omit(userUpdated, ['password']);
   }
 
   async findOneUserById(user_id: string): Promise<UserPresenter> {
-    return this.userFind.findOneUserById(user_id);
+    const user = await this.userRepository.findOne(user_id);
+    if (!user) throw new UserNotFoundException();
+
+    return omit(user, ['password']);
   }
 
   async findOneUserByPhone(phone: string): Promise<UserPresenterWithPassword> {
-    return this.userFind.findOneUserByPhone(phone);
+    return this.userRepository.findOneByCellphone(phone);
   }
 
   async findOneUserByEmail(email: string): Promise<UserPresenterWithPassword> {
-    return this.userFind.findOneUserByEmail(email);
+    return this.userRepository.findOneByEmail(email);
   }
 
   // async findAllUser(

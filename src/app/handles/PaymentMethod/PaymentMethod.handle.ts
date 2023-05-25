@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { omit } from 'radash';
 import {
   PaymentMethodCreateDTO,
   PaymentMethodUpdateDTO,
@@ -6,30 +7,38 @@ import {
 } from 'src/app/dtos/PaymentMethod.dto';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
 import { PaymentMethodPresenter } from 'src/app/presenter/PaymentMethod.presenter';
-import { PaymentMethodCreateService } from './PaymentMethodCreate.service';
-import { PaymentMethodFindService } from './PaymentMethodFind.service';
-import { PaymentMethodHandleInterface } from './PaymentMethodHandle.interface';
-import { PaymentMethodUpdateService } from './PaymentMethodUpdate.service';
+
+import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
+import { PaymentMethodRepository } from 'src/app/modules/PaymentMethod/PaymentMethod.repository';
+import { PaymentMethodNotFoundException } from 'src/app/errors/PaymentMethod.error';
 
 @Injectable()
-export class PaymentMethodHandle implements PaymentMethodHandleInterface {
+export class PaymentMethodHandle {
   constructor(
-    private readonly paymentMethodCreate: PaymentMethodCreateService,
-    private readonly paymentMethodUpdate: PaymentMethodUpdateService,
-    private readonly paymentMethodFind: PaymentMethodFindService,
+    private readonly barbershopHandle: BarbershopHandle,
+    private readonly paymentMethodRepository: PaymentMethodRepository,
   ) {}
 
   async createOnePaymentMethod(
     newPaymentMethod: PaymentMethodCreateDTO,
   ): Promise<PaymentMethodPresenter> {
-    return this.paymentMethodCreate.createOnePaymentMethod(newPaymentMethod);
+    const { barbershop_id } = newPaymentMethod;
+    await this.barbershopHandle.findOneBarbershopById(barbershop_id);
+
+    return this.paymentMethodRepository.create({
+      ...omit(newPaymentMethod, ['barbershop_id']),
+      barbershop: { connect: { id: barbershop_id } },
+    });
   }
 
   async updateOnePaymentMethod(
     paymentMethodId: string,
     dataPaymentMethod: PaymentMethodUpdateDTO,
   ): Promise<PaymentMethodPresenter> {
-    return this.paymentMethodUpdate.updateOnePaymentMethod(
+    // valida se existe PaymentMethod
+    await this.findOnePaymentMethodById(paymentMethodId);
+
+    return this.paymentMethodRepository.update(
       paymentMethodId,
       dataPaymentMethod,
     );
@@ -38,12 +47,28 @@ export class PaymentMethodHandle implements PaymentMethodHandleInterface {
   async findOnePaymentMethodById(
     paymentMethodId: string,
   ): Promise<PaymentMethodPresenter> {
-    return this.paymentMethodFind.findOnePaymentMethodById(paymentMethodId);
+    const paymentMethod = await this.paymentMethodRepository.findOne(
+      paymentMethodId,
+    );
+
+    if (!paymentMethod)
+      throw new PaymentMethodNotFoundException({ paymentMethodId });
+
+    return paymentMethod;
   }
 
   async findAllPaymentMethod(
     params: PaymentMethodFindAllDTO,
   ): Promise<FindAllPresent<PaymentMethodPresenter>> {
-    return this.paymentMethodFind.findAllPaymentMethod(params);
+    const [data, total] = await this.paymentMethodRepository.findAll({
+      skip: params.skip,
+      take: params.take,
+      where: {},
+    });
+
+    return {
+      data,
+      total,
+    };
   }
 }

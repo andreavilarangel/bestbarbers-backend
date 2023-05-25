@@ -5,8 +5,8 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { EmployerRepositoryInterface } from './interface/EmployerRepository.interface';
-import { EmployerEntity } from '../entities/Employer.entity';
+import { EmployerRepositoryInterface } from '../../../core/repositories/interface/EmployerRepository.interface';
+import { EmployerEntity } from './Employer.entity';
 
 @Injectable()
 export class EmployerRepository implements EmployerRepositoryInterface {

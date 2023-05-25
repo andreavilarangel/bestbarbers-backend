@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { ProductAndServiceEntity } from 'src/core/entities/ProductAndService.entity';
+import { ProductAndServiceEntity } from 'src/app/modules/ProductAndService/ProductAndService.entity';
 import {
   FindAllParamsType,
   FindAllResponseType,

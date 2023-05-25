@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { BarbershopOpeningHourEntity } from 'src/core/entities/BarbershopOpeningHour.entity';
+import { BarbershopOpeningHourEntity } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.entity';
 import {
   FindAllParamsType,
   FindAllResponseType,

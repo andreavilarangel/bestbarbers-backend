@@ -6,8 +6,8 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { BarbershopOpeningHourRepositoryInterface } from './interface/BarbershopOpeningHourRepository.interface';
-import { BarbershopOpeningHourEntity } from '../entities/BarbershopOpeningHour.entity';
+import { BarbershopOpeningHourRepositoryInterface } from '../../../core/repositories/interface/BarbershopOpeningHourRepository.interface';
+import { BarbershopOpeningHourEntity } from './BarbershopOpeningHour.entity';
 
 @Injectable()
 export class BarbershopOpeningHourRepository

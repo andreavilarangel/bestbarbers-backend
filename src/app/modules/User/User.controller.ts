@@ -7,9 +7,8 @@ import {
   Param,
   Post,
   Put,
-  Query,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags, OmitType } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   UserCreateDTO,
   UserUpdateDTO,
@@ -17,12 +16,7 @@ import {
 } from 'src/app/dtos/User.dto';
 import { UserPresenter } from 'src/app/presenter/User.presenter';
 import { UserHandle } from 'src/app/handles/User/User.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import {
-  UserControllerInterface,
-  UserPresenterResponse,
-} from './UserController.interface';
-import { omit } from 'radash';
+import { UserPresenterResponse } from './UserController.interface';
 import {
   UserAlreadyExistException,
   UserNotFoundException,
@@ -33,7 +27,7 @@ import { Public } from 'src/app/decorators/public';
 @ApiTags('User')
 @Controller('user')
 @Public()
-export class UserController implements UserControllerInterface {
+export class UserController {
   constructor(private readonly userHandle: UserHandle) {}
 
   @Post()
@@ -42,7 +36,7 @@ export class UserController implements UserControllerInterface {
   @ApiException(() => [UserAlreadyExistException])
   async createOneUser(
     @Body() newUser: UserCreateDTO,
-  ): Promise<UserPresenterResponse> {
+  ): Promise<Omit<UserPresenter, 'password'>> {
     return this.userHandle.createOneUser(newUser);
   }
 

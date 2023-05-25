@@ -5,8 +5,8 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/interfaces/FindAll.type';
-import { BlockedTimeRepositoryInterface } from './interface/BlockedTimeRepository.interface';
-import { BlockedTimeEntity } from '../entities/BlockedTime.entity';
+import { BlockedTimeRepositoryInterface } from '../../../core/repositories/interface/BlockedTimeRepository.interface';
+import { BlockedTimeEntity } from './BlockedTime.entity';
 
 @Injectable()
 export class BlockedTimeRepository implements BlockedTimeRepositoryInterface {

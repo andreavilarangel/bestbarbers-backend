@@ -1,3 +1,3 @@
-import { EmployerEntity } from 'src/core/entities/Employer.entity';
+import { EmployerEntity } from 'src/app/modules/Employer/Employer.entity';
 
 export class EmployerPresenter extends EmployerEntity {}

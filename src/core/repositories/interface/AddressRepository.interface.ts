@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { AddressEntity } from 'src/core/entities/Address.entity';
+import { AddressEntity } from 'src/app/modules/Address/Address.entity';
 import {
   FindAllParamsType,
   FindAllResponseType,

@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { UserEntity } from 'src/core/entities/User.entity';
+import { UserEntity } from 'src/app/modules/User/User.entity';
 import {
   FindAllParamsType,
   FindAllResponseType,

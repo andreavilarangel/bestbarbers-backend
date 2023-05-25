@@ -15,7 +15,7 @@ import {
   AddressUpdateDTO,
   AddressFindAllDTO,
 } from 'src/app/dtos/Address.dto';
-import { AddressPresenter } from 'src/app/presenter/Address.presenter';
+import { AddressPresenter } from 'src/app/modules/Address/Address.presenter';
 import { AddressHandle } from 'src/app/handles/Address/Address.handle';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
 import { AddressControllerInterface } from './AddressController.interface';

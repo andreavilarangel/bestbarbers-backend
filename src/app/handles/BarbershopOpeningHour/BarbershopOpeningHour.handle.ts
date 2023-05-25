@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { omit } from 'radash';
 import {
   BarbershopOpeningHourCreateDTO,
   BarbershopOpeningHourUpdateDTO,
@@ -6,56 +7,99 @@ import {
 } from 'src/app/dtos/BarbershopOpeningHour.dto';
 import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
 import { BarbershopOpeningHourPresenter } from 'src/app/presenter/BarbershopOpeningHour.presenter';
-import { BarbershopOpeningHourCreateService } from './BarbershopOpeningHourCreate.service';
-import { BarbershopOpeningHourFindService } from './BarbershopOpeningHourFind.service';
-import { BarbershopOpeningHourHandleInterface } from './BarbershopOpeningHourHandle.interface';
-import { BarbershopOpeningHourUpdateService } from './BarbershopOpeningHourUpdate.service';
+
+import { BarbershopOpeningHourRepository } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.repository';
+
+import {
+  BarbershopOpeningHourNotFoundException,
+  BarbershopOpeningHourAlreadyExistException,
+} from 'src/app/errors/BarbershopOpeningHour.error';
+
+import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 
 @Injectable()
-export class BarbershopOpeningHourHandle
-  implements BarbershopOpeningHourHandleInterface
-{
+export class BarbershopOpeningHourHandle {
   constructor(
-    private readonly barbershopOpeningHourCreate: BarbershopOpeningHourCreateService,
-    private readonly barbershopOpeningHourUpdate: BarbershopOpeningHourUpdateService,
-    private readonly barbershopOpeningHourFind: BarbershopOpeningHourFindService,
+    private readonly barbershopOpeningHourHandle: BarbershopOpeningHourRepository,
+    private readonly barbershopHandle: BarbershopHandle,
   ) {}
 
   async createOneBarbershopOpeningHour(
     newBarbershopOpeningHour: BarbershopOpeningHourCreateDTO,
   ): Promise<BarbershopOpeningHourPresenter> {
-    return this.barbershopOpeningHourCreate.createOneBarbershopOpeningHour(
-      newBarbershopOpeningHour,
-    );
+    const { barbershop_id, day } = newBarbershopOpeningHour;
+    await this.barbershopHandle.findOneBarbershopById(barbershop_id);
+    await this.findOneBarbershopOpeningHourByDay(day, barbershop_id);
+
+    return this.barbershopOpeningHourHandle.create({
+      ...omit(newBarbershopOpeningHour, ['barbershop_id']),
+      barbershop: { connect: { id: barbershop_id } },
+    });
   }
 
   async updateOneBarbershopOpeningHour(
     barbershopOpeningHourId: string,
     dataBarbershopOpeningHour: BarbershopOpeningHourUpdateDTO,
   ): Promise<BarbershopOpeningHourPresenter> {
-    return this.barbershopOpeningHourUpdate.updateOneBarbershopOpeningHour(
+    // valida se existe BarbershopOpeningHour
+    await this.findOneBarbershopOpeningHourById(barbershopOpeningHourId);
+
+    return this.barbershopOpeningHourHandle.update(
       barbershopOpeningHourId,
       dataBarbershopOpeningHour,
     );
   }
 
   async updateAllBarbershopOpeningHour(data: any): Promise<any> {
-    return this.barbershopOpeningHourUpdate.updateAllBarbershopOpeningHour(
-      data,
-    );
+    return this.barbershopOpeningHourHandle.updateMany(data);
   }
 
   async findOneBarbershopOpeningHourById(
     barbershopOpeningHourId: string,
   ): Promise<BarbershopOpeningHourPresenter> {
-    return this.barbershopOpeningHourFind.findOneBarbershopOpeningHourById(
-      barbershopOpeningHourId,
-    );
+    const barbershopOpeningHour =
+      await this.barbershopOpeningHourHandle.findOne(barbershopOpeningHourId);
+
+    if (!barbershopOpeningHour)
+      throw new BarbershopOpeningHourNotFoundException({
+        barbershopOpeningHourId,
+      });
+
+    return barbershopOpeningHour;
+  }
+
+  async findOneBarbershopOpeningHourByDay(
+    barbershopOpeningHourDay: number,
+    barbershop_id: string,
+  ): Promise<BarbershopOpeningHourPresenter> {
+    const barbershopOpeningHour =
+      await this.barbershopOpeningHourHandle.findByDay(
+        barbershopOpeningHourDay,
+        barbershop_id,
+      );
+
+    if (barbershopOpeningHour)
+      throw new BarbershopOpeningHourAlreadyExistException({
+        barbershopOpeningHourDay,
+      });
+
+    return barbershopOpeningHour;
   }
 
   async findAllBarbershopOpeningHour(
     params: BarbershopOpeningHourFindAllDTO,
   ): Promise<FindAllPresent<BarbershopOpeningHourPresenter>> {
-    return this.barbershopOpeningHourFind.findAllBarbershopOpeningHour(params);
+    const [data, total] = await this.barbershopOpeningHourHandle.findAll({
+      skip: params.skip,
+      take: params.take,
+      where: {
+        barbershop_id: params.barbershop_id,
+      },
+    });
+
+    return {
+      data,
+      total,
+    };
   }
 }

@@ -1,5 +1,5 @@
 import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
-import { BarbershopEntity } from 'src/core/entities/Barbershop.entity';
+import { BarbershopEntity } from 'src/app/modules/Barbershop/Barbershop.entity';
 import { PaginationDTO } from './Pagination.dto';
 import { Type } from 'class-transformer';
 import { IsNotEmptyObject, IsOptional, ValidateNested } from 'class-validator';
