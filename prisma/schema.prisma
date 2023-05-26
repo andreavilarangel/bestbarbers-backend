@@ -16,7 +16,7 @@ model User {
   profile_image_url String?
 
   phone String
-  email String
+  email String?
   type  String
 
   password String

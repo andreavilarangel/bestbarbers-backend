@@ -56,6 +56,14 @@ export class ClientHandle {
     return client;
   }
 
+  async findOneClientByUserId(userId: string): Promise<ClientPresenter> {
+    const client = await this.clientRepository.findByUserId(userId);
+
+    if (!client) throw new ClientNotFoundException({ userId });
+
+    return client;
+  }
+
   async findAllClient(
     params: ClientFindAllDTO,
   ): Promise<FindAllPresent<ClientPresenter>> {

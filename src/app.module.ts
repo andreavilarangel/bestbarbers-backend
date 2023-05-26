@@ -11,6 +11,7 @@ import { ProductAndServiceModule } from './app/modules/ProductAndService/Product
 import { PaymentMethodModule } from './app/modules/PaymentMethod/PaymentMethod.module';
 import { BlockedTimeModule } from './app/modules/BlockedTime/BlockedTime.module';
 import { AddressModule } from './app/modules/Address/Address.module';
+import { BarbershopClientModule } from './app/modules/BarbershopClient/BarbershopClient.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AddressModule } from './app/modules/Address/Address.module';
     ProductAndServiceModule,
     PaymentMethodModule,
     BlockedTimeModule,
+    BarbershopClientModule,
   ],
   controllers: [],
   providers: [

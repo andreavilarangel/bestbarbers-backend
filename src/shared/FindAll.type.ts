@@ -1,8 +1,8 @@
 export type FindAllResponseType<T> = [T[], number];
 
 export type FindAllParamsType<T> = {
-  skip: number;
-  take: number;
+  skip?: number;
+  take?: number;
   where: T;
 };
 

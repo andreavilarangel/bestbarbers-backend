@@ -9,6 +9,7 @@ import { ProductAndServiceRepository } from './modules/ProductAndService/Product
 import { PaymentMethodRepository } from './modules/PaymentMethod/PaymentMethod.repository';
 import { BlockedTimeRepository } from './modules/BlockedTime/BlockedTime.repository';
 import { AddressRepository } from './modules/Address/Address.repository';
+import { BarbershopClientRepository } from './modules/BarbershopClient/BarbershopClient.repository';
 
 @Module({
   imports: [DatabaseModule],
@@ -22,6 +23,7 @@ import { AddressRepository } from './modules/Address/Address.repository';
     ProductAndServiceRepository,
     PaymentMethodRepository,
     BlockedTimeRepository,
+    BarbershopClientRepository,
   ],
   exports: [
     AddressRepository,
@@ -33,6 +35,7 @@ import { AddressRepository } from './modules/Address/Address.repository';
     ProductAndServiceRepository,
     PaymentMethodRepository,
     BlockedTimeRepository,
+    BarbershopClientRepository,
   ],
 })
 export class RepositoriesModule {}

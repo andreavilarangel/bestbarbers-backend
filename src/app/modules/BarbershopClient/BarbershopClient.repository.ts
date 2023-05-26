@@ -31,10 +31,14 @@ export class BarbershopClientRepository {
     });
   }
 
-  async findOne(barbershopClientId: string): Promise<BarbershopClientEntity> {
-    return this.prisma.barbershopClient.findUnique({
+  async findOne(
+    clientId: string,
+    barbershopId: string,
+  ): Promise<BarbershopClientEntity> {
+    return this.prisma.barbershopClient.findFirst({
       where: {
-        id: barbershopClientId,
+        client_id: clientId,
+        barbershop_id: barbershopId,
       },
     });
   }
@@ -44,8 +48,7 @@ export class BarbershopClientRepository {
   ): Promise<FindAllResponseType<BarbershopClientEntity>> {
     return this.prisma.$transaction([
       this.prisma.barbershopClient.findMany({
-        skip: params.skip,
-        take: params.take,
+        ...params,
         where: params.where,
       }),
       this.prisma.barbershopClient.count({ where: params.where }),

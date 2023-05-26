@@ -16,11 +16,11 @@ export class UserEntity implements User {
   @ApiProperty({ example: '5531995223788' })
   phone: string;
 
-  @IsString()
+  @IsOptional()
   @ApiProperty({ example: 'username@test.com' })
   email: string;
 
-  @IsString()
+  @IsOptional()
   @ApiProperty({ example: 'senha123456' })
   password: string;
 
@@ -36,7 +36,7 @@ export class UserEntity implements User {
   @ApiPropertyOptional({ example: 'hhtp://suaimagem.com' })
   profile_image_url: string;
 
-  @IsString()
+  @IsOptional()
   @ApiProperty({ example: 'barbershop' })
   type: string;
 
