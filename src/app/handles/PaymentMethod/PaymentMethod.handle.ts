@@ -3,7 +3,6 @@ import { omit } from 'radash';
 import {
   PaymentMethodCreateDTO,
   PaymentMethodUpdateDTO,
-  PaymentMethodFindAllDTO,
 } from 'src/app/dtos/PaymentMethod.dto';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { PaymentMethodPresenter } from 'src/app/modules/PaymentMethod/PaymentMethod.presenter';
@@ -57,18 +56,27 @@ export class PaymentMethodHandle {
     return paymentMethod;
   }
 
-  async findAllPaymentMethod(
-    params: PaymentMethodFindAllDTO,
+  async findBarbershopPaymentMethods(
+    barbershop_id: string,
   ): Promise<FindAllPresent<PaymentMethodPresenter>> {
     const [data, total] = await this.paymentMethodRepository.findAll({
-      skip: params.skip,
-      take: params.take,
-      where: {},
+      where: { barbershop_id, inactive: false },
     });
 
     return {
       data,
       total,
     };
+  }
+
+  async deleteOnePaymentMethod(
+    paymentMethodId: string,
+  ): Promise<PaymentMethodPresenter> {
+    // valida se existe PaymentMethod
+    await this.findOnePaymentMethodById(paymentMethodId);
+
+    return this.paymentMethodRepository.update(paymentMethodId, {
+      inactive: true,
+    });
   }
 }

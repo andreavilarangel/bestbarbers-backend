@@ -16,7 +16,6 @@ export class PaymentMethodEntity implements PaymentMethod {
   @ApiPropertyOptional({ example: 'Pix' })
   name: string;
 
-  @IsString()
   @ApiPropertyOptional({ example: 5.0 })
   percentage: number;
 
