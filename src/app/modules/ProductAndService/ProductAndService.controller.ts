@@ -23,7 +23,7 @@ import { Public } from 'src/app/decorators/public';
 
 @Injectable()
 @ApiTags('ProductAndService')
-@Controller('productAndService')
+@Controller('product-and-service')
 @Public()
 export class ProductAndServiceController {
   constructor(

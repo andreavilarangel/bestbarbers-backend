@@ -178,13 +178,11 @@ model ProductAndService {
   barbershop_id String
   barbershop    Barbershop @relation(fields: [barbershop_id], references: [id])
 
-  name          String
-  value         Float
-  time_required String
-  type          ProductAndServiceType @default(service)
-
-  promotion_days  String?
-  promotion_value Float?
+  name              String
+  value             Float
+  time_required     String?
+  type              ProductAndServiceType @default(service)
+  default_comission Float
 
   product_category_id String?
   image_url           String?
@@ -203,8 +201,9 @@ model PaymentMethod {
   barbershop_id String
   barbershop    Barbershop @relation(fields: [barbershop_id], references: [id])
 
-  name       String
-  percentage Float
+  name        String
+  percentage  Float
+  due_in_days Int
 
   discounted_from_barber Boolean @default(true)
 

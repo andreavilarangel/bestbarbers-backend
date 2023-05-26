@@ -11,7 +11,21 @@ export class BarbershopCreateDTO extends OmitType(BarbershopEntity, [
   'updated_at',
   'inactive',
 ]) {
-  @ApiProperty({ type: UserCreateDTO })
+  @ApiProperty({
+    type: UserCreateDTO,
+    example: {
+      name: 'Nome da barbearia',
+      user: {
+        name: 'Nome do responsavel',
+        phone: '5531994194304',
+        email: 'teste@create.barbershop',
+        cpf: '01293212312',
+        password: 'teste123',
+        type: 'barbershop_owner',
+        register_by: 'web',
+      },
+    },
+  })
   @IsNotEmptyObject()
   @ValidateNested()
   @Type(() => UserCreateDTO)

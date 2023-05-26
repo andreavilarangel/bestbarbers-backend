@@ -9,7 +9,7 @@ import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator
 import { UserNotFoundException } from 'src/app/errors/User.error';
 
 @Injectable()
-@Controller('auth')
+@Controller('login')
 @ApiTags('Autenticação')
 @Public()
 export class AuthController {

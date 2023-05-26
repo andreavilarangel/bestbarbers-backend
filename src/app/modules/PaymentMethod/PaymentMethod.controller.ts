@@ -24,7 +24,7 @@ import { Public } from 'src/app/decorators/public';
 
 @Injectable()
 @ApiTags('PaymentMethod')
-@Controller('paymentMethod')
+@Controller('payment-method')
 @Public()
 export class PaymentMethodController {
   constructor(private readonly paymentMethodHandle: PaymentMethodHandle) {}

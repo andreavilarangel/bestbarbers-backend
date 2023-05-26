@@ -29,11 +29,9 @@ export class ProductAndServiceEntity implements ProductAndService {
   @ApiProperty({ example: 'service' })
   type: ProductAndServiceType;
 
-  @IsOptional()
-  promotion_days: string;
-
-  @IsOptional()
-  promotion_value: number;
+  @IsNumber()
+  @ApiProperty({ example: 39.9 })
+  default_comission: number;
 
   @IsOptional()
   product_category_id: string;

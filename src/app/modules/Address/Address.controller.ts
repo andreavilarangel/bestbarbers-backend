@@ -38,6 +38,16 @@ export class AddressController {
     return this.addressHandle.createOneAddress(newAddress);
   }
 
+  @Post('barbershop')
+  @ApiOperation({ summary: 'Cria ou atualiza o endereço de uma barbearia' })
+  @ApiResponse({ type: AddressPresenter })
+  @ApiException(() => [])
+  async barbershopAddress(
+    @Body() dataAddress: AddressCreateDTO,
+  ): Promise<AddressPresenter> {
+    return this.addressHandle.barbershopAddress(dataAddress);
+  }
+
   @Put('/:addressId')
   @ApiOperation({ summary: 'Atualiza dados de um Address' })
   @ApiResponse({ type: AddressPresenter })

@@ -23,6 +23,9 @@ export class PaymentMethodEntity implements PaymentMethod {
   @ApiProperty({ default: true })
   discounted_from_barber: boolean;
 
+  @ApiProperty({ example: 10 })
+  due_in_days: number;
+
   @ApiProperty({ default: false })
   inactive: boolean;
 

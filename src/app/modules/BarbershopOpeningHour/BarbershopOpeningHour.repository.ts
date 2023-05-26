@@ -32,8 +32,10 @@ export class BarbershopOpeningHourRepository {
     });
   }
 
-  async updateMany(hoursList: any): Promise<any> {
-    const data = await hoursList.map(async (day: any) => {
+  async updateMany(
+    hoursList: any,
+  ): Promise<FindAllResponseType<BarbershopOpeningHourEntity>> {
+    await hoursList.map(async (day: any) => {
       const response = await this.prisma.barbershopOpeningHour.update({
         where: {
           id: day.id,
@@ -46,7 +48,7 @@ export class BarbershopOpeningHourRepository {
       });
       return response;
     });
-    return data;
+    return hoursList;
   }
 
   async findOne(

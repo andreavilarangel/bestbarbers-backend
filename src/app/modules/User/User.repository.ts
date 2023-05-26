@@ -5,15 +5,14 @@ import {
   FindAllParamsType,
   FindAllResponseType,
 } from 'src/shared/FindAll.type';
-import { UserRepositoryResponseType } from '../../../core/repositories/interface/UserRepository.interface';
+
+import { UserEntity } from './User.entity';
 
 @Injectable()
 export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(
-    newUser: Prisma.UserCreateInput,
-  ): Promise<UserRepositoryResponseType> {
+  async create(newUser: Prisma.UserCreateInput): Promise<UserEntity> {
     return this.prisma.user.create({
       data: newUser,
     });
@@ -22,7 +21,7 @@ export class UserRepository {
   async update(
     user_id: string,
     dataUser: Prisma.UserUpdateInput,
-  ): Promise<UserRepositoryResponseType> {
+  ): Promise<UserEntity> {
     return this.prisma.user.update({
       where: {
         id: user_id,
@@ -31,7 +30,7 @@ export class UserRepository {
     });
   }
 
-  async findOne(user_id?: string): Promise<UserRepositoryResponseType> {
+  async findOne(user_id?: string): Promise<UserEntity> {
     return this.prisma.user.findUnique({
       where: {
         id: user_id,
@@ -39,13 +38,13 @@ export class UserRepository {
     });
   }
 
-  async findOneByCellphone(phone: string): Promise<UserRepositoryResponseType> {
+  async findOneByCellphone(phone: string): Promise<UserEntity> {
     return this.prisma.user.findFirst({
       where: { phone },
     });
   }
 
-  async findOneByEmail(email: string): Promise<UserRepositoryResponseType> {
+  async findOneByEmail(email: string): Promise<UserEntity> {
     return this.prisma.user.findFirst({
       where: { email },
     });
@@ -53,9 +52,7 @@ export class UserRepository {
 
   async findAll(
     params: FindAllParamsType<Prisma.UserWhereInput>,
-  ): Promise<
-    FindAllResponseType<Omit<UserRepositoryResponseType, 'password'>>
-  > {
+  ): Promise<FindAllResponseType<Omit<UserEntity, 'password'>>> {
     return this.prisma.$transaction([
       this.prisma.user.findMany({
         skip: params.skip,
@@ -69,7 +66,7 @@ export class UserRepository {
     ]);
   }
 
-  async delete(user_id: string): Promise<UserRepositoryResponseType> {
+  async delete(user_id: string): Promise<UserEntity> {
     return this.prisma.user.delete({
       where: {
         id: user_id,

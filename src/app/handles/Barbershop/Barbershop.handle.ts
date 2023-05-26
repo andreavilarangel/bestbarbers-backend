@@ -8,7 +8,7 @@ import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { BarbershopPresenter } from 'src/app/modules/Barbershop/Barbershop.presenter';
 import { BarbershopRepository } from 'src/app/modules/Barbershop/Barbershop.repository';
 import { UserHandle } from '../User/User.handle';
-// import { BarbershopOpeningHourRepository } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.repository';
+import { BarbershopOpeningHourRepository } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.repository';
 import { UserAlreadyExistException } from 'src/app/errors/User.error';
 import { BarbershopNotFoundException } from 'src/app/errors/Barbershop.error';
 
@@ -16,7 +16,7 @@ import { BarbershopNotFoundException } from 'src/app/errors/Barbershop.error';
 export class BarbershopHandle {
   constructor(
     private readonly barbershopRepository: BarbershopRepository,
-    // private readonly barbershopOpeningHourRepository: BarbershopOpeningHourRepository,
+    private readonly barbershopOpeningHourRepository: BarbershopOpeningHourRepository,
     private readonly userFindService: UserHandle,
   ) {}
 
@@ -35,21 +35,21 @@ export class BarbershopHandle {
       user: { create: newBarbershop.user },
     });
 
-    // const days = [
-    //   { day: 1, day_reference: 'monday' },
-    //   { day: 2, day_reference: 'tuesday' },
-    //   { day: 3, day_reference: 'wednesday' },
-    //   { day: 4, day_reference: 'thursday' },
-    //   { day: 5, day_reference: 'friday' },
-    //   { day: 6, day_reference: 'saturday' },
-    //   { day: 7, day_reference: 'sunday' },
-    // ];
-    // days.forEach((item) =>
-    //   this.barbershopOpeningHourRepository.create({
-    //     ...item,
-    //     barbershop: { connect: { id: createdBarbershop.id } },
-    //   }),
-    // );
+    const days = [
+      { day: 1, day_reference: 'monday' },
+      { day: 2, day_reference: 'tuesday' },
+      { day: 3, day_reference: 'wednesday' },
+      { day: 4, day_reference: 'thursday' },
+      { day: 5, day_reference: 'friday' },
+      { day: 6, day_reference: 'saturday' },
+      { day: 7, day_reference: 'sunday' },
+    ];
+    days.forEach((item) =>
+      this.barbershopOpeningHourRepository.create({
+        ...item,
+        barbershop: { connect: { id: createdBarbershop.id } },
+      }),
+    );
 
     return createdBarbershop;
   }

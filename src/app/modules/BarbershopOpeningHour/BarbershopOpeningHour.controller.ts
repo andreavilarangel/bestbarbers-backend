@@ -61,7 +61,6 @@ export class BarbershopOpeningHourController {
   @ApiResponse({ type: BarbershopOpeningHourPresenter })
   @ApiException(() => [BarbershopOpeningHourNotFoundException])
   async updateAllBarbershopOpeningHour(@Body() data: any): Promise<any> {
-    console.log(data);
     return this.barbershopOpeningHourHandle.updateAllBarbershopOpeningHour(
       data,
     );

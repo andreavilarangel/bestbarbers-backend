@@ -20,6 +20,18 @@ export class AddressHandle {
     return this.addressRepository.create(newAddress);
   }
 
+  async barbershopAddress(
+    dataAddress: AddressCreateDTO,
+  ): Promise<AddressPresenter> {
+    const address = await this.addressRepository.findByBarbershopId(
+      dataAddress.barbershop_id,
+    );
+    if (address) {
+      return this.addressRepository.update(address.id, dataAddress);
+    }
+    return this.addressRepository.create(dataAddress);
+  }
+
   async updateOneAddress(
     addressId: string,
     dataAddress: AddressUpdateDTO,

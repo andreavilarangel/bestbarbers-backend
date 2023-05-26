@@ -28,7 +28,7 @@ import { Public } from 'src/app/decorators/public';
 export class BarbershopController {
   constructor(private readonly barbershopHandle: BarbershopHandle) {}
 
-  @Post()
+  @Post('create-account')
   @ApiOperation({ summary: 'Cria um Barbershop' })
   @ApiResponse({ type: BarbershopPresenter })
   @ApiException(() => [])

@@ -18,7 +18,6 @@ export class AddressEntity implements Address {
   @ApiPropertyOptional({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
   client_id: string;
 
-  @IsOptional()
   @ApiPropertyOptional({ example: '30112-020' })
   zip_code: string;
 
