@@ -17,7 +17,7 @@ import {
 } from 'src/app/dtos/Address.dto';
 import { AddressPresenter } from 'src/app/modules/Address/Address.presenter';
 import { AddressHandle } from 'src/app/handles/Address/Address.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { AddressNotFoundException } from 'src/app/errors/Address.error';
 import { Public } from 'src/app/decorators/public';
 

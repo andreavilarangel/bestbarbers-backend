@@ -15,9 +15,9 @@ import {
   BarbershopOpeningHourUpdateDTO,
   BarbershopOpeningHourFindAllDTO,
 } from 'src/app/dtos/BarbershopOpeningHour.dto';
-import { BarbershopOpeningHourPresenter } from 'src/app/presenter/BarbershopOpeningHour.presenter';
+import { BarbershopOpeningHourPresenter } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.presenter';
 import { BarbershopOpeningHourHandle } from 'src/app/handles/BarbershopOpeningHour/BarbershopOpeningHour.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { BarbershopOpeningHourNotFoundException } from 'src/app/errors/BarbershopOpeningHour.error';
 import { Public } from 'src/app/decorators/public';
 

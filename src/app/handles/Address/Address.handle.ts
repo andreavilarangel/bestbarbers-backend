@@ -4,7 +4,7 @@ import {
   AddressUpdateDTO,
   AddressFindAllDTO,
 } from 'src/app/dtos/Address.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { AddressPresenter } from 'src/app/modules/Address/Address.presenter';
 import { AddressNotFoundException } from 'src/app/errors/Address.error';
 

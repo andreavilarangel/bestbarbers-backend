@@ -5,8 +5,8 @@ import {
   BarbershopOpeningHourUpdateDTO,
   BarbershopOpeningHourFindAllDTO,
 } from 'src/app/dtos/BarbershopOpeningHour.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { BarbershopOpeningHourPresenter } from 'src/app/presenter/BarbershopOpeningHour.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
+import { BarbershopOpeningHourPresenter } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.presenter';
 
 import { BarbershopOpeningHourRepository } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.repository';
 

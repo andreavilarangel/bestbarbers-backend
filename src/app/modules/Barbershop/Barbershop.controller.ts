@@ -15,9 +15,9 @@ import {
   BarbershopUpdateDTO,
   BarbershopFindAllDTO,
 } from 'src/app/dtos/Barbershop.dto';
-import { BarbershopPresenter } from 'src/app/presenter/Barbershop.presenter';
+import { BarbershopPresenter } from 'src/app/modules/Barbershop/Barbershop.presenter';
 import { BarbershopHandle } from 'src/app/handles/Barbershop/Barbershop.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { BarbershopNotFoundException } from 'src/app/errors/Barbershop.error';
 import { Public } from 'src/app/decorators/public';
 

@@ -15,9 +15,9 @@ import {
   ProductAndServiceUpdateDTO,
   ProductAndServiceFindAllDTO,
 } from 'src/app/dtos/ProductAndService.dto';
-import { ProductAndServicePresenter } from 'src/app/presenter/ProductAndService.presenter';
+import { ProductAndServicePresenter } from 'src/app/modules/ProductAndService/ProductAndService.presenter';
 import { ProductAndServiceHandle } from 'src/app/handles/ProductAndService/ProductAndService.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { ProductAndServiceNotFoundException } from 'src/app/errors/ProductAndService.error';
 import { Public } from 'src/app/decorators/public';
 

@@ -5,8 +5,8 @@ import {
   PaymentMethodUpdateDTO,
   PaymentMethodFindAllDTO,
 } from 'src/app/dtos/PaymentMethod.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { PaymentMethodPresenter } from 'src/app/presenter/PaymentMethod.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
+import { PaymentMethodPresenter } from 'src/app/modules/PaymentMethod/PaymentMethod.presenter';
 
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 import { PaymentMethodRepository } from 'src/app/modules/PaymentMethod/PaymentMethod.repository';

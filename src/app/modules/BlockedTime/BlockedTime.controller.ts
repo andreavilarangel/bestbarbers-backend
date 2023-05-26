@@ -15,9 +15,9 @@ import {
   BlockedTimeUpdateDTO,
   BlockedTimeFindAllDTO,
 } from 'src/app/dtos/BlockedTime.dto';
-import { BlockedTimePresenter } from 'src/app/presenter/BlockedTime.presenter';
+import { BlockedTimePresenter } from 'src/app/modules/BlockedTime/BlockedTime.presenter';
 import { BlockedTimeHandle } from 'src/app/handles/BlockedTime/BlockedTime.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { BlockedTimeNotFoundException } from 'src/app/errors/BlockedTime.error';
 import { Public } from 'src/app/decorators/public';
 

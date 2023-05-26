@@ -5,8 +5,8 @@ import {
   EmployerUpdateDTO,
   EmployerFindAllDTO,
 } from 'src/app/dtos/Employer.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { EmployerPresenter } from 'src/app/presenter/Employer.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
+import { EmployerPresenter } from 'src/app/modules/Employer/Employer.presenter';
 
 import { UserHandle } from '../User/User.handle';
 import { UserAlreadyExistException } from 'src/app/errors/User.error';

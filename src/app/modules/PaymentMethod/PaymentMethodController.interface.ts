@@ -3,8 +3,8 @@ import {
   PaymentMethodUpdateDTO,
   PaymentMethodFindAllDTO,
 } from 'src/app/dtos/PaymentMethod.dto';
-import { PaymentMethodPresenter } from 'src/app/presenter/PaymentMethod.presenter';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { PaymentMethodPresenter } from 'src/app/modules/PaymentMethod/PaymentMethod.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 
 export interface PaymentMethodControllerInterface {
   createOnePaymentMethod(

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientHandleModule } from 'src/app/handles/Client/ClientHandle.module';
-import { RepositoriesModule } from 'src/core/repositories/repositories.module';
+import { RepositoriesModule } from 'src/app/repositories.module';
 import { ClientController } from './Client.controller';
 
 @Module({

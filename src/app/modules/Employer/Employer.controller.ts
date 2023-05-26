@@ -15,9 +15,9 @@ import {
   EmployerUpdateDTO,
   EmployerFindAllDTO,
 } from 'src/app/dtos/Employer.dto';
-import { EmployerPresenter } from 'src/app/presenter/Employer.presenter';
+import { EmployerPresenter } from 'src/app/modules/Employer/Employer.presenter';
 import { EmployerHandle } from 'src/app/handles/Employer/Employer.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { EmployerNotFoundException } from 'src/app/errors/Employer.error';
 import { Public } from 'src/app/decorators/public';
 

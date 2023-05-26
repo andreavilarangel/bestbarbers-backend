@@ -4,7 +4,7 @@ import { PrismaService } from 'src/infrastructure/database/prisma/prisma.service
 import {
   FindAllParamsType,
   FindAllResponseType,
-} from 'src/shared/interfaces/FindAll.type';
+} from 'src/shared/FindAll.type';
 import { AddressEntity } from './Address.entity';
 
 @Injectable()

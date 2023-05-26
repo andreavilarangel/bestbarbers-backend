@@ -12,7 +12,7 @@ import {
 import {
   UserPresenter,
   UserPresenterWithPassword,
-} from 'src/app/presenter/User.presenter';
+} from 'src/app/modules/User/User.presenter';
 
 import { UserRepository } from 'src/app/modules/User/User.repository';
 

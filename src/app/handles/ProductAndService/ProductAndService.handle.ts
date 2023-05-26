@@ -5,8 +5,8 @@ import {
   ProductAndServiceUpdateDTO,
   ProductAndServiceFindAllDTO,
 } from 'src/app/dtos/ProductAndService.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { ProductAndServicePresenter } from 'src/app/presenter/ProductAndService.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
+import { ProductAndServicePresenter } from 'src/app/modules/ProductAndService/ProductAndService.presenter';
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 import { ProductAndServiceRepository } from 'src/app/modules/ProductAndService/ProductAndService.repository';
 import { ProductAndServiceNotFoundException } from 'src/app/errors/ProductAndService.error';

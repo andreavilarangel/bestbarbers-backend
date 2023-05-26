@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { RepositoriesModule } from 'src/core/repositories/repositories.module';
+import { RepositoriesModule } from 'src/app/repositories.module';
 import { UserHandle } from './User.handle';
 
 @Module({

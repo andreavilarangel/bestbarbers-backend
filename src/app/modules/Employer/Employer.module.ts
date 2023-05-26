@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { EmployerHandleModule } from 'src/app/handles/Employer/EmployerHandle.module';
-import { RepositoriesModule } from 'src/core/repositories/repositories.module';
+import { RepositoriesModule } from 'src/app/repositories.module';
 import { EmployerController } from './Employer.controller';
 
 @Module({

@@ -14,7 +14,7 @@ import {
   UserUpdateDTO,
   // UserFindAllDTO,
 } from 'src/app/dtos/User.dto';
-import { UserPresenter } from 'src/app/presenter/User.presenter';
+import { UserPresenter } from 'src/app/modules/User/User.presenter';
 import { UserHandle } from 'src/app/handles/User/User.handle';
 import { UserPresenterResponse } from './UserController.interface';
 import {

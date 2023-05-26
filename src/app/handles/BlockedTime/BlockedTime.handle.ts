@@ -5,8 +5,8 @@ import {
   BlockedTimeUpdateDTO,
   BlockedTimeFindAllDTO,
 } from 'src/app/dtos/BlockedTime.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { BlockedTimePresenter } from 'src/app/presenter/BlockedTime.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
+import { BlockedTimePresenter } from 'src/app/modules/BlockedTime/BlockedTime.presenter';
 
 import { BlockedTimeRepository } from 'src/app/modules/BlockedTime/BlockedTime.repository';
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
