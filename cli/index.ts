@@ -91,12 +91,12 @@ const execute = (operation, nameModule) => {
       createModule(nameModule as string);
       break;
     case Options.CRUD:
+      createModule(nameModule as string);
       createEntity(nameModule as string);
       createRepository(nameModule as string);
       createDtoAndPresenter(nameModule as string);
       createError(nameModule as string);
       createHandles(nameModule as string);
-      createModule(nameModule as string);
       break;
 
     default:

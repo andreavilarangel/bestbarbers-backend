@@ -63,6 +63,31 @@ export class ${name}Handle {
   });
 };
 
+const createModule = (dir, name: string) => {
+  const content = `import { Module } from '@nestjs/common'
+import { RepositoriesModule } from 'src/app/repositories.module'
+import { ${name}Handle } from './${name}.handle'
+
+@Module({
+  imports: [RepositoriesModule],
+  providers: [
+    ${name}Handle,
+  ],
+  exports: [${name}Handle],
+})
+export class ${name}HandleModule {}
+`;
+
+  fs.writeFile(`${dir}/${name}Handle.module.ts`, content, (err) => {
+    if (err) {
+      console.error(err);
+      cancel('Operation cancelled.');
+      process.exit(0);
+    }
+    // ficheiro escrito com sucesso
+  });
+};
+
 export const createHandles = (name: string) => {
   const dir = `src/app/handles/${name}`;
 
@@ -71,4 +96,5 @@ export const createHandles = (name: string) => {
   }
 
   createHandle(dir, name);
+  createModule(dir, name);
 };
