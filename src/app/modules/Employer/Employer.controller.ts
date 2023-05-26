@@ -7,13 +7,12 @@ import {
   Param,
   Post,
   Put,
-  Query,
+  Delete,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   EmployerCreateDTO,
   EmployerUpdateDTO,
-  EmployerFindAllDTO,
 } from 'src/app/dtos/Employer.dto';
 import { EmployerPresenter } from 'src/app/modules/Employer/Employer.presenter';
 import { EmployerHandle } from 'src/app/handles/Employer/Employer.handle';
@@ -29,7 +28,7 @@ export class EmployerController {
   constructor(private readonly employerHandle: EmployerHandle) {}
 
   @Post()
-  @ApiOperation({ summary: 'Cria um Employer' })
+  @ApiOperation({ summary: 'Cria um colaborador' })
   @ApiResponse({ type: EmployerPresenter })
   @ApiException(() => [])
   async createOneEmployer(
@@ -38,33 +37,34 @@ export class EmployerController {
     return this.employerHandle.createOneEmployer(newEmployer);
   }
 
-  // @Put('/:employerId')
-  // @ApiOperation({ summary: 'Atualiza dados de um Employer' })
-  // @ApiResponse({ type: EmployerPresenter })
-  // @ApiException(() => [EmployerNotFoundException])
-  // async updateOneEmployer(
-  //   @Param('employerId') employerId: string,
-  //   @Body() dataEmployer: EmployerUpdateDTO,
-  // ): Promise<EmployerPresenter> {
-  //   return this.employerHandle.updateOneEmployer(employerId, dataEmployer);
-  // }
+  @Put('/:employer_id')
+  @ApiOperation({ summary: 'Atualiza dados de um colaborador' })
+  @ApiResponse({ type: EmployerPresenter })
+  @ApiException(() => [EmployerNotFoundException])
+  async updateOneEmployer(
+    @Param('employer_id') employer_id: string,
+    @Body() dataEmployer: EmployerUpdateDTO,
+  ): Promise<EmployerPresenter> {
+    return this.employerHandle.updateOneEmployer(employer_id, dataEmployer);
+  }
 
-  // @Get()
-  // @ApiOperation({ summary: 'Lista de todos os Employers' })
-  // @ApiResponse({ type: FindAllPresent.forEntity(EmployerPresenter) })
-  // async getAllEmployer(
-  //   @Query() queries: EmployerFindAllDTO,
-  // ): Promise<FindAllPresent<EmployerPresenter>> {
-  //   return this.employerHandle.findAllEmployer(queries);
-  // }
+  @Get('/:barbershop_id')
+  @ApiOperation({ summary: 'Lista todos os colaboradores de uma barbearia' })
+  @ApiResponse({ type: EmployerPresenter })
+  @ApiException(() => [EmployerNotFoundException])
+  async getOneEmployerById(
+    @Param('barbershop_id') barbershop_id: string,
+  ): Promise<FindAllPresent<EmployerPresenter>> {
+    return this.employerHandle.findEmployersByBarbershopId(barbershop_id);
+  }
 
-  // @Get('/:employerId')
-  // @ApiOperation({ summary: 'Obtém dados de um Employer' })
-  // @ApiResponse({ type: EmployerPresenter })
-  // @ApiException(() => [EmployerNotFoundException])
-  // async getOneEmployerById(
-  //   @Param('employerId') employerId: string,
-  // ): Promise<EmployerPresenter> {
-  //   return this.employerHandle.findOneEmployerById(employerId);
-  // }
+  @Delete('/delete/:employer_id')
+  @ApiOperation({ summary: 'Exclui um colaborador' })
+  @ApiResponse({ type: EmployerPresenter })
+  @ApiException(() => [EmployerNotFoundException])
+  async deleteOneEmployer(
+    @Param('employer_id') employer_id: string,
+  ): Promise<EmployerPresenter> {
+    return this.employerHandle.deleteOneEmployer(employer_id);
+  }
 }

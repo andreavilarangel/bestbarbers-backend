@@ -7,6 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserType {
+  recepcionist //: 'Recepcionista',
+  manager //: 'Gerente',
+  collector //: 'Caixa',
+  finance //: 'Financeiro',
+  barber //: 'Barbeiro', 
+  barbershop_owner //: 'Dono da barbearia',
+  barbershop_owner_and_barber //: 'Dono da barbearia e também barbeiro'
+  client //: 'Cliente da barbearia'
+}
+
 model User {
   id String @id @default(uuid())
 
@@ -17,7 +28,7 @@ model User {
 
   phone String
   email String?
-  type  String
+  type  UserType @default(barbershop_owner)
 
   password String
   // reset_password String?

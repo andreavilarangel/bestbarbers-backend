@@ -1,5 +1,5 @@
 import { IsBoolean, IsOptional, IsString, IsUUID } from 'class-validator';
-import { User } from '@prisma/client';
+import { User, UserType } from '@prisma/client';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UserEntity implements User {
@@ -38,7 +38,7 @@ export class UserEntity implements User {
 
   @IsOptional()
   @ApiProperty({ example: 'barbershop' })
-  type: string;
+  type: UserType;
 
   @IsOptional()
   @ApiPropertyOptional({ example: '[uid1, uid1]' })

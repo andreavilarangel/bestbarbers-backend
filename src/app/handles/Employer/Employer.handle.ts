@@ -11,7 +11,6 @@ import { EmployerPresenter } from 'src/app/modules/Employer/Employer.presenter';
 import { UserHandle } from '../User/User.handle';
 import { UserAlreadyExistException } from 'src/app/errors/User.error';
 import { EmployerRepository } from 'src/app/modules/Employer/Employer.repository';
-import { EmployerNotFoundException } from 'src/app/errors/Employer.error';
 
 @Injectable()
 export class EmployerHandle {
@@ -53,22 +52,13 @@ export class EmployerHandle {
     return barbershopUpdated;
   }
 
-  async findOneEmployerById(employerId: string): Promise<EmployerPresenter> {
-    const employer = await this.employerRepository.findOne(employerId);
-
-    if (!employer) throw new EmployerNotFoundException({ employerId });
-
-    return employer;
-  }
-
   async findEmployersByBarbershopId(
-    params: EmployerFindAllDTO,
+    barbershop_id: string,
   ): Promise<FindAllPresent<EmployerPresenter>> {
     const [data, total] = await this.employerRepository.findAll({
-      skip: params.skip,
-      take: params.take,
       where: {
-        barbershop_id: params.barbershop_id,
+        barbershop_id,
+        inactive: false,
       },
     });
 
@@ -78,18 +68,14 @@ export class EmployerHandle {
     };
   }
 
-  async findAllEmployer(
-    params: EmployerFindAllDTO,
-  ): Promise<FindAllPresent<EmployerPresenter>> {
-    const [data, total] = await this.employerRepository.findAll({
-      skip: params.skip,
-      take: params.take,
-      where: { barbershop_id: params.barbershop_id },
+  async deleteOneEmployer(employerId: string): Promise<EmployerPresenter> {
+    const barbershopUpdated = await this.employerRepository.update(employerId, {
+      inactive: true,
+      user: {
+        update: { inactive: true },
+      },
     });
 
-    return {
-      data,
-      total,
-    };
+    return barbershopUpdated;
   }
 }
