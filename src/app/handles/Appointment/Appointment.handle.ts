@@ -8,13 +8,13 @@ import {
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { AppointmentPresenter } from 'src/app/modules/Appointment/Appointment.presenter';
 import { AppointmentRepository } from 'src/app/modules/Appointment/Appointment.repository';
-import { AppointmentProductAndServiceHandle } from '../AppointmentProductAndService/AppointmentProductAndService.handle';
+import { AppointmentProductAndServiceRepository } from 'src/app/modules/AppointmentProductAndService/AppointmentProductAndService.repository';
 
 @Injectable()
 export class AppointmentHandle {
   constructor(
     private readonly appointmentRepository: AppointmentRepository,
-    private readonly appointmentProductAndServiceHandle: AppointmentProductAndServiceHandle,
+    private readonly appointmentProductAndServiceRepository: AppointmentProductAndServiceRepository,
   ) {}
 
   async createOneAppointment(
@@ -40,16 +40,14 @@ export class AppointmentHandle {
     });
 
     products_and_services.forEach((item) =>
-      this.appointmentProductAndServiceHandle.createOneAppointmentProductAndService(
-        {
-          appointment_id: appointment.id,
-          barbershop_id,
-          employer_id,
-          employer_percentage: 10,
-          employer_value: 10,
-          product_service_id: item.id,
-        },
-      ),
+      this.appointmentProductAndServiceRepository.create({
+        employer_percentage: 10,
+        employer_value: 10,
+        barbershop: { connect: { id: barbershop_id } },
+        employer: { connect: { id: employer_id } },
+        product_service: { connect: { id: item.id } },
+        appointment: { connect: { id: appointment.id } },
+      }),
     );
 
     return appointment;
