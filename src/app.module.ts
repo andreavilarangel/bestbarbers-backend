@@ -12,6 +12,7 @@ import { PaymentMethodModule } from './app/modules/PaymentMethod/PaymentMethod.m
 import { BlockedTimeModule } from './app/modules/BlockedTime/BlockedTime.module';
 import { AddressModule } from './app/modules/Address/Address.module';
 import { BarbershopClientModule } from './app/modules/BarbershopClient/BarbershopClient.module';
+import { AppointmentModule } from './app/modules/Appointment/Appointment.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { BarbershopClientModule } from './app/modules/BarbershopClient/Barbersho
     PaymentMethodModule,
     BlockedTimeModule,
     BarbershopClientModule,
+    AppointmentModule,
   ],
   controllers: [],
   providers: [

@@ -10,6 +10,7 @@ import { PaymentMethodRepository } from './modules/PaymentMethod/PaymentMethod.r
 import { BlockedTimeRepository } from './modules/BlockedTime/BlockedTime.repository';
 import { AddressRepository } from './modules/Address/Address.repository';
 import { BarbershopClientRepository } from './modules/BarbershopClient/BarbershopClient.repository';
+import { AppointmentRepository } from './modules/Appointment/Appointment.repository';
 
 @Module({
   imports: [DatabaseModule],
@@ -24,6 +25,7 @@ import { BarbershopClientRepository } from './modules/BarbershopClient/Barbersho
     PaymentMethodRepository,
     BlockedTimeRepository,
     BarbershopClientRepository,
+    AppointmentRepository,
   ],
   exports: [
     AddressRepository,
@@ -36,6 +38,7 @@ import { BarbershopClientRepository } from './modules/BarbershopClient/Barbersho
     PaymentMethodRepository,
     BlockedTimeRepository,
     BarbershopClientRepository,
+    AppointmentRepository,
   ],
 })
 export class RepositoriesModule {}

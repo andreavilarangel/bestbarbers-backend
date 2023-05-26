@@ -102,7 +102,7 @@ model Barbershop {
   BarbershopSignatureMember    BarbershopSignatureMember[]
   Appointment                  Appointment[]
   BarbershopTransaction        BarbershopTransaction[]
-  AppoitnmentProductAndService AppoitnmentProductAndService[]
+  AppointmentProductAndService AppointmentProductAndService[]
   AppoitnmentPaymentMethod     AppoitnmentPaymentMethod[]
   AppointmentReview            AppointmentReview[]
 
@@ -141,14 +141,14 @@ model Employer {
   asaas_employer_id  String?
   created_by_user_id String?
 
-  inactive              Boolean?                       @default(false)
-  created_at            DateTime                       @default(now())
-  updated_at            DateTime                       @default(now()) @updatedAt
-  BlockedTime           BlockedTime[]
-  Appointment           Appointment[]
-  BarbershopTransaction BarbershopTransaction[]
-  AppoitnmentServices   AppoitnmentProductAndService[]
-  AppointmentReview     AppointmentReview[]
+  inactive                     Boolean?                       @default(false)
+  created_at                   DateTime                       @default(now())
+  updated_at                   DateTime                       @default(now()) @updatedAt
+  BlockedTime                  BlockedTime[]
+  Appointment                  Appointment[]
+  BarbershopTransaction        BarbershopTransaction[]
+  AppointmentProductAndService AppointmentProductAndService[]
+  AppointmentReview            AppointmentReview[]
 
   @@map("employees")
 }
@@ -202,7 +202,8 @@ model ProductAndService {
   created_at                   DateTime                       @default(now())
   updated_at                   DateTime                       @default(now()) @updatedAt
   BarbershopSignatureMember    BarbershopSignatureMember[]
-  AppoitnmentProductAndService AppoitnmentProductAndService[]
+  AppointmentProductAndService AppointmentProductAndService[]
+  appointmentId                String?
 
   @@map("products_and_services")
 }
@@ -355,13 +356,12 @@ model Appointment {
   type   AppointmentTypes  @default(normal)
   status AppointmentStatus @default(awaiting)
 
-  inactive                 Boolean?                       @default(false)
-  created_at               DateTime                       @default(now())
-  updated_at               DateTime                       @default(now()) @updatedAt
-  BarbershopTransaction    BarbershopTransaction[]
-  AppoitnmentServices      AppoitnmentProductAndService[]
-  AppoitnmentPaymentMethod AppoitnmentPaymentMethod[]
-  barbershopOpeningHoursId String?
+  inactive                     Boolean?                       @default(false)
+  created_at                   DateTime                       @default(now())
+  updated_at                   DateTime                       @default(now()) @updatedAt
+  BarbershopTransaction        BarbershopTransaction[]
+  AppointmentProductAndService AppointmentProductAndService[]
+  AppoitnmentPaymentMethod     AppoitnmentPaymentMethod[]
 
   @@map("appointments")
 }
@@ -405,7 +405,7 @@ model BarbershopTransaction {
   @@map("barbershop_transactions")
 }
 
-model AppoitnmentProductAndService {
+model AppointmentProductAndService {
   id                 String            @id @default(uuid())
   barbershop_id      String
   barbershop         Barbershop        @relation(fields: [barbershop_id], references: [id])
