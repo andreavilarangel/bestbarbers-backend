@@ -11,6 +11,7 @@ import { BlockedTimeRepository } from './modules/BlockedTime/BlockedTime.reposit
 import { AddressRepository } from './modules/Address/Address.repository';
 import { BarbershopClientRepository } from './modules/BarbershopClient/BarbershopClient.repository';
 import { AppointmentRepository } from './modules/Appointment/Appointment.repository';
+import { AppointmentProductAndServiceRepository } from './modules/AppointmentProductAndService/AppointmentProductAndService.repository';
 
 @Module({
   imports: [DatabaseModule],
@@ -26,6 +27,7 @@ import { AppointmentRepository } from './modules/Appointment/Appointment.reposit
     BlockedTimeRepository,
     BarbershopClientRepository,
     AppointmentRepository,
+    AppointmentProductAndServiceRepository,
   ],
   exports: [
     AddressRepository,
@@ -39,6 +41,7 @@ import { AppointmentRepository } from './modules/Appointment/Appointment.reposit
     BlockedTimeRepository,
     BarbershopClientRepository,
     AppointmentRepository,
+    AppointmentProductAndServiceRepository,
   ],
 })
 export class RepositoriesModule {}

@@ -8,10 +8,14 @@ import {
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { AppointmentPresenter } from 'src/app/modules/Appointment/Appointment.presenter';
 import { AppointmentRepository } from 'src/app/modules/Appointment/Appointment.repository';
+import { AppointmentProductAndServiceHandle } from '../AppointmentProductAndService/AppointmentProductAndService.handle';
 
 @Injectable()
 export class AppointmentHandle {
-  constructor(private readonly appointmentRepository: AppointmentRepository) {}
+  constructor(
+    private readonly appointmentRepository: AppointmentRepository,
+    private readonly appointmentProductAndServiceHandle: AppointmentProductAndServiceHandle,
+  ) {}
 
   async createOneAppointment(
     newAppointment: AppointmentCreateDTO,
@@ -31,18 +35,22 @@ export class AppointmentHandle {
       start_hour,
       finish_hour,
       barbershop: { connect: { id: barbershop_id } },
-      client: { connect: { id: client_id } },
       employer: { connect: { id: employer_id } },
+      client: { connect: { id: client_id } },
     });
 
-    // products_and_services.map(() => ())
-
-    // days.forEach((item) =>
-    //   this.barbershopOpeningHourRepository.create({
-    //     ...item,
-    //     barbershop: { connect: { id: createdBarbershop.id } },
-    //   }),
-    // );
+    products_and_services.forEach((item) =>
+      this.appointmentProductAndServiceHandle.createOneAppointmentProductAndService(
+        {
+          appointment_id: appointment.id,
+          barbershop_id,
+          employer_id,
+          employer_percentage: 10,
+          employer_value: 10,
+          product_service_id: item.id,
+        },
+      ),
+    );
 
     return appointment;
   }

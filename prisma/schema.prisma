@@ -203,7 +203,6 @@ model ProductAndService {
   updated_at                   DateTime                       @default(now()) @updatedAt
   BarbershopSignatureMember    BarbershopSignatureMember[]
   AppointmentProductAndService AppointmentProductAndService[]
-  appointmentId                String?
 
   @@map("products_and_services")
 }
@@ -419,9 +418,8 @@ model AppointmentProductAndService {
   employer_percentage Float
   employer_value      Float
 
-  created_at               DateTime @default(now())
-  updated_at               DateTime @default(now()) @updatedAt
-  barbershopOpeningHoursId String?
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("appointments_products_and_services")
 }
