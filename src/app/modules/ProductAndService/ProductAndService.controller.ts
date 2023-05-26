@@ -22,7 +22,7 @@ import { ProductAndServiceNotFoundException } from 'src/app/errors/ProductAndSer
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('ProductAndService')
+@ApiTags('Produtos e serviços da Barbearia (ProductAndService)')
 @Controller('product-and-service')
 @Public()
 export class ProductAndServiceController {

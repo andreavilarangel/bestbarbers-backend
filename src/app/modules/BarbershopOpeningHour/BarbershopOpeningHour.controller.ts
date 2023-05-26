@@ -22,7 +22,7 @@ import { BarbershopOpeningHourNotFoundException } from 'src/app/errors/Barbersho
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('BarbershopOpeningHour')
+@ApiTags('Horário de funcionamento da Barbearia (BarbershopOpeningHour)')
 @Controller('barbershopOpeningHour')
 @Public()
 export class BarbershopOpeningHourController {

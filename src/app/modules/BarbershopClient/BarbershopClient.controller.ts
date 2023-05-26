@@ -9,7 +9,7 @@ import { Public } from 'src/app/decorators/public';
 
 @Public()
 @Injectable()
-@ApiTags('BarbershopClient')
+@ApiTags('Clientes da barbearia (BarbershopClient)')
 @Controller('barbershop-client')
 export class BarbershopClientController {
   constructor(

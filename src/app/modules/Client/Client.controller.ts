@@ -23,7 +23,7 @@ import { ClientNotFoundException } from 'src/app/errors/Client.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('Client')
+@ApiTags('Clientes (Client)')
 @Controller('client')
 @Public()
 export class ClientController {

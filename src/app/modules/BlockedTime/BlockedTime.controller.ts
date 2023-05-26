@@ -22,7 +22,7 @@ import { BlockedTimeNotFoundException } from 'src/app/errors/BlockedTime.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('BlockedTime')
+@ApiTags('Horários bloqueados (BlockedTime)')
 @Controller('blockedTime')
 @Public()
 export class BlockedTimeController {

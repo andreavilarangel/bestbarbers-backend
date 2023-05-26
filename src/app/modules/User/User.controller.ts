@@ -24,7 +24,7 @@ import {
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('User')
+@ApiTags('Usuários (User)')
 @Controller('user')
 @Public()
 export class UserController {

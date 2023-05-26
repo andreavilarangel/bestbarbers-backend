@@ -22,7 +22,7 @@ import { AddressNotFoundException } from 'src/app/errors/Address.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('Address')
+@ApiTags('Endereços (Address)')
 @Controller('address')
 @Public()
 export class AddressController {

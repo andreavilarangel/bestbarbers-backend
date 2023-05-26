@@ -23,7 +23,7 @@ import { PaymentMethodNotFoundException } from 'src/app/errors/PaymentMethod.err
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('PaymentMethod')
+@ApiTags('Métodos de pagamento (PaymentMethod)')
 @Controller('payment-method')
 @Public()
 export class PaymentMethodController {

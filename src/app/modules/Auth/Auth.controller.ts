@@ -10,7 +10,7 @@ import { UserNotFoundException } from 'src/app/errors/User.error';
 
 @Injectable()
 @Controller('login')
-@ApiTags('Autenticação')
+@ApiTags('Autenticação (Auth)')
 @Public()
 export class AuthController {
   constructor(private readonly authHandle: AuthHandle) {}

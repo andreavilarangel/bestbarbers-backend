@@ -15,9 +15,9 @@ import { BarbershopClientModule } from './app/modules/BarbershopClient/Barbersho
 
 @Module({
   imports: [
-    AddressModule,
     AuthModule,
     UserModule,
+    AddressModule,
     BarbershopModule,
     ClientModule,
     EmployerModule,

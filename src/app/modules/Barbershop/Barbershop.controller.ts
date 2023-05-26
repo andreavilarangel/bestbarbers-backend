@@ -22,7 +22,7 @@ import { BarbershopNotFoundException } from 'src/app/errors/Barbershop.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('Barbershop')
+@ApiTags('Barbearia (Barbershop)')
 @Controller('barbershop')
 @Public()
 export class BarbershopController {

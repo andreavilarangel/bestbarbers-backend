@@ -22,7 +22,7 @@ import { EmployerNotFoundException } from 'src/app/errors/Employer.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('Employer')
+@ApiTags('Colaboradores da Barbearia (Employer)')
 @Controller('employer')
 @Public()
 export class EmployerController {
