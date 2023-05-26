@@ -1,13 +1,13 @@
-import { intro, outro, select, text, spinner, cancel } from '@clack/prompts'
-import { createDtoAndPresenter } from './createDtoAndPresenter'
-import { createEntity } from './createEntity'
-import { createError } from './createError'
-import { createHandles } from './createHandle'
-import { createModule } from './createModule'
-import { createRepository } from './createRepository'
+import { intro, outro, select, text, spinner, cancel } from '@clack/prompts';
+import { createDtoAndPresenter } from './createDtoAndPresenter';
+import { createEntity } from './createEntity';
+import { createError } from './createError';
+import { createHandles } from './createHandle';
+import { createModule } from './createModule';
+import { createRepository } from './createRepository';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const shell = require('shelljs')
-const s = spinner()
+const shell = require('shelljs');
+const s = spinner();
 
 enum Options {
   MODULE = 'MODULE',
@@ -59,65 +59,65 @@ const additionalTools = async () =>
         hint: 'Criar um CRUD completo seguindo a arquitetura',
       },
     ],
-  })
+  });
 
 const name = async () =>
   await text({
     message: 'Qual o nome para o modulo?',
     validate(value) {
-      if (value.length === 0) return `Value is required!`
-      if (typeof value !== 'string') return 'Value have be a string'
+      if (value.length === 0) return `Value is required!`;
+      if (typeof value !== 'string') return 'Value have be a string';
     },
-  })
+  });
 
 const execute = (operation, nameModule) => {
   switch (operation) {
     case Options.ENTITY:
-      createEntity(nameModule as string)
-      break
+      createEntity(nameModule as string);
+      break;
     case Options.REPOSITORY:
-      createRepository(nameModule as string)
-      break
+      createRepository(nameModule as string);
+      break;
     case Options.DTO_AND_PRESENTER:
-      createDtoAndPresenter(nameModule as string)
-      break
+      createDtoAndPresenter(nameModule as string);
+      break;
     case Options.ERROR:
-      createError(nameModule as string)
-      break
+      createError(nameModule as string);
+      break;
     case Options.HANDLE:
-      createHandles(nameModule as string)
-      break
+      createHandles(nameModule as string);
+      break;
     case Options.MODULE:
-      createModule(nameModule as string)
-      break
+      createModule(nameModule as string);
+      break;
     case Options.CRUD:
-      createEntity(nameModule as string)
-      createRepository(nameModule as string)
-      createDtoAndPresenter(nameModule as string)
-      createError(nameModule as string)
-      createHandles(nameModule as string)
-      createModule(nameModule as string)
-      break
+      createEntity(nameModule as string);
+      createRepository(nameModule as string);
+      createDtoAndPresenter(nameModule as string);
+      createError(nameModule as string);
+      createHandles(nameModule as string);
+      createModule(nameModule as string);
+      break;
 
     default:
-      break
+      break;
   }
-}
+};
 
 const formatNameModule = (name: string) => {
-  const [firstLetter] = name.split('')
+  const [firstLetter] = name.split('');
 
-  return firstLetter.toLocaleUpperCase() + name.substring(1)
-}
+  return firstLetter.toLocaleUpperCase() + name.substring(1);
+};
 
 async function cli() {
-  intro('Cli Carroweb')
+  intro('Cli Carroweb');
 
-  const optionSelected = await additionalTools()
-  const nameModule = (await name()) as string
+  const optionSelected = await additionalTools();
+  const nameModule = (await name()) as string;
 
-  await s.start('Criando arquivos')
-  execute(optionSelected, formatNameModule(nameModule))
+  await s.start('Criando arquivos');
+  execute(optionSelected, formatNameModule(nameModule));
 
   /*  const run = `yarn prettier --write .`
 
@@ -125,9 +125,9 @@ async function cli() {
     shell.exit(1)
     cancel('Error ao criar modulo')
   } */
-  s.stop('Arquivos criados')
+  s.stop('Arquivos criados');
 
-  outro(`Tudo Pronto!`)
+  outro(`Tudo Pronto!`);
 }
 
-cli()
+cli();
