@@ -56,18 +56,45 @@ export class ProductAndServiceHandle {
     return productAndService;
   }
 
-  async findAllProductAndService(
-    params: ProductAndServiceFindAllDTO,
+  async findBarbershopProducts(
+    barbershop_id: string,
   ): Promise<FindAllPresent<ProductAndServicePresenter>> {
     const [data, total] = await this.productAndServiceRepository.findAll({
-      skip: params.skip,
-      take: params.take,
-      where: {},
+      where: {
+        barbershop_id,
+        type: 'product',
+        inactive: false,
+      },
     });
-
     return {
       data,
       total,
     };
+  }
+
+  async findBarbershopServices(
+    barbershop_id: string,
+  ): Promise<FindAllPresent<ProductAndServicePresenter>> {
+    const [data, total] = await this.productAndServiceRepository.findAll({
+      where: {
+        barbershop_id,
+        type: 'service',
+        inactive: false,
+      },
+    });
+    return {
+      data,
+      total,
+    };
+  }
+
+  async deleteOneProductAndService(
+    productAndServiceId: string,
+  ): Promise<ProductAndServicePresenter> {
+    // valida se existe ProductAndService
+    await this.findOneProductAndServiceById(productAndServiceId);
+    return this.productAndServiceRepository.update(productAndServiceId, {
+      inactive: true,
+    });
   }
 }

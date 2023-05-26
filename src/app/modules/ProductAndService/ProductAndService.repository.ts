@@ -32,9 +32,10 @@ export class ProductAndServiceRepository {
   }
 
   async findOne(productAndServiceId: string): Promise<ProductAndServiceEntity> {
-    return this.prisma.productAndService.findUnique({
+    return this.prisma.productAndService.findFirst({
       where: {
         id: productAndServiceId,
+        inactive: false,
       },
     });
   }

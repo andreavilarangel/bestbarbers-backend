@@ -31,7 +31,7 @@ export class ProductAndServiceController {
   ) {}
 
   @Post()
-  @ApiOperation({ summary: 'Cria um ProductAndService' })
+  @ApiOperation({ summary: 'Cria um produto ou serviço' })
   @ApiResponse({ type: ProductAndServicePresenter })
   @ApiException(() => [])
   async createOneProductAndService(
@@ -42,38 +42,47 @@ export class ProductAndServiceController {
     );
   }
 
-  // @Put('/:productAndServiceId')
-  // @ApiOperation({ summary: 'Atualiza dados de um ProductAndService' })
-  // @ApiResponse({ type: ProductAndServicePresenter })
-  // @ApiException(() => [ProductAndServiceNotFoundException])
-  // async updateOneProductAndService(
-  //   @Param('productAndServiceId') productAndServiceId: string,
-  //   @Body() dataProductAndService: ProductAndServiceUpdateDTO,
-  // ): Promise<ProductAndServicePresenter> {
-  //   return this.productAndServiceHandle.updateOneProductAndService(
-  //     productAndServiceId,
-  //     dataProductAndService,
-  //   );
-  // }
+  @Put('/:product_and_service_id')
+  @ApiOperation({ summary: 'Atualiza dados de um produto ou serviço' })
+  @ApiResponse({ type: ProductAndServicePresenter })
+  @ApiException(() => [ProductAndServiceNotFoundException])
+  async updateOneProductAndService(
+    @Param('product_and_service_id') productAndServiceId: string,
+    @Body() dataProductAndService: ProductAndServiceUpdateDTO,
+  ): Promise<ProductAndServicePresenter> {
+    return this.productAndServiceHandle.updateOneProductAndService(
+      productAndServiceId,
+      dataProductAndService,
+    );
+  }
 
-  // @Get()
-  // @ApiOperation({ summary: 'Lista de todos os ProductAndServices' })
-  // @ApiResponse({ type: FindAllPresent.forEntity(ProductAndServicePresenter) })
-  // async getAllProductAndService(
-  //   @Query() queries: ProductAndServiceFindAllDTO,
-  // ): Promise<FindAllPresent<ProductAndServicePresenter>> {
-  //   return this.productAndServiceHandle.findAllProductAndService(queries);
-  // }
+  @Put('/delete/:product_and_service_id')
+  @ApiOperation({ summary: 'Atualiza dados de um produto ou serviço' })
+  @ApiResponse({ type: ProductAndServicePresenter })
+  @ApiException(() => [ProductAndServiceNotFoundException])
+  async deleteOneProductAndService(
+    @Param('product_and_service_id') productAndServiceId: string,
+  ): Promise<ProductAndServicePresenter> {
+    return this.productAndServiceHandle.deleteOneProductAndService(
+      productAndServiceId,
+    );
+  }
 
-  // @Get('/:productAndServiceId')
-  // @ApiOperation({ summary: 'Obtém dados de um ProductAndService' })
-  // @ApiResponse({ type: ProductAndServicePresenter })
-  // @ApiException(() => [ProductAndServiceNotFoundException])
-  // async getOneProductAndServiceById(
-  //   @Param('productAndServiceId') productAndServiceId: string,
-  // ): Promise<ProductAndServicePresenter> {
-  //   return this.productAndServiceHandle.findOneProductAndServiceById(
-  //     productAndServiceId,
-  //   );
-  // }
+  @Get('services/:barbershop_id')
+  @ApiOperation({ summary: 'Lista de todos os serviços de uma barbearia' })
+  @ApiResponse({ type: FindAllPresent.forEntity(ProductAndServicePresenter) })
+  async getBarbershopServices(
+    @Param('barbershop_id') barbershop_id: string,
+  ): Promise<FindAllPresent<ProductAndServicePresenter>> {
+    return this.productAndServiceHandle.findBarbershopServices(barbershop_id);
+  }
+
+  @Get('products/:barbershop_id')
+  @ApiOperation({ summary: 'Lista de todos os serviços de uma barbearia' })
+  @ApiResponse({ type: FindAllPresent.forEntity(ProductAndServicePresenter) })
+  async getBarbershopProducts(
+    @Param('barbershop_id') barbershop_id: string,
+  ): Promise<FindAllPresent<ProductAndServicePresenter>> {
+    return this.productAndServiceHandle.findBarbershopProducts(barbershop_id);
+  }
 }
