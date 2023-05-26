@@ -30,34 +30,10 @@ export class BarbershopOpeningHourController {
     private readonly barbershopOpeningHourHandle: BarbershopOpeningHourHandle,
   ) {}
 
-  @Post()
-  @ApiOperation({ summary: 'Cria um BarbershopOpeningHour' })
-  @ApiResponse({ type: BarbershopOpeningHourPresenter })
-  @ApiException(() => [])
-  async createOneBarbershopOpeningHour(
-    @Body() newBarbershopOpeningHour: BarbershopOpeningHourCreateDTO,
-  ): Promise<BarbershopOpeningHourPresenter> {
-    return this.barbershopOpeningHourHandle.createOneBarbershopOpeningHour(
-      newBarbershopOpeningHour,
-    );
-  }
-
-  @Put('/:barbershopOpeningHourId')
-  @ApiOperation({ summary: 'Atualiza dados de um BarbershopOpeningHour' })
-  @ApiResponse({ type: BarbershopOpeningHourPresenter })
-  @ApiException(() => [BarbershopOpeningHourNotFoundException])
-  async updateOneBarbershopOpeningHour(
-    @Param('barbershopOpeningHourId') barbershopOpeningHourId: string,
-    @Body() dataBarbershopOpeningHour: BarbershopOpeningHourUpdateDTO,
-  ): Promise<BarbershopOpeningHourPresenter> {
-    return this.barbershopOpeningHourHandle.updateOneBarbershopOpeningHour(
-      barbershopOpeningHourId,
-      dataBarbershopOpeningHour,
-    );
-  }
-
   @Put()
-  @ApiOperation({ summary: 'Atualiza todos os horarios de uma barbearia' })
+  @ApiOperation({
+    summary: 'Atualiza todos os horarios de funcionamento da barbearia',
+  })
   @ApiResponse({ type: BarbershopOpeningHourPresenter })
   @ApiException(() => [BarbershopOpeningHourNotFoundException])
   async updateAllBarbershopOpeningHour(@Body() data: any): Promise<any> {
@@ -67,7 +43,9 @@ export class BarbershopOpeningHourController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Lista de todos os BarbershopOpeningHours' })
+  @ApiOperation({
+    summary: 'Lista todos os horarios de funcionamento da barbearia',
+  })
   @ApiResponse({
     type: FindAllPresent.forEntity(BarbershopOpeningHourPresenter),
   })
@@ -76,18 +54,6 @@ export class BarbershopOpeningHourController {
   ): Promise<FindAllPresent<BarbershopOpeningHourPresenter>> {
     return this.barbershopOpeningHourHandle.findAllBarbershopOpeningHour(
       queries,
-    );
-  }
-
-  @Get('/:barbershopOpeningHourId')
-  @ApiOperation({ summary: 'Obtém dados de um BarbershopOpeningHour' })
-  @ApiResponse({ type: BarbershopOpeningHourPresenter })
-  @ApiException(() => [BarbershopOpeningHourNotFoundException])
-  async getOneBarbershopOpeningHourById(
-    @Param('barbershopOpeningHourId') barbershopOpeningHourId: string,
-  ): Promise<BarbershopOpeningHourPresenter> {
-    return this.barbershopOpeningHourHandle.findOneBarbershopOpeningHourById(
-      barbershopOpeningHourId,
     );
   }
 }

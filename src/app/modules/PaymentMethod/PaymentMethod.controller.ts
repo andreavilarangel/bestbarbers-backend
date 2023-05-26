@@ -39,36 +39,36 @@ export class PaymentMethodController {
     return this.paymentMethodHandle.createOnePaymentMethod(newPaymentMethod);
   }
 
-  @Put('/:paymentMethodId')
-  @ApiOperation({ summary: 'Atualiza dados de um PaymentMethod' })
-  @ApiResponse({ type: PaymentMethodPresenter })
-  @ApiException(() => [PaymentMethodNotFoundException])
-  async updateOnePaymentMethod(
-    @Param('paymentMethodId') paymentMethodId: string,
-    @Body() dataPaymentMethod: PaymentMethodUpdateDTO,
-  ): Promise<PaymentMethodPresenter> {
-    return this.paymentMethodHandle.updateOnePaymentMethod(
-      paymentMethodId,
-      dataPaymentMethod,
-    );
-  }
+  // @Put('/:paymentMethodId')
+  // @ApiOperation({ summary: 'Atualiza dados de um PaymentMethod' })
+  // @ApiResponse({ type: PaymentMethodPresenter })
+  // @ApiException(() => [PaymentMethodNotFoundException])
+  // async updateOnePaymentMethod(
+  //   @Param('paymentMethodId') paymentMethodId: string,
+  //   @Body() dataPaymentMethod: PaymentMethodUpdateDTO,
+  // ): Promise<PaymentMethodPresenter> {
+  //   return this.paymentMethodHandle.updateOnePaymentMethod(
+  //     paymentMethodId,
+  //     dataPaymentMethod,
+  //   );
+  // }
 
-  @Get()
-  @ApiOperation({ summary: 'Lista de todos os PaymentMethods' })
-  @ApiResponse({ type: FindAllPresent.forEntity(PaymentMethodPresenter) })
-  async getAllPaymentMethod(
-    @Query() queries: PaymentMethodFindAllDTO,
-  ): Promise<FindAllPresent<PaymentMethodPresenter>> {
-    return this.paymentMethodHandle.findAllPaymentMethod(queries);
-  }
+  // @Get()
+  // @ApiOperation({ summary: 'Lista de todos os PaymentMethods' })
+  // @ApiResponse({ type: FindAllPresent.forEntity(PaymentMethodPresenter) })
+  // async getAllPaymentMethod(
+  //   @Query() queries: PaymentMethodFindAllDTO,
+  // ): Promise<FindAllPresent<PaymentMethodPresenter>> {
+  //   return this.paymentMethodHandle.findAllPaymentMethod(queries);
+  // }
 
-  @Get('/:paymentMethodId')
-  @ApiOperation({ summary: 'Obtém dados de um PaymentMethod' })
-  @ApiResponse({ type: PaymentMethodPresenter })
-  @ApiException(() => [PaymentMethodNotFoundException])
-  async getOnePaymentMethodById(
-    @Param('paymentMethodId') paymentMethodId: string,
-  ): Promise<PaymentMethodPresenter> {
-    return this.paymentMethodHandle.findOnePaymentMethodById(paymentMethodId);
-  }
+  // @Get('/:paymentMethodId')
+  // @ApiOperation({ summary: 'Obtém dados de um PaymentMethod' })
+  // @ApiResponse({ type: PaymentMethodPresenter })
+  // @ApiException(() => [PaymentMethodNotFoundException])
+  // async getOnePaymentMethodById(
+  //   @Param('paymentMethodId') paymentMethodId: string,
+  // ): Promise<PaymentMethodPresenter> {
+  //   return this.paymentMethodHandle.findOnePaymentMethodById(paymentMethodId);
+  // }
 }

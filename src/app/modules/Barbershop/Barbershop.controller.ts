@@ -52,22 +52,22 @@ export class BarbershopController {
     );
   }
 
-  @Get()
-  @ApiOperation({ summary: 'Lista de todos os Barbershops' })
-  @ApiResponse({ type: FindAllPresent.forEntity(BarbershopPresenter) })
-  async getAllBarbershop(
-    @Query() queries: BarbershopFindAllDTO,
-  ): Promise<FindAllPresent<BarbershopPresenter>> {
-    return this.barbershopHandle.findAllBarbershop(queries);
-  }
+  // @Get()
+  // @ApiOperation({ summary: 'Lista de todos os Barbershops' })
+  // @ApiResponse({ type: FindAllPresent.forEntity(BarbershopPresenter) })
+  // async getAllBarbershop(
+  //   @Query() queries: BarbershopFindAllDTO,
+  // ): Promise<FindAllPresent<BarbershopPresenter>> {
+  //   return this.barbershopHandle.findAllBarbershop(queries);
+  // }
 
-  @Get('/:barbershopId')
-  @ApiOperation({ summary: 'Obtém dados de um Barbershop' })
-  @ApiResponse({ type: BarbershopPresenter })
-  @ApiException(() => [BarbershopNotFoundException])
-  async getOneBarbershopById(
-    @Param('barbershopId') barbershopId: string,
-  ): Promise<BarbershopPresenter> {
-    return this.barbershopHandle.findOneBarbershopById(barbershopId);
-  }
+  // @Get('/:barbershopId')
+  // @ApiOperation({ summary: 'Obtém dados de um Barbershop' })
+  // @ApiResponse({ type: BarbershopPresenter })
+  // @ApiException(() => [BarbershopNotFoundException])
+  // async getOneBarbershopById(
+  //   @Param('barbershopId') barbershopId: string,
+  // ): Promise<BarbershopPresenter> {
+  //   return this.barbershopHandle.findOneBarbershopById(barbershopId);
+  // }
 }

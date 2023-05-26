@@ -38,33 +38,33 @@ export class EmployerController {
     return this.employerHandle.createOneEmployer(newEmployer);
   }
 
-  @Put('/:employerId')
-  @ApiOperation({ summary: 'Atualiza dados de um Employer' })
-  @ApiResponse({ type: EmployerPresenter })
-  @ApiException(() => [EmployerNotFoundException])
-  async updateOneEmployer(
-    @Param('employerId') employerId: string,
-    @Body() dataEmployer: EmployerUpdateDTO,
-  ): Promise<EmployerPresenter> {
-    return this.employerHandle.updateOneEmployer(employerId, dataEmployer);
-  }
+  // @Put('/:employerId')
+  // @ApiOperation({ summary: 'Atualiza dados de um Employer' })
+  // @ApiResponse({ type: EmployerPresenter })
+  // @ApiException(() => [EmployerNotFoundException])
+  // async updateOneEmployer(
+  //   @Param('employerId') employerId: string,
+  //   @Body() dataEmployer: EmployerUpdateDTO,
+  // ): Promise<EmployerPresenter> {
+  //   return this.employerHandle.updateOneEmployer(employerId, dataEmployer);
+  // }
 
-  @Get()
-  @ApiOperation({ summary: 'Lista de todos os Employers' })
-  @ApiResponse({ type: FindAllPresent.forEntity(EmployerPresenter) })
-  async getAllEmployer(
-    @Query() queries: EmployerFindAllDTO,
-  ): Promise<FindAllPresent<EmployerPresenter>> {
-    return this.employerHandle.findAllEmployer(queries);
-  }
+  // @Get()
+  // @ApiOperation({ summary: 'Lista de todos os Employers' })
+  // @ApiResponse({ type: FindAllPresent.forEntity(EmployerPresenter) })
+  // async getAllEmployer(
+  //   @Query() queries: EmployerFindAllDTO,
+  // ): Promise<FindAllPresent<EmployerPresenter>> {
+  //   return this.employerHandle.findAllEmployer(queries);
+  // }
 
-  @Get('/:employerId')
-  @ApiOperation({ summary: 'Obtém dados de um Employer' })
-  @ApiResponse({ type: EmployerPresenter })
-  @ApiException(() => [EmployerNotFoundException])
-  async getOneEmployerById(
-    @Param('employerId') employerId: string,
-  ): Promise<EmployerPresenter> {
-    return this.employerHandle.findOneEmployerById(employerId);
-  }
+  // @Get('/:employerId')
+  // @ApiOperation({ summary: 'Obtém dados de um Employer' })
+  // @ApiResponse({ type: EmployerPresenter })
+  // @ApiException(() => [EmployerNotFoundException])
+  // async getOneEmployerById(
+  //   @Param('employerId') employerId: string,
+  // ): Promise<EmployerPresenter> {
+  //   return this.employerHandle.findOneEmployerById(employerId);
+  // }
 }
