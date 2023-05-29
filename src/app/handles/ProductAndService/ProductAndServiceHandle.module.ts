@@ -1,25 +1,12 @@
 import { Module } from '@nestjs/common';
-import { RepositoriesModule } from 'src/core/repositories/repositories.module';
+import { RepositoriesModule } from 'src/app/repositories.module';
 import { ProductAndServiceHandle } from './ProductAndService.handle';
-import { ProductAndServiceCreateService } from './ProductAndServiceCreate.service';
-import { ProductAndServiceFindService } from './ProductAndServiceFind.service';
-import { ProductAndServiceUpdateService } from './ProductAndServiceUpdate.service';
-import { BarbershopFindService } from '../Barbershop/BarbershopFind.service';
+import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
+import { UserHandle } from '../User/User.handle';
 
 @Module({
   imports: [RepositoriesModule],
-  providers: [
-    ProductAndServiceHandle,
-    ProductAndServiceCreateService,
-    ProductAndServiceUpdateService,
-    ProductAndServiceFindService,
-    BarbershopFindService,
-  ],
-  exports: [
-    ProductAndServiceHandle,
-    ProductAndServiceCreateService,
-    ProductAndServiceUpdateService,
-    ProductAndServiceFindService,
-  ],
+  providers: [ProductAndServiceHandle, BarbershopHandle, UserHandle],
+  exports: [ProductAndServiceHandle],
 })
 export class ProductAndServiceHandleModule {}

@@ -4,47 +4,70 @@ import {
   AddressUpdateDTO,
   AddressFindAllDTO,
 } from 'src/app/dtos/Address.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { AddressPresenter } from 'src/app/presenter/Address.presenter';
-import { AddressCreateService } from './AddressCreate.service';
-import { AddressFindService } from './AddressFind.service';
-import { AddressHandleInterface } from './AddressHandle.interface';
-import { AddressUpdateService } from './AddressUpdate.service';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
+import { AddressPresenter } from 'src/app/modules/Address/Address.presenter';
+import { AddressNotFoundException } from 'src/app/errors/Address.error';
+
+import { AddressRepository } from 'src/app/modules/Address/Address.repository';
 
 @Injectable()
-export class AddressHandle implements AddressHandleInterface {
-  constructor(
-    private readonly addressCreate: AddressCreateService,
-    private readonly addressUpdate: AddressUpdateService,
-    private readonly addressFind: AddressFindService,
-  ) {}
+export class AddressHandle {
+  constructor(private readonly addressRepository: AddressRepository) {}
 
   async createOneAddress(
     newAddress: AddressCreateDTO,
   ): Promise<AddressPresenter> {
-    return this.addressCreate.createOneAddress(newAddress);
+    return this.addressRepository.create(newAddress);
+  }
+
+  async barbershopAddress(
+    dataAddress: AddressCreateDTO,
+  ): Promise<AddressPresenter> {
+    const address = await this.addressRepository.findByBarbershopId(
+      dataAddress.barbershop_id,
+    );
+    if (address) {
+      return this.addressRepository.update(address.id, dataAddress);
+    }
+    return this.addressRepository.create(dataAddress);
   }
 
   async updateOneAddress(
     addressId: string,
     dataAddress: AddressUpdateDTO,
   ): Promise<AddressPresenter> {
-    return this.addressUpdate.updateOneAddress(addressId, dataAddress);
+    await this.findOneAddressById(addressId);
+    return this.addressRepository.update(addressId, dataAddress);
   }
 
   async findOneAddressByBarbershopId(
     barbershop_id: string,
   ): Promise<AddressPresenter> {
-    return this.addressFind.findOneAddressByBarbershopId(barbershop_id);
+    const address = await this.addressRepository.findByBarbershopId(
+      barbershop_id,
+    );
+    if (!address) throw new AddressNotFoundException({ barbershop_id });
+    return address;
   }
 
   async findOneAddressById(addressId: string): Promise<AddressPresenter> {
-    return this.addressFind.findOneAddressById(addressId);
+    const address = await this.addressRepository.findOne(addressId);
+    if (!address) throw new AddressNotFoundException({ addressId });
+    return address;
   }
 
   async findAllAddress(
     params: AddressFindAllDTO,
   ): Promise<FindAllPresent<AddressPresenter>> {
-    return this.addressFind.findAllAddress(params);
+    const [data, total] = await this.addressRepository.findAll({
+      skip: params.skip,
+      take: params.take,
+      where: {},
+    });
+
+    return {
+      data,
+      total,
+    };
   }
 }

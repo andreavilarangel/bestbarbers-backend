@@ -1,25 +1,11 @@
 import { Module } from '@nestjs/common';
-import { RepositoriesModule } from 'src/core/repositories/repositories.module';
+import { RepositoriesModule } from 'src/app/repositories.module';
 import { EmployerHandle } from './Employer.handle';
-import { EmployerCreateService } from './EmployerCreate.service';
-import { EmployerFindService } from './EmployerFind.service';
-import { EmployerUpdateService } from './EmployerUpdate.service';
-import { UserFindService } from '../User/UserFind.service';
+import { UserHandle } from '../User/User.handle';
 
 @Module({
   imports: [RepositoriesModule],
-  providers: [
-    EmployerHandle,
-    EmployerCreateService,
-    EmployerUpdateService,
-    EmployerFindService,
-    UserFindService,
-  ],
-  exports: [
-    EmployerHandle,
-    EmployerCreateService,
-    EmployerUpdateService,
-    EmployerFindService,
-  ],
+  providers: [EmployerHandle, EmployerHandle, UserHandle],
+  exports: [EmployerHandle, EmployerHandle],
 })
 export class EmployerHandleModule {}

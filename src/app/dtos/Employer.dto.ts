@@ -1,5 +1,5 @@
 import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
-import { EmployerEntity } from 'src/core/entities/Employer.entity';
+import { EmployerEntity } from 'src/app/modules/Employer/Employer.entity';
 import { PaginationDTO } from './Pagination.dto';
 import { Type } from 'class-transformer';
 import {

@@ -7,6 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserType {
+  recepcionist //: 'Recepcionista',
+  manager //: 'Gerente',
+  collector //: 'Caixa',
+  finance //: 'Financeiro',
+  barber //: 'Barbeiro', 
+  barbershop_owner //: 'Dono da barbearia',
+  barbershop_owner_and_barber //: 'Dono da barbearia e também barbeiro'
+  client //: 'Cliente da barbearia'
+}
+
 model User {
   id String @id @default(uuid())
 
@@ -16,8 +27,8 @@ model User {
   profile_image_url String?
 
   phone String
-  email String
-  type  String
+  email String?
+  type  UserType @default(barbershop_owner)
 
   password String
   // reset_password String?
@@ -91,7 +102,7 @@ model Barbershop {
   BarbershopSignatureMember    BarbershopSignatureMember[]
   Appointment                  Appointment[]
   BarbershopTransaction        BarbershopTransaction[]
-  AppoitnmentProductAndService AppoitnmentProductAndService[]
+  AppointmentProductAndService AppointmentProductAndService[]
   AppoitnmentPaymentMethod     AppoitnmentPaymentMethod[]
   AppointmentReview            AppointmentReview[]
 
@@ -130,14 +141,14 @@ model Employer {
   asaas_employer_id  String?
   created_by_user_id String?
 
-  inactive              Boolean?                       @default(false)
-  created_at            DateTime                       @default(now())
-  updated_at            DateTime                       @default(now()) @updatedAt
-  BlockedTime           BlockedTime[]
-  Appointment           Appointment[]
-  BarbershopTransaction BarbershopTransaction[]
-  AppoitnmentServices   AppoitnmentProductAndService[]
-  AppointmentReview     AppointmentReview[]
+  inactive                     Boolean?                       @default(false)
+  created_at                   DateTime                       @default(now())
+  updated_at                   DateTime                       @default(now()) @updatedAt
+  BlockedTime                  BlockedTime[]
+  Appointment                  Appointment[]
+  BarbershopTransaction        BarbershopTransaction[]
+  AppointmentProductAndService AppointmentProductAndService[]
+  AppointmentReview            AppointmentReview[]
 
   @@map("employees")
 }
@@ -178,13 +189,11 @@ model ProductAndService {
   barbershop_id String
   barbershop    Barbershop @relation(fields: [barbershop_id], references: [id])
 
-  name          String
-  value         Float
-  time_required String
-  type          ProductAndServiceType @default(service)
-
-  promotion_days  String?
-  promotion_value Float?
+  name              String
+  value             Float
+  time_required     String?
+  type              ProductAndServiceType @default(service)
+  default_comission Float
 
   product_category_id String?
   image_url           String?
@@ -193,7 +202,7 @@ model ProductAndService {
   created_at                   DateTime                       @default(now())
   updated_at                   DateTime                       @default(now()) @updatedAt
   BarbershopSignatureMember    BarbershopSignatureMember[]
-  AppoitnmentProductAndService AppoitnmentProductAndService[]
+  AppointmentProductAndService AppointmentProductAndService[]
 
   @@map("products_and_services")
 }
@@ -203,8 +212,9 @@ model PaymentMethod {
   barbershop_id String
   barbershop    Barbershop @relation(fields: [barbershop_id], references: [id])
 
-  name       String
-  percentage Float
+  name        String
+  percentage  Float
+  due_in_days Int
 
   discounted_from_barber Boolean @default(true)
 
@@ -345,13 +355,12 @@ model Appointment {
   type   AppointmentTypes  @default(normal)
   status AppointmentStatus @default(awaiting)
 
-  inactive                 Boolean?                       @default(false)
-  created_at               DateTime                       @default(now())
-  updated_at               DateTime                       @default(now()) @updatedAt
-  BarbershopTransaction    BarbershopTransaction[]
-  AppoitnmentServices      AppoitnmentProductAndService[]
-  AppoitnmentPaymentMethod AppoitnmentPaymentMethod[]
-  barbershopOpeningHoursId String?
+  inactive                     Boolean?                       @default(false)
+  created_at                   DateTime                       @default(now())
+  updated_at                   DateTime                       @default(now()) @updatedAt
+  BarbershopTransaction        BarbershopTransaction[]
+  AppointmentProductAndService AppointmentProductAndService[]
+  AppoitnmentPaymentMethod     AppoitnmentPaymentMethod[]
 
   @@map("appointments")
 }
@@ -395,7 +404,7 @@ model BarbershopTransaction {
   @@map("barbershop_transactions")
 }
 
-model AppoitnmentProductAndService {
+model AppointmentProductAndService {
   id                 String            @id @default(uuid())
   barbershop_id      String
   barbershop         Barbershop        @relation(fields: [barbershop_id], references: [id])
@@ -409,9 +418,8 @@ model AppoitnmentProductAndService {
   employer_percentage Float
   employer_value      Float
 
-  created_at               DateTime @default(now())
-  updated_at               DateTime @default(now()) @updatedAt
-  barbershopOpeningHoursId String?
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   @@map("appointments_products_and_services")
 }

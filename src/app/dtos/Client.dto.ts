@@ -1,5 +1,5 @@
 import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
-import { ClientEntity } from 'src/core/entities/Client.entity';
+import { ClientEntity } from 'src/app/modules/Client/Client.entity';
 import { PaginationDTO } from './Pagination.dto';
 import { Type } from 'class-transformer';
 import { IsNotEmptyObject, IsOptional, ValidateNested } from 'class-validator';

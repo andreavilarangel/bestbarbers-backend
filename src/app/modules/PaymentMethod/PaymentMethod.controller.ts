@@ -2,37 +2,34 @@ import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Injectable,
   Param,
   Post,
   Put,
-  Query,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   PaymentMethodCreateDTO,
   PaymentMethodUpdateDTO,
-  PaymentMethodFindAllDTO,
 } from 'src/app/dtos/PaymentMethod.dto';
-import { PaymentMethodPresenter } from 'src/app/presenter/PaymentMethod.presenter';
+import { PaymentMethodPresenter } from 'src/app/modules/PaymentMethod/PaymentMethod.presenter';
 import { PaymentMethodHandle } from 'src/app/handles/PaymentMethod/PaymentMethod.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { PaymentMethodControllerInterface } from './PaymentMethodController.interface';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
+
 import { PaymentMethodNotFoundException } from 'src/app/errors/PaymentMethod.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('PaymentMethod')
-@Controller('paymentMethod')
+@ApiTags('Métodos de pagamento (PaymentMethod)')
+@Controller('payment-method')
 @Public()
-export class PaymentMethodController
-  implements PaymentMethodControllerInterface
-{
+export class PaymentMethodController {
   constructor(private readonly paymentMethodHandle: PaymentMethodHandle) {}
 
   @Post()
-  @ApiOperation({ summary: 'Cria um PaymentMethod' })
+  @ApiOperation({ summary: 'Cria um método de pagamento' })
   @ApiResponse({ type: PaymentMethodPresenter })
   @ApiException(() => [])
   async createOnePaymentMethod(
@@ -41,36 +38,38 @@ export class PaymentMethodController
     return this.paymentMethodHandle.createOnePaymentMethod(newPaymentMethod);
   }
 
-  @Put('/:paymentMethodId')
-  @ApiOperation({ summary: 'Atualiza dados de um PaymentMethod' })
+  @Get('/:barbershop_id')
+  @ApiOperation({
+    summary: 'Lista de todos os métodos de pagamento de uma barbearia',
+  })
+  @ApiResponse({ type: FindAllPresent.forEntity(PaymentMethodPresenter) })
+  async getAllPaymentMethod(
+    @Param('barbershop_id') barbershop_id: string,
+  ): Promise<FindAllPresent<PaymentMethodPresenter>> {
+    return this.paymentMethodHandle.findBarbershopPaymentMethods(barbershop_id);
+  }
+
+  @Put('/:payment_method_id')
+  @ApiOperation({ summary: 'Atualiza dados de um método de pagamento' })
   @ApiResponse({ type: PaymentMethodPresenter })
   @ApiException(() => [PaymentMethodNotFoundException])
   async updateOnePaymentMethod(
-    @Param('paymentMethodId') paymentMethodId: string,
+    @Param('payment_method_id') payment_method_id: string,
     @Body() dataPaymentMethod: PaymentMethodUpdateDTO,
   ): Promise<PaymentMethodPresenter> {
     return this.paymentMethodHandle.updateOnePaymentMethod(
-      paymentMethodId,
+      payment_method_id,
       dataPaymentMethod,
     );
   }
 
-  @Get()
-  @ApiOperation({ summary: 'Lista de todos os PaymentMethods' })
-  @ApiResponse({ type: FindAllPresent.forEntity(PaymentMethodPresenter) })
-  async getAllPaymentMethod(
-    @Query() queries: PaymentMethodFindAllDTO,
-  ): Promise<FindAllPresent<PaymentMethodPresenter>> {
-    return this.paymentMethodHandle.findAllPaymentMethod(queries);
-  }
-
-  @Get('/:paymentMethodId')
-  @ApiOperation({ summary: 'Obtém dados de um PaymentMethod' })
+  @Delete('/:payment_method_id')
+  @ApiOperation({ summary: 'Exclui um método de pagamento' })
   @ApiResponse({ type: PaymentMethodPresenter })
   @ApiException(() => [PaymentMethodNotFoundException])
-  async getOnePaymentMethodById(
-    @Param('paymentMethodId') paymentMethodId: string,
+  async deleteOnePaymentMethod(
+    @Param('payment_method_id') payment_method_id: string,
   ): Promise<PaymentMethodPresenter> {
-    return this.paymentMethodHandle.findOnePaymentMethodById(paymentMethodId);
+    return this.paymentMethodHandle.deleteOnePaymentMethod(payment_method_id);
   }
 }

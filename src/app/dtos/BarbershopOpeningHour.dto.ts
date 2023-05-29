@@ -1,6 +1,6 @@
 import { OmitType, PartialType } from '@nestjs/swagger';
 import { PaginationDTO } from './Pagination.dto';
-import { BarbershopOpeningHourEntity } from 'src/core/entities/BarbershopOpeningHour.entity';
+import { BarbershopOpeningHourEntity } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.entity';
 import { IsString } from 'class-validator';
 
 export class BarbershopOpeningHourCreateDTO extends OmitType(

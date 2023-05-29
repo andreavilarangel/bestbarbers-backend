@@ -2,39 +2,35 @@ import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Injectable,
   Param,
   Post,
   Put,
-  Query,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   ProductAndServiceCreateDTO,
   ProductAndServiceUpdateDTO,
-  ProductAndServiceFindAllDTO,
 } from 'src/app/dtos/ProductAndService.dto';
-import { ProductAndServicePresenter } from 'src/app/presenter/ProductAndService.presenter';
+import { ProductAndServicePresenter } from 'src/app/modules/ProductAndService/ProductAndService.presenter';
 import { ProductAndServiceHandle } from 'src/app/handles/ProductAndService/ProductAndService.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { ProductAndServiceControllerInterface } from './ProductAndServiceController.interface';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { ProductAndServiceNotFoundException } from 'src/app/errors/ProductAndService.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('ProductAndService')
-@Controller('productAndService')
+@ApiTags('Produtos e serviços da Barbearia (ProductAndService)')
+@Controller('product-and-service')
 @Public()
-export class ProductAndServiceController
-  implements ProductAndServiceControllerInterface
-{
+export class ProductAndServiceController {
   constructor(
     private readonly productAndServiceHandle: ProductAndServiceHandle,
   ) {}
 
   @Post()
-  @ApiOperation({ summary: 'Cria um ProductAndService' })
+  @ApiOperation({ summary: 'Cria um produto ou serviço' })
   @ApiResponse({ type: ProductAndServicePresenter })
   @ApiException(() => [])
   async createOneProductAndService(
@@ -45,12 +41,12 @@ export class ProductAndServiceController
     );
   }
 
-  @Put('/:productAndServiceId')
-  @ApiOperation({ summary: 'Atualiza dados de um ProductAndService' })
+  @Put('/:product_and_service_id')
+  @ApiOperation({ summary: 'Atualiza dados de um produto ou serviço' })
   @ApiResponse({ type: ProductAndServicePresenter })
   @ApiException(() => [ProductAndServiceNotFoundException])
   async updateOneProductAndService(
-    @Param('productAndServiceId') productAndServiceId: string,
+    @Param('product_and_service_id') productAndServiceId: string,
     @Body() dataProductAndService: ProductAndServiceUpdateDTO,
   ): Promise<ProductAndServicePresenter> {
     return this.productAndServiceHandle.updateOneProductAndService(
@@ -59,23 +55,32 @@ export class ProductAndServiceController
     );
   }
 
-  @Get()
-  @ApiOperation({ summary: 'Lista de todos os ProductAndServices' })
+  @Get('services/:barbershop_id')
+  @ApiOperation({ summary: 'Lista de todos os serviços de uma barbearia' })
   @ApiResponse({ type: FindAllPresent.forEntity(ProductAndServicePresenter) })
-  async getAllProductAndService(
-    @Query() queries: ProductAndServiceFindAllDTO,
+  async getBarbershopServices(
+    @Param('barbershop_id') barbershop_id: string,
   ): Promise<FindAllPresent<ProductAndServicePresenter>> {
-    return this.productAndServiceHandle.findAllProductAndService(queries);
+    return this.productAndServiceHandle.findBarbershopServices(barbershop_id);
   }
 
-  @Get('/:productAndServiceId')
-  @ApiOperation({ summary: 'Obtém dados de um ProductAndService' })
+  @Get('products/:barbershop_id')
+  @ApiOperation({ summary: 'Lista de todos os produtos de uma barbearia' })
+  @ApiResponse({ type: FindAllPresent.forEntity(ProductAndServicePresenter) })
+  async getBarbershopProducts(
+    @Param('barbershop_id') barbershop_id: string,
+  ): Promise<FindAllPresent<ProductAndServicePresenter>> {
+    return this.productAndServiceHandle.findBarbershopProducts(barbershop_id);
+  }
+
+  @Delete('/delete/:product_and_service_id')
+  @ApiOperation({ summary: 'Exclui um produto ou serviço' })
   @ApiResponse({ type: ProductAndServicePresenter })
   @ApiException(() => [ProductAndServiceNotFoundException])
-  async getOneProductAndServiceById(
-    @Param('productAndServiceId') productAndServiceId: string,
+  async deleteOneProductAndService(
+    @Param('product_and_service_id') productAndServiceId: string,
   ): Promise<ProductAndServicePresenter> {
-    return this.productAndServiceHandle.findOneProductAndServiceById(
+    return this.productAndServiceHandle.deleteOneProductAndService(
       productAndServiceId,
     );
   }

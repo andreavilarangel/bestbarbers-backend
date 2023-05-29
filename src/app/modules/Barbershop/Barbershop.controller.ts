@@ -15,21 +15,20 @@ import {
   BarbershopUpdateDTO,
   BarbershopFindAllDTO,
 } from 'src/app/dtos/Barbershop.dto';
-import { BarbershopPresenter } from 'src/app/presenter/Barbershop.presenter';
+import { BarbershopPresenter } from 'src/app/modules/Barbershop/Barbershop.presenter';
 import { BarbershopHandle } from 'src/app/handles/Barbershop/Barbershop.handle';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { BarbershopControllerInterface } from './BarbershopController.interface';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { BarbershopNotFoundException } from 'src/app/errors/Barbershop.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
-@ApiTags('Barbershop')
+@ApiTags('Barbearia (Barbershop)')
 @Controller('barbershop')
 @Public()
-export class BarbershopController implements BarbershopControllerInterface {
+export class BarbershopController {
   constructor(private readonly barbershopHandle: BarbershopHandle) {}
 
-  @Post()
+  @Post('create-account')
   @ApiOperation({ summary: 'Cria um Barbershop' })
   @ApiResponse({ type: BarbershopPresenter })
   @ApiException(() => [])
@@ -53,22 +52,22 @@ export class BarbershopController implements BarbershopControllerInterface {
     );
   }
 
-  @Get()
-  @ApiOperation({ summary: 'Lista de todos os Barbershops' })
-  @ApiResponse({ type: FindAllPresent.forEntity(BarbershopPresenter) })
-  async getAllBarbershop(
-    @Query() queries: BarbershopFindAllDTO,
-  ): Promise<FindAllPresent<BarbershopPresenter>> {
-    return this.barbershopHandle.findAllBarbershop(queries);
-  }
+  // @Get()
+  // @ApiOperation({ summary: 'Lista de todos os Barbershops' })
+  // @ApiResponse({ type: FindAllPresent.forEntity(BarbershopPresenter) })
+  // async getAllBarbershop(
+  //   @Query() queries: BarbershopFindAllDTO,
+  // ): Promise<FindAllPresent<BarbershopPresenter>> {
+  //   return this.barbershopHandle.findAllBarbershop(queries);
+  // }
 
-  @Get('/:barbershopId')
-  @ApiOperation({ summary: 'Obtém dados de um Barbershop' })
-  @ApiResponse({ type: BarbershopPresenter })
-  @ApiException(() => [BarbershopNotFoundException])
-  async getOneBarbershopById(
-    @Param('barbershopId') barbershopId: string,
-  ): Promise<BarbershopPresenter> {
-    return this.barbershopHandle.findOneBarbershopById(barbershopId);
-  }
+  // @Get('/:barbershopId')
+  // @ApiOperation({ summary: 'Obtém dados de um Barbershop' })
+  // @ApiResponse({ type: BarbershopPresenter })
+  // @ApiException(() => [BarbershopNotFoundException])
+  // async getOneBarbershopById(
+  //   @Param('barbershopId') barbershopId: string,
+  // ): Promise<BarbershopPresenter> {
+  //   return this.barbershopHandle.findOneBarbershopById(barbershopId);
+  // }
 }

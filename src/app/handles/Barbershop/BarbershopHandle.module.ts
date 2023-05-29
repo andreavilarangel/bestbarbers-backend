@@ -1,25 +1,11 @@
 import { Module } from '@nestjs/common';
-import { RepositoriesModule } from 'src/core/repositories/repositories.module';
+import { RepositoriesModule } from 'src/app/repositories.module';
 import { BarbershopHandle } from './Barbershop.handle';
-import { BarbershopCreateService } from './BarbershopCreate.service';
-import { BarbershopFindService } from './BarbershopFind.service';
-import { BarbershopUpdateService } from './BarbershopUpdate.service';
-import { UserFindService } from '../User/UserFind.service';
+import { UserHandle } from '../User/User.handle';
 
 @Module({
   imports: [RepositoriesModule],
-  providers: [
-    BarbershopHandle,
-    BarbershopCreateService,
-    BarbershopUpdateService,
-    BarbershopFindService,
-    UserFindService,
-  ],
-  exports: [
-    BarbershopHandle,
-    BarbershopCreateService,
-    BarbershopUpdateService,
-    BarbershopFindService,
-  ],
+  providers: [BarbershopHandle, UserHandle],
+  exports: [BarbershopHandle],
 })
 export class BarbershopHandleModule {}

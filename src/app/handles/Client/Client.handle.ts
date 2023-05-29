@@ -4,39 +4,78 @@ import {
   ClientUpdateDTO,
   ClientFindAllDTO,
 } from 'src/app/dtos/Client.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { ClientPresenter } from 'src/app/presenter/Client.presenter';
-import { ClientCreateService } from './ClientCreate.service';
-import { ClientFindService } from './ClientFind.service';
-import { ClientHandleInterface } from './ClientHandle.interface';
-import { ClientUpdateService } from './ClientUpdate.service';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
+import { ClientPresenter } from 'src/app/modules/Client/Client.presenter';
+
+import { UserHandle } from '../User/User.handle';
+import { UserAlreadyExistException } from 'src/app/errors/User.error';
+
+import { ClientRepository } from 'src/app/modules/Client/Client.repository';
+import { ClientNotFoundException } from 'src/app/errors/Client.error';
 
 @Injectable()
-export class ClientHandle implements ClientHandleInterface {
+export class ClientHandle {
   constructor(
-    private readonly clientCreate: ClientCreateService,
-    private readonly clientUpdate: ClientUpdateService,
-    private readonly clientFind: ClientFindService,
+    private readonly clientRepository: ClientRepository,
+    private readonly userFindService: UserHandle,
   ) {}
 
   async createOneClient(newClient: ClientCreateDTO): Promise<ClientPresenter> {
-    return this.clientCreate.createOneClient(newClient);
+    const user = await this.userFindService.checkUserExist(
+      newClient.user.email,
+      newClient.user.phone,
+    );
+
+    if (user) throw new UserAlreadyExistException();
+    const createdClient = await this.clientRepository.create({
+      ...newClient,
+      user: { create: newClient.user },
+    });
+    return createdClient;
   }
 
   async updateOneClient(
     clientId: string,
     dataClient: ClientUpdateDTO,
   ): Promise<ClientPresenter> {
-    return this.clientUpdate.updateOneClient(clientId, dataClient);
+    const barbershopUpdated = await this.clientRepository.update(clientId, {
+      ...dataClient,
+      user: {
+        update: dataClient.user,
+      },
+    });
+
+    return barbershopUpdated;
   }
 
   async findOneClientById(clientId: string): Promise<ClientPresenter> {
-    return this.clientFind.findOneClientById(clientId);
+    const client = await this.clientRepository.findOne(clientId);
+
+    if (!client) throw new ClientNotFoundException({ clientId });
+
+    return client;
+  }
+
+  async findOneClientByUserId(userId: string): Promise<ClientPresenter> {
+    const client = await this.clientRepository.findByUserId(userId);
+
+    if (!client) throw new ClientNotFoundException({ userId });
+
+    return client;
   }
 
   async findAllClient(
     params: ClientFindAllDTO,
   ): Promise<FindAllPresent<ClientPresenter>> {
-    return this.clientFind.findAllClient(params);
+    const [data, total] = await this.clientRepository.findAll({
+      skip: params.skip,
+      take: params.take,
+      where: {},
+    });
+
+    return {
+      data,
+      total,
+    };
   }
 }

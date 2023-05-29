@@ -1,9 +1,9 @@
-import { cancel } from '@clack/prompts'
+import { cancel } from '@clack/prompts';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const fs = require('fs')
+const fs = require('fs');
 
 export const createError = (name: string) => {
-  const dir = `src/app/errors`
+  const dir = `src/app/errors`;
 
   /*  if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true })
@@ -53,13 +53,13 @@ export class ${name}BadRequestException extends BadException {
     )
   }
 }  
-`
-  fs.writeFile(`${dir}/${name}.error.ts`, content, err => {
+`;
+  fs.writeFile(`${dir}/${name}.error.ts`, content, (err) => {
     if (err) {
-      console.error(err)
-      cancel('Operation cancelled.')
-      process.exit(0)
+      console.error(err);
+      cancel('Operation cancelled.');
+      process.exit(0);
     }
     // ficheiro escrito com sucesso
-  })
-}
+  });
+};

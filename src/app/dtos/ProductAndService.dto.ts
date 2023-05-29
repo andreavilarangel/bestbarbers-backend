@@ -1,6 +1,6 @@
 import { OmitType, PartialType } from '@nestjs/swagger';
 import { PaginationDTO } from './Pagination.dto';
-import { ProductAndServiceEntity } from 'src/core/entities/ProductAndService.entity';
+import { ProductAndServiceEntity } from 'src/app/modules/ProductAndService/ProductAndService.entity';
 
 export class ProductAndServiceCreateDTO extends OmitType(
   ProductAndServiceEntity,

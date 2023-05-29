@@ -1,25 +1,12 @@
 import { Module } from '@nestjs/common';
-import { RepositoriesModule } from 'src/core/repositories/repositories.module';
+import { RepositoriesModule } from 'src/app/repositories.module';
 import { ClientHandle } from './Client.handle';
-import { ClientCreateService } from './ClientCreate.service';
-import { ClientFindService } from './ClientFind.service';
-import { ClientUpdateService } from './ClientUpdate.service';
-import { UserFindService } from '../User/UserFind.service';
+
+import { UserHandle } from '../User/User.handle';
 
 @Module({
   imports: [RepositoriesModule],
-  providers: [
-    ClientHandle,
-    ClientCreateService,
-    ClientUpdateService,
-    ClientFindService,
-    UserFindService,
-  ],
-  exports: [
-    ClientHandle,
-    ClientCreateService,
-    ClientUpdateService,
-    ClientFindService,
-  ],
+  providers: [ClientHandle, UserHandle],
+  exports: [ClientHandle],
 })
 export class ClientHandleModule {}

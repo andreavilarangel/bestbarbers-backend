@@ -1,39 +1,43 @@
 import { Injectable } from '@nestjs/common';
+import { omit } from 'radash';
 import {
   ProductAndServiceCreateDTO,
   ProductAndServiceUpdateDTO,
   ProductAndServiceFindAllDTO,
 } from 'src/app/dtos/ProductAndService.dto';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
-import { ProductAndServicePresenter } from 'src/app/presenter/ProductAndService.presenter';
-import { ProductAndServiceCreateService } from './ProductAndServiceCreate.service';
-import { ProductAndServiceFindService } from './ProductAndServiceFind.service';
-import { ProductAndServiceHandleInterface } from './ProductAndServiceHandle.interface';
-import { ProductAndServiceUpdateService } from './ProductAndServiceUpdate.service';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
+import { ProductAndServicePresenter } from 'src/app/modules/ProductAndService/ProductAndService.presenter';
+import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
+import { ProductAndServiceRepository } from 'src/app/modules/ProductAndService/ProductAndService.repository';
+import { ProductAndServiceNotFoundException } from 'src/app/errors/ProductAndService.error';
 
 @Injectable()
-export class ProductAndServiceHandle
-  implements ProductAndServiceHandleInterface
-{
+export class ProductAndServiceHandle {
   constructor(
-    private readonly productAndServiceCreate: ProductAndServiceCreateService,
-    private readonly productAndServiceUpdate: ProductAndServiceUpdateService,
-    private readonly productAndServiceFind: ProductAndServiceFindService,
+    private readonly productAndServiceRepository: ProductAndServiceRepository,
+    private readonly barbershopHandle: BarbershopHandle,
   ) {}
 
   async createOneProductAndService(
     newProductAndService: ProductAndServiceCreateDTO,
   ): Promise<ProductAndServicePresenter> {
-    return this.productAndServiceCreate.createOneProductAndService(
-      newProductAndService,
-    );
+    const { barbershop_id } = newProductAndService;
+    await this.barbershopHandle.findOneBarbershopById(barbershop_id);
+
+    return this.productAndServiceRepository.create({
+      ...omit(newProductAndService, ['barbershop_id']),
+      barbershop: { connect: { id: barbershop_id } },
+    });
   }
 
   async updateOneProductAndService(
     productAndServiceId: string,
     dataProductAndService: ProductAndServiceUpdateDTO,
   ): Promise<ProductAndServicePresenter> {
-    return this.productAndServiceUpdate.updateOneProductAndService(
+    // valida se existe ProductAndService
+    await this.findOneProductAndServiceById(productAndServiceId);
+
+    return this.productAndServiceRepository.update(
       productAndServiceId,
       dataProductAndService,
     );
@@ -42,14 +46,55 @@ export class ProductAndServiceHandle
   async findOneProductAndServiceById(
     productAndServiceId: string,
   ): Promise<ProductAndServicePresenter> {
-    return this.productAndServiceFind.findOneProductAndServiceById(
+    const productAndService = await this.productAndServiceRepository.findOne(
       productAndServiceId,
     );
+
+    if (!productAndService)
+      throw new ProductAndServiceNotFoundException({ productAndServiceId });
+
+    return productAndService;
   }
 
-  async findAllProductAndService(
-    params: ProductAndServiceFindAllDTO,
+  async findBarbershopProducts(
+    barbershop_id: string,
   ): Promise<FindAllPresent<ProductAndServicePresenter>> {
-    return this.productAndServiceFind.findAllProductAndService(params);
+    const [data, total] = await this.productAndServiceRepository.findAll({
+      where: {
+        barbershop_id,
+        type: 'product',
+        inactive: false,
+      },
+    });
+    return {
+      data,
+      total,
+    };
+  }
+
+  async findBarbershopServices(
+    barbershop_id: string,
+  ): Promise<FindAllPresent<ProductAndServicePresenter>> {
+    const [data, total] = await this.productAndServiceRepository.findAll({
+      where: {
+        barbershop_id,
+        type: 'service',
+        inactive: false,
+      },
+    });
+    return {
+      data,
+      total,
+    };
+  }
+
+  async deleteOneProductAndService(
+    productAndServiceId: string,
+  ): Promise<ProductAndServicePresenter> {
+    // valida se existe ProductAndService
+    await this.findOneProductAndServiceById(productAndServiceId);
+    return this.productAndServiceRepository.update(productAndServiceId, {
+      inactive: true,
+    });
   }
 }

@@ -3,8 +3,8 @@ import {
   ClientUpdateDTO,
   ClientFindAllDTO,
 } from 'src/app/dtos/Client.dto';
-import { ClientPresenter } from 'src/app/presenter/Client.presenter';
-import { FindAllPresent } from 'src/app/presenter/FindAll.presenter';
+import { ClientPresenter } from 'src/app/modules/Client/Client.presenter';
+import { FindAllPresent } from 'src/shared/FindAll.presenter';
 
 export interface ClientControllerInterface {
   createOneClient(newClient: ClientCreateDTO): Promise<ClientPresenter>;

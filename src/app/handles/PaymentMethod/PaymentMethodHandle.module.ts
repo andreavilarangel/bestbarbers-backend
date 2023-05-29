@@ -1,25 +1,12 @@
 import { Module } from '@nestjs/common';
-import { RepositoriesModule } from 'src/core/repositories/repositories.module';
+import { RepositoriesModule } from 'src/app/repositories.module';
 import { PaymentMethodHandle } from './PaymentMethod.handle';
-import { PaymentMethodCreateService } from './PaymentMethodCreate.service';
-import { PaymentMethodFindService } from './PaymentMethodFind.service';
-import { PaymentMethodUpdateService } from './PaymentMethodUpdate.service';
-import { BarbershopFindService } from '../Barbershop/BarbershopFind.service';
+import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
+import { UserHandle } from '../User/User.handle';
 
 @Module({
   imports: [RepositoriesModule],
-  providers: [
-    PaymentMethodHandle,
-    PaymentMethodCreateService,
-    PaymentMethodUpdateService,
-    PaymentMethodFindService,
-    BarbershopFindService,
-  ],
-  exports: [
-    PaymentMethodHandle,
-    PaymentMethodCreateService,
-    PaymentMethodUpdateService,
-    PaymentMethodFindService,
-  ],
+  providers: [PaymentMethodHandle, BarbershopHandle, UserHandle],
+  exports: [PaymentMethodHandle],
 })
 export class PaymentMethodHandleModule {}

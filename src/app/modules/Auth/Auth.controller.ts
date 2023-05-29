@@ -4,16 +4,15 @@ import { Public } from 'src/app/decorators/public';
 import { AuthSignInDTO } from 'src/app/dtos/Auth.dto';
 import { AuthPasswordWrongException } from 'src/app/errors/Auth.error';
 import { AuthHandle } from 'src/app/handles/Auth/Auth.handle';
-import { AuthPresenter } from 'src/app/presenter/Auth.presenter';
-import { AuthControllerInterface } from './AuthController.interface';
+import { AuthPresenter } from 'src/app/modules/Auth/Auth.presenter';
 import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator';
 import { UserNotFoundException } from 'src/app/errors/User.error';
 
 @Injectable()
-@Controller('auth')
-@ApiTags('Autenticação')
+@Controller('login')
+@ApiTags('Autenticação (Auth)')
 @Public()
-export class AuthController implements AuthControllerInterface {
+export class AuthController {
   constructor(private readonly authHandle: AuthHandle) {}
 
   @Post()

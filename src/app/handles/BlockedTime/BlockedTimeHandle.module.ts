@@ -1,25 +1,12 @@
 import { Module } from '@nestjs/common';
-import { RepositoriesModule } from 'src/core/repositories/repositories.module';
+import { RepositoriesModule } from 'src/app/repositories.module';
 import { BlockedTimeHandle } from './BlockedTime.handle';
-import { BlockedTimeCreateService } from './BlockedTimeCreate.service';
-import { BlockedTimeFindService } from './BlockedTimeFind.service';
-import { BlockedTimeUpdateService } from './BlockedTimeUpdate.service';
-import { BarbershopFindService } from '../Barbershop/BarbershopFind.service';
+import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
+import { UserHandle } from '../User/User.handle';
 
 @Module({
   imports: [RepositoriesModule],
-  providers: [
-    BlockedTimeHandle,
-    BlockedTimeCreateService,
-    BlockedTimeUpdateService,
-    BlockedTimeFindService,
-    BarbershopFindService,
-  ],
-  exports: [
-    BlockedTimeHandle,
-    BlockedTimeCreateService,
-    BlockedTimeUpdateService,
-    BlockedTimeFindService,
-  ],
+  providers: [BlockedTimeHandle, BarbershopHandle, UserHandle],
+  exports: [BlockedTimeHandle],
 })
 export class BlockedTimeHandleModule {}

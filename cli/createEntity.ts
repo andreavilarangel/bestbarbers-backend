@@ -3,7 +3,7 @@ import { cancel } from '@clack/prompts';
 const fs = require('fs');
 
 export const createEntity = (name: string) => {
-  const dir = `src/core/entities`;
+  const dir = `src/app/modules/${name}`;
 
   const content = `
 import { ${name} } from '@prisma/client'
