@@ -14,12 +14,12 @@ import {
   ClientCreateDTO,
   ClientUpdateDTO,
   ClientFindAllDTO,
-} from 'src/app/dtos/Client.dto';
+} from 'src/app/modules/Client/Client.dto';
 import { ClientPresenter } from 'src/app/modules/Client/Client.presenter';
 import { ClientHandle } from 'src/app/handles/Client/Client.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 
-import { ClientNotFoundException } from 'src/app/errors/Client.error';
+import { ClientNotFoundException } from 'src/app/handles/Client/Client.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

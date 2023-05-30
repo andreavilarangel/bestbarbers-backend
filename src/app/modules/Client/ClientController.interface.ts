@@ -2,7 +2,7 @@ import {
   ClientCreateDTO,
   ClientUpdateDTO,
   ClientFindAllDTO,
-} from 'src/app/dtos/Client.dto';
+} from 'src/app/modules/Client/Client.dto';
 import { ClientPresenter } from 'src/app/modules/Client/Client.presenter';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 

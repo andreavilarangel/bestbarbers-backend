@@ -13,14 +13,14 @@ import {
   UserCreateDTO,
   UserUpdateDTO,
   // UserFindAllDTO,
-} from 'src/app/dtos/User.dto';
+} from 'src/app/modules/User/User.dto';
 import { UserPresenter } from 'src/app/modules/User/User.presenter';
 import { UserHandle } from 'src/app/handles/User/User.handle';
 import { UserPresenterResponse } from './UserController.interface';
 import {
   UserAlreadyExistException,
   UserNotFoundException,
-} from 'src/app/errors/User.error';
+} from 'src/app/handles/User/User.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { OmitType, PartialType, ApiProperty } from '@nestjs/swagger';
 import { UserEntity } from 'src/app/modules/User/User.entity';
-import { PaginationDTO } from './Pagination.dto';
+import { PaginationDTO } from '../../../shared/Pagination.dto';
 import { Transform } from 'class-transformer';
 import { encrypt } from 'src/common/encrypt';
 

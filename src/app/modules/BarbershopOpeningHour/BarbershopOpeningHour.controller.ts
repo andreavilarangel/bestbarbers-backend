@@ -14,11 +14,11 @@ import {
   BarbershopOpeningHourCreateDTO,
   BarbershopOpeningHourUpdateDTO,
   BarbershopOpeningHourFindAllDTO,
-} from 'src/app/dtos/BarbershopOpeningHour.dto';
+} from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.dto';
 import { BarbershopOpeningHourPresenter } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.presenter';
 import { BarbershopOpeningHourHandle } from 'src/app/handles/BarbershopOpeningHour/BarbershopOpeningHour.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { BarbershopOpeningHourNotFoundException } from 'src/app/errors/BarbershopOpeningHour.error';
+import { BarbershopOpeningHourNotFoundException } from 'src/app/handles/BarbershopOpeningHour/BarbershopOpeningHour.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

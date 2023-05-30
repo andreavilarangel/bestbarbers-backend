@@ -2,7 +2,7 @@ import {
   AlreadyExistException,
   BadException,
   NotFoundException,
-} from './error.exception';
+} from '../../../shared/errors/error.exception';
 
 const prefix = 'E';
 

@@ -4,11 +4,11 @@ import {
   UserCreateDTO,
   UserUpdateDTO,
   // UserFindAllDTO,
-} from 'src/app/dtos/User.dto';
+} from 'src/app/modules/User/User.dto';
 import {
   UserAlreadyExistException,
   UserNotFoundException,
-} from 'src/app/errors/User.error';
+} from 'src/app/handles/User/User.error';
 import {
   UserPresenter,
   UserPresenterWithPassword,

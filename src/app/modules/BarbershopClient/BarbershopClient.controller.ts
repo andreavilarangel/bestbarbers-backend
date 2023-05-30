@@ -1,10 +1,10 @@
 import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator';
 import { Body, Controller, Injectable, Post, Delete } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { BarbershopClientCreateDTO } from 'src/app/dtos/BarbershopClient.dto';
+import { BarbershopClientCreateDTO } from 'src/app/modules/BarbershopClient/BarbershopClient.dto';
 import { BarbershopClientPresenter } from 'src/app/modules/BarbershopClient/BarbershopClient.presenter';
 import { BarbershopClientHandle } from 'src/app/handles/BarbershopClient/BarbershopClient.handle';
-import { BarbershopClientNotFoundException } from 'src/app/errors/BarbershopClient.error';
+import { BarbershopClientNotFoundException } from 'src/app/handles/BarbershopClient/BarbershopClient.error';
 import { Public } from 'src/app/decorators/public';
 
 @Public()

@@ -4,7 +4,7 @@ import {
   BarbershopOpeningHourCreateDTO,
   BarbershopOpeningHourUpdateDTO,
   BarbershopOpeningHourFindAllDTO,
-} from 'src/app/dtos/BarbershopOpeningHour.dto';
+} from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.dto';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { BarbershopOpeningHourPresenter } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.presenter';
 
@@ -13,7 +13,7 @@ import { BarbershopOpeningHourRepository } from 'src/app/modules/BarbershopOpeni
 import {
   BarbershopOpeningHourNotFoundException,
   BarbershopOpeningHourAlreadyExistException,
-} from 'src/app/errors/BarbershopOpeningHour.error';
+} from 'src/app/handles/BarbershopOpeningHour/BarbershopOpeningHour.error';
 
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 

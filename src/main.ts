@@ -1,7 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ErrorsInterceptor } from './app/errors/error.interceptor';
+import { ErrorsInterceptor } from './shared/errors/error.interceptor';
 import { configOpenApi } from './config/openApi';
 import './config/patch';
 

@@ -3,13 +3,13 @@ import { omit } from 'radash';
 import {
   PaymentMethodCreateDTO,
   PaymentMethodUpdateDTO,
-} from 'src/app/dtos/PaymentMethod.dto';
+} from 'src/app/modules/PaymentMethod/PaymentMethod.dto';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { PaymentMethodPresenter } from 'src/app/modules/PaymentMethod/PaymentMethod.presenter';
 
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 import { PaymentMethodRepository } from 'src/app/modules/PaymentMethod/PaymentMethod.repository';
-import { PaymentMethodNotFoundException } from 'src/app/errors/PaymentMethod.error';
+import { PaymentMethodNotFoundException } from 'src/app/handles/PaymentMethod/PaymentMethod.error';
 
 @Injectable()
 export class PaymentMethodHandle {

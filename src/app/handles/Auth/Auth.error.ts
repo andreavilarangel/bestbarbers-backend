@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
-import { HttpErrorException } from './error.exception';
+import { HttpErrorException } from '../../../shared/errors/error.exception';
 
 const prefix = 'U';
 

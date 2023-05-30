@@ -4,12 +4,12 @@ import {
   ProductAndServiceCreateDTO,
   ProductAndServiceUpdateDTO,
   ProductAndServiceFindAllDTO,
-} from 'src/app/dtos/ProductAndService.dto';
+} from 'src/app/modules/ProductAndService/ProductAndService.dto';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { ProductAndServicePresenter } from 'src/app/modules/ProductAndService/ProductAndService.presenter';
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 import { ProductAndServiceRepository } from 'src/app/modules/ProductAndService/ProductAndService.repository';
-import { ProductAndServiceNotFoundException } from 'src/app/errors/ProductAndService.error';
+import { ProductAndServiceNotFoundException } from 'src/app/handles/ProductAndService/ProductAndService.error';
 
 @Injectable()
 export class ProductAndServiceHandle {

@@ -14,11 +14,11 @@ import {
   AddressCreateDTO,
   AddressUpdateDTO,
   AddressFindAllDTO,
-} from 'src/app/dtos/Address.dto';
+} from 'src/app/modules/Address/Address.dto';
 import { AddressPresenter } from 'src/app/modules/Address/Address.presenter';
 import { AddressHandle } from 'src/app/handles/Address/Address.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { AddressNotFoundException } from 'src/app/errors/Address.error';
+import { AddressNotFoundException } from 'src/app/handles/Address/Address.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

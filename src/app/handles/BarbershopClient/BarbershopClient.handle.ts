@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { omit } from 'radash';
-import { BarbershopClientCreateDTO } from 'src/app/dtos/BarbershopClient.dto';
+import { BarbershopClientCreateDTO } from 'src/app/modules/BarbershopClient/BarbershopClient.dto';
 import { BarbershopClientPresenter } from 'src/app/modules/BarbershopClient/BarbershopClient.presenter';
 import { BarbershopClientRepository } from 'src/app/modules/BarbershopClient/BarbershopClient.repository';
 import { UserHandle } from '../User/User.handle';

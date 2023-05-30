@@ -1,9 +1,9 @@
 import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
 import { ClientEntity } from 'src/app/modules/Client/Client.entity';
-import { PaginationDTO } from './Pagination.dto';
+import { PaginationDTO } from '../../../shared/Pagination.dto';
 import { Type } from 'class-transformer';
 import { IsNotEmptyObject, IsOptional, ValidateNested } from 'class-validator';
-import { UserCreateDTO, UserUpdateDTO } from './User.dto';
+import { UserCreateDTO, UserUpdateDTO } from '../User/User.dto';
 
 export class ClientCreateDTO extends OmitType(ClientEntity, [
   'id',

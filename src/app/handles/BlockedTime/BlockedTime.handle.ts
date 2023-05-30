@@ -4,13 +4,13 @@ import {
   BlockedTimeCreateDTO,
   BlockedTimeUpdateDTO,
   BlockedTimeFindAllDTO,
-} from 'src/app/dtos/BlockedTime.dto';
+} from 'src/app/modules/BlockedTime/BlockedTime.dto';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { BlockedTimePresenter } from 'src/app/modules/BlockedTime/BlockedTime.presenter';
 
 import { BlockedTimeRepository } from 'src/app/modules/BlockedTime/BlockedTime.repository';
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
-import { BlockedTimeNotFoundException } from 'src/app/errors/BlockedTime.error';
+import { BlockedTimeNotFoundException } from 'src/app/handles/BlockedTime/BlockedTime.error';
 
 @Injectable()
 export class BlockedTimeHandle {

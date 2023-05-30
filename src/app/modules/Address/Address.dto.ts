@@ -1,5 +1,5 @@
 import { OmitType, PartialType } from '@nestjs/swagger';
-import { PaginationDTO } from './Pagination.dto';
+import { PaginationDTO } from '../../../shared/Pagination.dto';
 import { AddressEntity } from 'src/app/modules/Address/Address.entity';
 
 export class AddressCreateDTO extends OmitType(AddressEntity, [

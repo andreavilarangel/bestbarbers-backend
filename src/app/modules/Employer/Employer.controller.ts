@@ -13,11 +13,11 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   EmployerCreateDTO,
   EmployerUpdateDTO,
-} from 'src/app/dtos/Employer.dto';
+} from 'src/app/modules/Employer/Employer.dto';
 import { EmployerPresenter } from 'src/app/modules/Employer/Employer.presenter';
 import { EmployerHandle } from 'src/app/handles/Employer/Employer.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { EmployerNotFoundException } from 'src/app/errors/Employer.error';
+import { EmployerNotFoundException } from 'src/app/handles/Employer/Employer.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

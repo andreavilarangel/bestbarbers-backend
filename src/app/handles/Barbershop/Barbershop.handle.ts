@@ -3,14 +3,14 @@ import {
   BarbershopCreateDTO,
   BarbershopUpdateDTO,
   BarbershopFindAllDTO,
-} from 'src/app/dtos/Barbershop.dto';
+} from 'src/app/modules/Barbershop/Barbershop.dto';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { BarbershopPresenter } from 'src/app/modules/Barbershop/Barbershop.presenter';
 import { BarbershopRepository } from 'src/app/modules/Barbershop/Barbershop.repository';
 import { UserHandle } from '../User/User.handle';
 import { BarbershopOpeningHourRepository } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.repository';
-import { UserAlreadyExistException } from 'src/app/errors/User.error';
-import { BarbershopNotFoundException } from 'src/app/errors/Barbershop.error';
+import { UserAlreadyExistException } from 'src/app/handles/User/User.error';
+import { BarbershopNotFoundException } from 'src/app/handles/Barbershop/Barbershop.error';
 
 @Injectable()
 export class BarbershopHandle {

@@ -4,7 +4,7 @@ import {
   AppointmentCreateDTO,
   AppointmentUpdateDTO,
   AppointmentFindAllDTO,
-} from 'src/app/dtos/Appointment.dto';
+} from 'src/app/modules/Appointment/Appointment.dto';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { AppointmentPresenter } from 'src/app/modules/Appointment/Appointment.presenter';
 import { AppointmentRepository } from 'src/app/modules/Appointment/Appointment.repository';

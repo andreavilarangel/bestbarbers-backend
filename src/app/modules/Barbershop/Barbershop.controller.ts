@@ -14,11 +14,11 @@ import {
   BarbershopCreateDTO,
   BarbershopUpdateDTO,
   BarbershopFindAllDTO,
-} from 'src/app/dtos/Barbershop.dto';
+} from 'src/app/modules/Barbershop/Barbershop.dto';
 import { BarbershopPresenter } from 'src/app/modules/Barbershop/Barbershop.presenter';
 import { BarbershopHandle } from 'src/app/handles/Barbershop/Barbershop.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { BarbershopNotFoundException } from 'src/app/errors/Barbershop.error';
+import { BarbershopNotFoundException } from 'src/app/handles/Barbershop/Barbershop.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

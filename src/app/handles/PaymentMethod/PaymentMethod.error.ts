@@ -1,11 +1,10 @@
-
 import {
   AlreadyExistException,
   BadException,
   NotFoundException,
-} from './error.exception'
+} from '../../../shared/errors/error.exception';
 
-const prefix = 'P'
+const prefix = 'P';
 
 export class PaymentMethodNotFoundException extends NotFoundException {
   constructor(data?: any) {
@@ -15,7 +14,7 @@ export class PaymentMethodNotFoundException extends NotFoundException {
         prefix,
       },
       data,
-    )
+    );
   }
 }
 
@@ -27,7 +26,7 @@ export class PaymentMethodAlreadyExistException extends AlreadyExistException {
         prefix,
       },
       data,
-    )
+    );
   }
 }
 
@@ -39,6 +38,6 @@ export class PaymentMethodBadRequestException extends BadException {
         prefix,
       },
       data,
-    )
+    );
   }
-}  
+}

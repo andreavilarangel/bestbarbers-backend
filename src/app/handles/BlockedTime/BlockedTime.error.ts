@@ -1,11 +1,10 @@
-
 import {
   AlreadyExistException,
   BadException,
   NotFoundException,
-} from './error.exception'
+} from '../../../shared/errors/error.exception';
 
-const prefix = 'B'
+const prefix = 'B';
 
 export class BlockedTimeNotFoundException extends NotFoundException {
   constructor(data?: any) {
@@ -15,7 +14,7 @@ export class BlockedTimeNotFoundException extends NotFoundException {
         prefix,
       },
       data,
-    )
+    );
   }
 }
 
@@ -27,7 +26,7 @@ export class BlockedTimeAlreadyExistException extends AlreadyExistException {
         prefix,
       },
       data,
-    )
+    );
   }
 }
 
@@ -39,6 +38,6 @@ export class BlockedTimeBadRequestException extends BadException {
         prefix,
       },
       data,
-    )
+    );
   }
-}  
+}

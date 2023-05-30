@@ -14,11 +14,11 @@ import {
   AppointmentCreateDTO,
   AppointmentUpdateDTO,
   AppointmentFindAllDTO,
-} from 'src/app/dtos/Appointment.dto';
+} from 'src/app/modules/Appointment/Appointment.dto';
 import { AppointmentPresenter } from 'src/app/modules/Appointment/Appointment.presenter';
 import { AppointmentHandle } from 'src/app/handles/Appointment/Appointment.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { AppointmentNotFoundException } from 'src/app/errors/Appointment.error';
+import { AppointmentNotFoundException } from 'src/app/handles/Appointment/Appointment.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
