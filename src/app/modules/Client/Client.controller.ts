@@ -29,15 +29,15 @@ import { Public } from 'src/app/decorators/public';
 export class ClientController {
   constructor(private readonly clientHandle: ClientHandle) {}
 
-  // @Post()
-  // @ApiOperation({ summary: 'Cria um Client' })
-  // @ApiResponse({ type: ClientPresenter })
-  // @ApiException(() => [])
-  // async createOneClient(
-  //   @Body() newClient: ClientCreateDTO,
-  // ): Promise<ClientPresenter> {
-  //   return this.clientHandle.createOneClient(newClient);
-  // }
+  @Post()
+  @ApiOperation({ summary: 'Cria um cliente' })
+  @ApiResponse({ type: ClientPresenter })
+  @ApiException(() => [])
+  async createOneClient(
+    @Body() newClient: ClientCreateDTO,
+  ): Promise<ClientPresenter> {
+    return this.clientHandle.createOneClient(newClient);
+  }
 
   // @Put('/:clientId')
   // @ApiOperation({ summary: 'Atualiza dados de um Client' })

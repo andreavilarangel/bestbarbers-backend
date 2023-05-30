@@ -8,19 +8,15 @@ export class ClientEntity implements Client {
   @ApiPropertyOptional({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
   id: string;
 
-  @ApiPropertyOptional({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
   user_id: string;
 
   @IsOptional()
-  @ApiPropertyOptional({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
   asaas_client_id: string;
 
   @IsOptional()
-  @ApiPropertyOptional({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
   created_by_user_id: string;
 
   @IsOptional()
-  @ApiPropertyOptional({})
   payment_card_info: string;
 
   @IsOptional()

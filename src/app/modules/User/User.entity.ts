@@ -25,15 +25,15 @@ export class UserEntity implements User {
   password: string;
 
   @IsOptional()
-  @ApiPropertyOptional({ example: '10285769935' })
+  // @ApiPropertyOptional({ example: '10285769935' })
   cpf: string;
 
   @IsOptional()
-  @ApiPropertyOptional({ example: '2023-10-10' })
+  // @ApiPropertyOptional({ example: '2023-10-10' })
   birth_date: string;
 
   @IsOptional()
-  @ApiPropertyOptional({ example: 'hhtp://suaimagem.com' })
+  // @ApiPropertyOptional({ example: 'hhtp://suaimagem.com' })
   profile_image_url: string;
 
   @IsOptional()
@@ -41,7 +41,7 @@ export class UserEntity implements User {
   type: UserType;
 
   @IsOptional()
-  @ApiPropertyOptional({ example: '[uid1, uid1]' })
+  // @ApiPropertyOptional({ example: '[uid1, uid1]' })
   push_ids: string;
 
   @IsOptional()
@@ -49,15 +49,13 @@ export class UserEntity implements User {
   register_by: string;
 
   @IsOptional()
-  @ApiPropertyOptional({ example: 'youtube' })
   met_through: string;
 
   @IsOptional()
-  @ApiPropertyOptional({ example: '2023-12-12' })
+  // @ApiPropertyOptional({ example: '2023-12-12' })
   last_login: string;
 
   @IsOptional()
-  @ApiPropertyOptional({ example: 'ELIAS10' })
   cupom: string;
 
   @IsBoolean()

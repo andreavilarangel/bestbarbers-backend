@@ -29,7 +29,7 @@ export class ClientHandle {
     if (user) throw new UserAlreadyExistException();
     const createdClient = await this.clientRepository.create({
       ...newClient,
-      user: { create: newClient.user },
+      user: { create: { ...newClient.user, type: 'client' } },
     });
     return createdClient;
   }
