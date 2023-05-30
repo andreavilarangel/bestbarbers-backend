@@ -3,7 +3,7 @@ import { cancel } from '@clack/prompts';
 const fs = require('fs');
 
 export const createDtoAndPresenter = (name: string) => {
-  const dirDto = `src/app/dtos`;
+  const dirDto = `src/app/modules/${name}`;
 
   const contentDTO = `
     import { OmitType, PartialType } from '@nestjs/swagger';

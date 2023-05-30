@@ -3,7 +3,7 @@ import { cancel } from '@clack/prompts';
 const fs = require('fs');
 
 export const createError = (name: string) => {
-  const dir = `src/app/errors`;
+  const dir = `src/app/modules/${name}`;
 
   /*  if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true })
