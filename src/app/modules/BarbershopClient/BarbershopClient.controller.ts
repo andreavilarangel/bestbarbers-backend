@@ -4,7 +4,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BarbershopClientCreateDTO } from 'src/app/modules/BarbershopClient/BarbershopClient.dto';
 import { BarbershopClientPresenter } from 'src/app/modules/BarbershopClient/BarbershopClient.presenter';
 import { BarbershopClientHandle } from 'src/app/handles/BarbershopClient/BarbershopClient.handle';
-import { BarbershopClientNotFoundException } from 'src/app/handles/BarbershopClient/BarbershopClient.error';
+import { BarbershopClientNotFoundException } from 'src/app/modules/Client/BarbershopClient.error';
 import { Public } from 'src/app/decorators/public';
 
 @Public()

@@ -17,7 +17,7 @@ import {
 import { ProductAndServicePresenter } from 'src/app/modules/ProductAndService/ProductAndService.presenter';
 import { ProductAndServiceHandle } from 'src/app/handles/ProductAndService/ProductAndService.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { ProductAndServiceNotFoundException } from 'src/app/handles/ProductAndService/ProductAndService.error';
+import { ProductAndServiceNotFoundException } from 'src/app/modules/ProductAndService/ProductAndService.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

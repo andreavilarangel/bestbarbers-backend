@@ -8,10 +8,10 @@ import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { ClientPresenter } from 'src/app/modules/Client/Client.presenter';
 
 import { UserHandle } from '../User/User.handle';
-import { UserAlreadyExistException } from 'src/app/handles/User/User.error';
+import { UserAlreadyExistException } from 'src/app/modules/User/User.error';
 
 import { ClientRepository } from 'src/app/modules/Client/Client.repository';
-import { ClientNotFoundException } from 'src/app/handles/Client/Client.error';
+import { ClientNotFoundException } from 'src/app/modules/Client/Client.error';
 
 @Injectable()
 export class ClientHandle {

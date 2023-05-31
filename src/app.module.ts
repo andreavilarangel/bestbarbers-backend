@@ -13,6 +13,7 @@ import { BlockedTimeModule } from './app/modules/BlockedTime/BlockedTime.module'
 import { AddressModule } from './app/modules/Address/Address.module';
 import { BarbershopClientModule } from './app/modules/BarbershopClient/BarbershopClient.module';
 import { AppointmentModule } from './app/modules/Appointment/Appointment.module';
+import { EmployerProductAndServiceModule } from './app/modules/EmployerProductAndService/EmployerProductAndService.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AppointmentModule } from './app/modules/Appointment/Appointment.module'
     BlockedTimeModule,
     BarbershopClientModule,
     AppointmentModule,
+    EmployerProductAndServiceModule,
   ],
   controllers: [],
   providers: [

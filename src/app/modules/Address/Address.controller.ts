@@ -18,7 +18,7 @@ import {
 import { AddressPresenter } from 'src/app/modules/Address/Address.presenter';
 import { AddressHandle } from 'src/app/handles/Address/Address.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { AddressNotFoundException } from 'src/app/handles/Address/Address.error';
+import { AddressNotFoundException } from 'src/app/modules/Address/Address.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

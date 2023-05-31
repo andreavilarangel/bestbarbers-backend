@@ -7,7 +7,7 @@ export const createDtoAndPresenter = (name: string) => {
 
   const contentDTO = `
     import { OmitType, PartialType } from '@nestjs/swagger';
-    import { PaginationDTO } from './Pagination.dto';
+    import { PaginationDTO } from 'src/shared/Pagination.dto';
     import { ${name}Entity } from 'src/app/modules/${name}/${name}.entity'
 
     export class ${name}CreateDTO extends OmitType(${name}Entity, ['id', 'created_at', 'updated_at']) {}
@@ -26,7 +26,7 @@ export const createDtoAndPresenter = (name: string) => {
   const dirPresenter = `src/app/modules/${name}`;
 
   const contentPresenter = `
-    import { ${name}Entity } from 'src/app/modules/${name}/${name}.entity'
+    import { ${name}Entity } from './${name}/${name}.entity'
     export class ${name}Presenter extends ${name}Entity {}
   `;
   fs.writeFile(

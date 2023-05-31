@@ -6,7 +6,7 @@ import {
 } from 'src/app/modules/Address/Address.dto';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { AddressPresenter } from 'src/app/modules/Address/Address.presenter';
-import { AddressNotFoundException } from 'src/app/handles/Address/Address.error';
+import { AddressNotFoundException } from 'src/app/modules/Address/Address.error';
 
 import { AddressRepository } from 'src/app/modules/Address/Address.repository';
 

@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const createHandle = (dir, name: string) => {
   const content = `import { Injectable } from '@nestjs/common'
-import {${name}CreateDTO, ${name}UpdateDTO, ${name}FindAllDTO} from 'src/app/modules/${name}.dto'
+import {${name}CreateDTO, ${name}UpdateDTO, ${name}FindAllDTO} from 'src/app/modules/${name}/${name}.dto'
 import { FindAllPresent } from 'src/shared/FindAll.presenter'
 import { ${name}Presenter } from 'src/app/modules/${name}/${name}.presenter'
 import { ${name}Repository } from 'src/app/modules/${name}/${name}.repository'

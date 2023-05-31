@@ -13,15 +13,15 @@ export class AppointmentEntity implements Appointment {
   id: string;
 
   @IsUUID()
-  @ApiProperty({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
+  @ApiProperty({ example: '1bade777-cb90-4c37-970a-2623875d871c' })
   barbershop_id: string;
 
   @IsUUID()
-  @ApiProperty({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
+  @ApiProperty({ example: '0eb7cf11-c65e-43b1-90c6-255968af3e54' })
   client_id: string;
 
   @IsUUID()
-  @ApiProperty({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
+  @ApiProperty({ example: '8a1e93cb-db12-424c-926c-49afb46deda8' })
   employer_id: string;
 
   @IsString()

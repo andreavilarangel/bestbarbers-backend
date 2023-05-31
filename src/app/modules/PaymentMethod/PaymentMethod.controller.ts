@@ -18,7 +18,7 @@ import { PaymentMethodPresenter } from 'src/app/modules/PaymentMethod/PaymentMet
 import { PaymentMethodHandle } from 'src/app/handles/PaymentMethod/PaymentMethod.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
 
-import { PaymentMethodNotFoundException } from 'src/app/handles/PaymentMethod/PaymentMethod.error';
+import { PaymentMethodNotFoundException } from 'src/app/modules/PaymentMethod/PaymentMethod.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

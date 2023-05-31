@@ -12,6 +12,7 @@ import { AddressRepository } from './modules/Address/Address.repository';
 import { BarbershopClientRepository } from './modules/BarbershopClient/BarbershopClient.repository';
 import { AppointmentRepository } from './modules/Appointment/Appointment.repository';
 import { AppointmentProductAndServiceRepository } from './modules/AppointmentProductAndService/AppointmentProductAndService.repository';
+import { EmployerProductAndServiceRepository } from './modules/EmployerProductAndService/EmployerProductAndService.repository';
 
 @Module({
   imports: [DatabaseModule],
@@ -28,6 +29,7 @@ import { AppointmentProductAndServiceRepository } from './modules/AppointmentPro
     BarbershopClientRepository,
     AppointmentRepository,
     AppointmentProductAndServiceRepository,
+    EmployerProductAndServiceRepository,
   ],
   exports: [
     AddressRepository,
@@ -42,6 +44,7 @@ import { AppointmentProductAndServiceRepository } from './modules/AppointmentPro
     BarbershopClientRepository,
     AppointmentRepository,
     AppointmentProductAndServiceRepository,
+    EmployerProductAndServiceRepository,
   ],
 })
 export class RepositoriesModule {}

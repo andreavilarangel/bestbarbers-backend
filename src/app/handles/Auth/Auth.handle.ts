@@ -1,11 +1,11 @@
 import { AuthPresenter } from 'src/app/modules/Auth/Auth.presenter';
 
 import { JwtService } from '@nestjs/jwt';
-import { AuthPasswordWrongException } from 'src/app/handles/Auth/Auth.error';
+import { AuthPasswordWrongException } from 'src/app/modules/Auth/Auth.error';
 import { Injectable } from '@nestjs/common';
 import { UserHandle } from '../User/User.handle';
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
-import { UserNotFoundException } from 'src/app/handles/User/User.error';
+import { UserNotFoundException } from 'src/app/modules/User/User.error';
 import { isMatch } from 'src/common/encrypt';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

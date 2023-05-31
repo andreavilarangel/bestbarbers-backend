@@ -24,11 +24,11 @@ import {
   Query,
 } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { ${name}CreateDTO, ${name}UpdateDTO, ${name}FindAllDTO} from 'src/app/modules/${name}.dto'
+import { ${name}CreateDTO, ${name}UpdateDTO, ${name}FindAllDTO} from 'src/app/modules/${name}/${name}.dto'
 import { ${name}Presenter } from 'src/app/modules/${name}/${name}.presenter'
 import { ${name}Handle } from 'src/app/handles/${name}/${name}.handle'
 import { FindAllPresent } from 'src/shared/FindAll.presenter'
-import { ${name}NotFoundException } from 'src/app/modules/${name}.error'
+import { ${name}NotFoundException } from 'src/app/modules/${name}/${name}.error'
 
 
 @Injectable()

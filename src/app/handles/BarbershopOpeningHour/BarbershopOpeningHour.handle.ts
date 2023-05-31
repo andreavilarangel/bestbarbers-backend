@@ -13,7 +13,7 @@ import { BarbershopOpeningHourRepository } from 'src/app/modules/BarbershopOpeni
 import {
   BarbershopOpeningHourNotFoundException,
   BarbershopOpeningHourAlreadyExistException,
-} from 'src/app/handles/BarbershopOpeningHour/BarbershopOpeningHour.error';
+} from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.error';
 
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 

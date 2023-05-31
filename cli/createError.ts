@@ -14,7 +14,7 @@ import {
   AlreadyExistException,
   BadException,
   NotFoundException,
-} from './error.exception'
+} from 'src/shared/errors/error.exception'
 
 const prefix = '${name.split('')[0]}'
 

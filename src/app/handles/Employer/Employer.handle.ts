@@ -9,7 +9,7 @@ import { FindAllPresent } from 'src/shared/FindAll.presenter';
 import { EmployerPresenter } from 'src/app/modules/Employer/Employer.presenter';
 
 import { UserHandle } from '../User/User.handle';
-import { UserAlreadyExistException } from 'src/app/handles/User/User.error';
+import { UserAlreadyExistException } from 'src/app/modules/User/User.error';
 import { EmployerRepository } from 'src/app/modules/Employer/Employer.repository';
 
 @Injectable()

@@ -13,7 +13,6 @@ export class PaymentMethodEntity implements PaymentMethod {
   barbershop_id: string;
 
   @IsString()
-  @ApiPropertyOptional({ example: 'Pix' })
   name: string;
 
   @ApiPropertyOptional({ example: 5.0 })

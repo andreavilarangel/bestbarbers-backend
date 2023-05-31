@@ -9,8 +9,8 @@ import { BarbershopPresenter } from 'src/app/modules/Barbershop/Barbershop.prese
 import { BarbershopRepository } from 'src/app/modules/Barbershop/Barbershop.repository';
 import { UserHandle } from '../User/User.handle';
 import { BarbershopOpeningHourRepository } from 'src/app/modules/BarbershopOpeningHour/BarbershopOpeningHour.repository';
-import { UserAlreadyExistException } from 'src/app/handles/User/User.error';
-import { BarbershopNotFoundException } from 'src/app/handles/Barbershop/Barbershop.error';
+import { UserAlreadyExistException } from 'src/app/modules/User/User.error';
+import { BarbershopNotFoundException } from 'src/app/modules/Barbershop/Barbershop.error';
 
 @Injectable()
 export class BarbershopHandle {

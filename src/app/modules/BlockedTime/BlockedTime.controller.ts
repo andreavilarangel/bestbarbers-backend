@@ -18,7 +18,7 @@ import {
 import { BlockedTimePresenter } from 'src/app/modules/BlockedTime/BlockedTime.presenter';
 import { BlockedTimeHandle } from 'src/app/handles/BlockedTime/BlockedTime.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { BlockedTimeNotFoundException } from 'src/app/handles/BlockedTime/BlockedTime.error';
+import { BlockedTimeNotFoundException } from 'src/app/modules/BlockedTime/BlockedTime.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

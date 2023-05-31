@@ -10,7 +10,7 @@ import { BlockedTimePresenter } from 'src/app/modules/BlockedTime/BlockedTime.pr
 
 import { BlockedTimeRepository } from 'src/app/modules/BlockedTime/BlockedTime.repository';
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
-import { BlockedTimeNotFoundException } from 'src/app/handles/BlockedTime/BlockedTime.error';
+import { BlockedTimeNotFoundException } from 'src/app/modules/BlockedTime/BlockedTime.error';
 
 @Injectable()
 export class BlockedTimeHandle {

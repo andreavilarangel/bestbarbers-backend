@@ -9,7 +9,7 @@ import { PaymentMethodPresenter } from 'src/app/modules/PaymentMethod/PaymentMet
 
 import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 import { PaymentMethodRepository } from 'src/app/modules/PaymentMethod/PaymentMethod.repository';
-import { PaymentMethodNotFoundException } from 'src/app/handles/PaymentMethod/PaymentMethod.error';
+import { PaymentMethodNotFoundException } from 'src/app/modules/PaymentMethod/PaymentMethod.error';
 
 @Injectable()
 export class PaymentMethodHandle {

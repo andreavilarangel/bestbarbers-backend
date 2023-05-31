@@ -8,7 +8,7 @@ import {
 import {
   UserAlreadyExistException,
   UserNotFoundException,
-} from 'src/app/handles/User/User.error';
+} from 'src/app/modules/User/User.error';
 import {
   UserPresenter,
   UserPresenterWithPassword,

@@ -18,7 +18,7 @@ import {
 import { AppointmentPresenter } from 'src/app/modules/Appointment/Appointment.presenter';
 import { AppointmentHandle } from 'src/app/handles/Appointment/Appointment.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { AppointmentNotFoundException } from 'src/app/handles/Appointment/Appointment.error';
+import { AppointmentNotFoundException } from 'src/app/modules/Appointment/Appointment.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()

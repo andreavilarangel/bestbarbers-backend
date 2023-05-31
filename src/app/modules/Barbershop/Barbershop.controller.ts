@@ -18,7 +18,7 @@ import {
 import { BarbershopPresenter } from 'src/app/modules/Barbershop/Barbershop.presenter';
 import { BarbershopHandle } from 'src/app/handles/Barbershop/Barbershop.handle';
 import { FindAllPresent } from 'src/shared/FindAll.presenter';
-import { BarbershopNotFoundException } from 'src/app/handles/Barbershop/Barbershop.error';
+import { BarbershopNotFoundException } from 'src/app/modules/Barbershop/Barbershop.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
@@ -38,16 +38,16 @@ export class BarbershopController {
     return this.barbershopHandle.createOneBarbershop(newBarbershop);
   }
 
-  @Put('/:barbershopId')
+  @Put('/:barbershop_id')
   @ApiOperation({ summary: 'Atualiza dados de um Barbershop' })
   @ApiResponse({ type: BarbershopPresenter })
   @ApiException(() => [BarbershopNotFoundException])
   async updateOneBarbershop(
-    @Param('barbershopId') barbershopId: string,
+    @Param('barbershop_id') barbershop_id: string,
     @Body() dataBarbershop: BarbershopUpdateDTO,
   ): Promise<BarbershopPresenter> {
     return this.barbershopHandle.updateOneBarbershop(
-      barbershopId,
+      barbershop_id,
       dataBarbershop,
     );
   }

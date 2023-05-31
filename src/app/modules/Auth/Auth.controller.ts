@@ -2,11 +2,11 @@ import { Body, Controller, Injectable, Post } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/app/decorators/public';
 import { AuthSignInDTO } from 'src/app/modules/Auth/Auth.dto';
-import { AuthPasswordWrongException } from 'src/app/handles/Auth/Auth.error';
+import { AuthPasswordWrongException } from 'src/app/modules/Auth/Auth.error';
 import { AuthHandle } from 'src/app/handles/Auth/Auth.handle';
 import { AuthPresenter } from 'src/app/modules/Auth/Auth.presenter';
 import { ApiException } from '@nanogiants/nestjs-swagger-api-exception-decorator';
-import { UserNotFoundException } from 'src/app/handles/User/User.error';
+import { UserNotFoundException } from 'src/app/modules/User/User.error';
 
 @Injectable()
 @Controller('login')

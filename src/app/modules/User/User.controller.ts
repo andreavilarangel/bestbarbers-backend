@@ -20,7 +20,7 @@ import { UserPresenterResponse } from './UserController.interface';
 import {
   UserAlreadyExistException,
   UserNotFoundException,
-} from 'src/app/handles/User/User.error';
+} from 'src/app/modules/User/User.error';
 import { Public } from 'src/app/decorators/public';
 
 @Injectable()
@@ -30,26 +30,26 @@ import { Public } from 'src/app/decorators/public';
 export class UserController {
   constructor(private readonly userHandle: UserHandle) {}
 
-  @Post()
-  @ApiOperation({ summary: 'Criar um novo usuario' })
-  @ApiResponse({ type: UserPresenter })
-  @ApiException(() => [UserAlreadyExistException])
-  async createOneUser(
-    @Body() newUser: UserCreateDTO,
-  ): Promise<Omit<UserPresenter, 'password'>> {
-    return this.userHandle.createOneUser(newUser);
-  }
+  // @Post()
+  // @ApiOperation({ summary: 'Criar um novo usuario' })
+  // @ApiResponse({ type: UserPresenter })
+  // @ApiException(() => [UserAlreadyExistException])
+  // async createOneUser(
+  //   @Body() newUser: UserCreateDTO,
+  // ): Promise<Omit<UserPresenter, 'password'>> {
+  //   return this.userHandle.createOneUser(newUser);
+  // }
 
-  @Put('/:user_id')
-  @ApiOperation({ summary: 'Atualizar dados de um usuario' })
-  @ApiResponse({ type: UserPresenter })
-  @ApiException(() => [UserNotFoundException])
-  async updateOneUser(
-    @Param('user_id') user_id: string,
-    @Body() dataUser: UserUpdateDTO,
-  ): Promise<UserPresenterResponse> {
-    return this.userHandle.updateOneUser(user_id, dataUser);
-  }
+  // @Put('/:user_id')
+  // @ApiOperation({ summary: 'Atualizar dados de um usuario' })
+  // @ApiResponse({ type: UserPresenter })
+  // @ApiException(() => [UserNotFoundException])
+  // async updateOneUser(
+  //   @Param('user_id') user_id: string,
+  //   @Body() dataUser: UserUpdateDTO,
+  // ): Promise<UserPresenterResponse> {
+  //   return this.userHandle.updateOneUser(user_id, dataUser);
+  // }
 
   // @Get()
   // @ApiOperation({ summary: 'Lista de usuario' })
@@ -61,13 +61,13 @@ export class UserController {
   // ): Promise<FindAllPresent<UserPresenterResponse>> {
   //   return this.userHandle.findAllUser(queries);
   // }
-  @Get('/:user_id')
-  @ApiOperation({ summary: 'obter dados de um usuario' })
-  @ApiResponse({ type: UserPresenter })
-  @ApiException(() => [UserNotFoundException])
-  async getOneUserById(
-    @Param('user_id') user_id: string,
-  ): Promise<UserPresenterResponse> {
-    return this.userHandle.findOneUserById(user_id);
-  }
+  // @Get('/:user_id')
+  // @ApiOperation({ summary: 'obter dados de um usuario' })
+  // @ApiResponse({ type: UserPresenter })
+  // @ApiException(() => [UserNotFoundException])
+  // async getOneUserById(
+  //   @Param('user_id') user_id: string,
+  // ): Promise<UserPresenterResponse> {
+  //   return this.userHandle.findOneUserById(user_id);
+  // }
 }
