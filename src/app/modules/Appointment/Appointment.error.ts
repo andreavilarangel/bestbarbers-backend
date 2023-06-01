@@ -10,7 +10,7 @@ export class AppointmentNotFoundException extends NotFoundException {
   constructor(data?: any) {
     super(
       {
-        message: 'Appointment não existe',
+        message: 'Agendamento não existe',
         prefix,
       },
       data,
@@ -22,7 +22,7 @@ export class AppointmentAlreadyExistException extends AlreadyExistException {
   constructor(data?: any) {
     super(
       {
-        message: 'Appointment ja existe',
+        message: 'Agendamento já existe',
         prefix,
       },
       data,
@@ -34,7 +34,7 @@ export class AppointmentBadRequestException extends BadException {
   constructor(message, data?: any) {
     super(
       {
-        message: message || 'não foi possível atualizar o appointment',
+        message: message || 'Não foi possível atualizar o agendamento',
         prefix,
       },
       data,

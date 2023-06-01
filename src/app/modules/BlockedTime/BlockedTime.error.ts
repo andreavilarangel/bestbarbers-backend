@@ -10,7 +10,7 @@ export class BlockedTimeNotFoundException extends NotFoundException {
   constructor(data?: any) {
     super(
       {
-        message: 'BlockedTime não existe',
+        message: 'Horário bloqueado não existe',
         prefix,
       },
       data,
@@ -22,7 +22,7 @@ export class BlockedTimeAlreadyExistException extends AlreadyExistException {
   constructor(data?: any) {
     super(
       {
-        message: 'BlockedTime ja existe',
+        message: 'Horário bloqueado já existe',
         prefix,
       },
       data,
@@ -34,7 +34,7 @@ export class BlockedTimeBadRequestException extends BadException {
   constructor(message, data?: any) {
     super(
       {
-        message: message || 'não foi possível atualizar o blockedtime',
+        message: message || 'Não foi possível atualizar o horário bloqueado',
         prefix,
       },
       data,

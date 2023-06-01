@@ -10,7 +10,7 @@ export class BarbershopOpeningHourNotFoundException extends NotFoundException {
   constructor(data?: any) {
     super(
       {
-        message: 'BarbershopOpeningHour não existe',
+        message: 'Horário de abertura não existe',
         prefix,
       },
       data,
@@ -22,7 +22,7 @@ export class BarbershopOpeningHourAlreadyExistException extends AlreadyExistExce
   constructor(data?: any) {
     super(
       {
-        message: 'BarbershopOpeningHour ja existe',
+        message: 'Horário de abertura já existe',
         prefix,
       },
       data,
@@ -35,7 +35,7 @@ export class BarbershopOpeningHourBadRequestException extends BadException {
     super(
       {
         message:
-          message || 'não foi possível atualizar o barbershopopeninghour',
+          message || 'Não foi possível atualizar o horário de abertura',
         prefix,
       },
       data,

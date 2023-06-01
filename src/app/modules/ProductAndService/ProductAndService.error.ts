@@ -10,7 +10,7 @@ export class ProductAndServiceNotFoundException extends NotFoundException {
   constructor(data?: any) {
     super(
       {
-        message: 'ProductAndService não existe',
+        message: 'Produto e serviço não existem',
         prefix,
       },
       data,
@@ -22,7 +22,7 @@ export class ProductAndServiceAlreadyExistException extends AlreadyExistExceptio
   constructor(data?: any) {
     super(
       {
-        message: 'ProductAndService ja existe',
+        message: 'Produto e serviço já existem',
         prefix,
       },
       data,
@@ -34,7 +34,7 @@ export class ProductAndServiceBadRequestException extends BadException {
   constructor(message, data?: any) {
     super(
       {
-        message: message || 'não foi possível atualizar o productandservice',
+        message: message || 'Não foi possível atualizar o produto e serviço',
         prefix,
       },
       data,

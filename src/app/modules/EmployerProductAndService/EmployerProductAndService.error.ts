@@ -10,7 +10,7 @@ export class EmployerProductAndServiceNotFoundException extends NotFoundExceptio
   constructor(data?: any) {
     super(
       {
-        message: 'EmployerProductAndService não existe',
+        message: 'Colaborador, produto e serviço não existem',
         prefix,
       },
       data,
@@ -22,7 +22,7 @@ export class EmployerProductAndServiceAlreadyExistException extends AlreadyExist
   constructor(data?: any) {
     super(
       {
-        message: 'EmployerProductAndService ja existe',
+        message: 'Colaborador, produto e serviço já existem',
         prefix,
       },
       data,
@@ -35,7 +35,7 @@ export class EmployerProductAndServiceBadRequestException extends BadException {
     super(
       {
         message:
-          message || 'não foi possível atualizar o employerproductandservice',
+          message || 'Não foi possível atualizar o colaborador, o produto e o serviço',
         prefix,
       },
       data,
