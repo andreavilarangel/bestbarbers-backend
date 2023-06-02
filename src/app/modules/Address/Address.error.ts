@@ -10,7 +10,7 @@ export class AddressNotFoundException extends NotFoundException {
   constructor(data?: any) {
     super(
       {
-        message: 'Address não existe',
+        message: 'Endereço não existe',
         prefix,
       },
       data,
@@ -22,7 +22,7 @@ export class AddressAlreadyExistException extends AlreadyExistException {
   constructor(data?: any) {
     super(
       {
-        message: 'Address ja existe',
+        message: 'Endereço já existe',
         prefix,
       },
       data,
@@ -34,7 +34,7 @@ export class AddressBadRequestException extends BadException {
   constructor(message, data?: any) {
     super(
       {
-        message: message || 'não foi possível atualizar o address',
+        message: message || 'Não foi possível atualizar o endereço',
         prefix,
       },
       data,

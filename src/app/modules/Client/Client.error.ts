@@ -10,7 +10,7 @@ export class ClientNotFoundException extends NotFoundException {
   constructor(data?: any) {
     super(
       {
-        message: 'Client não existe',
+        message: 'Cliente não existe',
         prefix,
       },
       data,
@@ -22,7 +22,7 @@ export class ClientAlreadyExistException extends AlreadyExistException {
   constructor(data?: any) {
     super(
       {
-        message: 'Client ja existe',
+        message: 'Cliente já existe',
         prefix,
       },
       data,
@@ -34,7 +34,7 @@ export class ClientBadRequestException extends BadException {
   constructor(message, data?: any) {
     super(
       {
-        message: message || 'não foi possível atualizar o client',
+        message: message || 'Não foi possível atualizar o cliente',
         prefix,
       },
       data,
