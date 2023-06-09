@@ -26,19 +26,12 @@ export class BlockedTimeHandle {
     await this.barbershopHandle.findOneBarbershopById(barbershop_id);
 
     return this.blockedTimeRepository.create({
-      ...omit(newBlockedTime, ['barbershop_id']),
+      ...omit(newBlockedTime, ['barbershop_id', 'employer_id']),
       barbershop: { connect: { id: barbershop_id } },
+      employer: newBlockedTime.employer_id && {
+        connect: { id: newBlockedTime.employer_id },
+      },
     });
-  }
-
-  async updateOneBlockedTime(
-    blockedTimeId: string,
-    dataBlockedTime: BlockedTimeUpdateDTO,
-  ): Promise<BlockedTimePresenter> {
-    // valida se existe BlockedTime
-    await this.findOneBlockedTimeById(blockedTimeId);
-
-    return this.blockedTimeRepository.update(blockedTimeId, dataBlockedTime);
   }
 
   async findOneBlockedTimeById(
@@ -52,17 +45,23 @@ export class BlockedTimeHandle {
   }
 
   async findAllBlockedTime(
-    params: BlockedTimeFindAllDTO,
+    barbershop_id: string,
   ): Promise<FindAllPresent<BlockedTimePresenter>> {
     const [data, total] = await this.blockedTimeRepository.findAll({
-      skip: params.skip,
-      take: params.take,
-      where: { barbershop_id: params.barbershop_id },
+      where: { barbershop_id: barbershop_id },
     });
 
     return {
       data,
       total,
     };
+  }
+
+  async deleteOneProductAndService(
+    blocked_time_id: string,
+  ): Promise<BlockedTimePresenter> {
+    // valida se existe ProductAndService
+    await this.findOneBlockedTimeById(blocked_time_id);
+    return this.blockedTimeRepository.delete(blocked_time_id);
   }
 }

@@ -7,14 +7,12 @@ export class BlockedTimeEntity implements BlockedTime {
   @IsOptional()
   @ApiPropertyOptional({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
   id: string;
-
   @IsUUID()
-  @ApiPropertyOptional({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
+  @ApiPropertyOptional({ example: '1bade777-cb90-4c37-970a-2623875d871c' })
   barbershop_id: string;
 
-  @IsUUID()
   @IsOptional()
-  @ApiPropertyOptional({ example: 'e7cc7b24-27a5-4f1e-bba3-d7531cf965a0' })
+  @ApiPropertyOptional({ example: '8a1e93cb-db12-424c-926c-49afb46deda8' })
   employer_id: string;
 
   @IsBoolean()
@@ -44,6 +42,9 @@ export class BlockedTimeEntity implements BlockedTime {
 
   @IsOptional()
   repeat_every_week_day: number;
+
+  @IsOptional()
+  inactive: boolean;
 
   @IsOptional()
   @ApiProperty({ example: '2023-03-16T21:21:51.875Z' })

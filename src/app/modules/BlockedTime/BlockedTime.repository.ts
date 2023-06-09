@@ -16,6 +16,10 @@ export class BlockedTimeRepository {
   ): Promise<BlockedTimeEntity> {
     return this.prisma.blockedTime.create({
       data: newBlockedTime,
+      include: {
+        barbershop: true,
+        employer: true,
+      },
     });
   }
 
@@ -28,6 +32,10 @@ export class BlockedTimeRepository {
         id: blockedTimeId,
       },
       data: dataBlockedTime,
+      include: {
+        barbershop: true,
+        employer: true,
+      },
     });
   }
 

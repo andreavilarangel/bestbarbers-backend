@@ -7,6 +7,7 @@ export class BlockedTimeCreateDTO extends OmitType(BlockedTimeEntity, [
   'id',
   'created_at',
   'updated_at',
+  'inactive',
 ]) {}
 
 export class BlockedTimeUpdateDTO extends PartialType(BlockedTimeCreateDTO) {}
