@@ -9,5 +9,13 @@ export class AppointmentCreateDTO extends OmitType(AppointmentEntity, [
 ]) {
   products_and_services: any;
 }
+export class AvailableTimesDTO {
+  date: string;
+  barber_id: string;
+  barbershop_id: string;
+  time_required: string;
+  current_date: string;
+  current_hour: string;
+}
 export class AppointmentUpdateDTO extends PartialType(AppointmentCreateDTO) {}
 export class AppointmentFindAllDTO extends PaginationDTO {}

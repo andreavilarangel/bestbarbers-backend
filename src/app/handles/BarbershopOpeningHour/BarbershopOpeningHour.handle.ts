@@ -78,8 +78,8 @@ export class BarbershopOpeningHourHandle {
         barbershop_id,
       );
 
-    if (barbershopOpeningHour)
-      throw new BarbershopOpeningHourAlreadyExistException({
+    if (!barbershopOpeningHour)
+      throw new BarbershopOpeningHourNotFoundException({
         barbershopOpeningHourDay,
       });
 

@@ -57,6 +57,28 @@ export class BlockedTimeHandle {
     };
   }
 
+  async findBlockedTimeToAvailable(
+    barbershop_id: string,
+    day_of_week: number,
+    date: string,
+  ): Promise<FindAllPresent<BlockedTimePresenter>> {
+    const [data, total] = await this.blockedTimeRepository.findAll({
+      where: {
+        barbershop_id: barbershop_id,
+        OR: [
+          { repeat_every_week_day: day_of_week },
+          { repeat_every_day: true },
+          { date },
+        ],
+      },
+    });
+
+    return {
+      data,
+      total,
+    };
+  }
+
   async deleteOneProductAndService(
     blocked_time_id: string,
   ): Promise<BlockedTimePresenter> {

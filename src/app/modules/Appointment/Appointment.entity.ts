@@ -48,6 +48,10 @@ export class AppointmentEntity implements Appointment {
   inactive: boolean;
 
   @IsOptional()
+  @ApiProperty({ default: null })
+  canceled_at: Date;
+
+  @IsOptional()
   @ApiProperty({ example: '2023-03-16T21:21:51.875Z' })
   created_at: Date;
 

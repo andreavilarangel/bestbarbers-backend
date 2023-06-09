@@ -305,6 +305,7 @@ model Appointment {
   finish_hour                  String
   type                         AppointmentTypes               @default(normal)
   status                       AppointmentStatus              @default(awaiting)
+  canceled_at                  DateTime?
   inactive                     Boolean?                       @default(false)
   created_at                   DateTime                       @default(now())
   updated_at                   DateTime                       @default(now()) @updatedAt

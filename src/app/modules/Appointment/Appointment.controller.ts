@@ -14,6 +14,7 @@ import {
   AppointmentCreateDTO,
   AppointmentUpdateDTO,
   AppointmentFindAllDTO,
+  AvailableTimesDTO,
 } from 'src/app/modules/Appointment/Appointment.dto';
 import { AppointmentPresenter } from 'src/app/modules/Appointment/Appointment.presenter';
 import { AppointmentHandle } from 'src/app/handles/Appointment/Appointment.handle';
@@ -50,6 +51,16 @@ export class AppointmentController {
       appointment_id,
       dataAppointment,
     );
+  }
+
+  @Post('/available-times')
+  @ApiOperation({
+    summary: 'Lista horários disponíveis da barbearia para uma data específica',
+  })
+  @ApiResponse({ type: AppointmentPresenter })
+  @ApiException(() => [])
+  async getAvailableTimes(@Body() params: AvailableTimesDTO): Promise<any> {
+    return this.appointmentHandle.getAvailableTimes(params);
   }
 
   // @Get()

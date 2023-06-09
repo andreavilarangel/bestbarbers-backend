@@ -10,6 +10,7 @@ import { EmployerPresenter } from 'src/app/modules/Employer/Employer.presenter';
 
 import { UserHandle } from '../User/User.handle';
 import { UserAlreadyExistException } from 'src/app/modules/User/User.error';
+import { EmployerNotFoundException } from 'src/app/modules/Employer/Employer.error';
 import { EmployerRepository } from 'src/app/modules/Employer/Employer.repository';
 
 @Injectable()
@@ -66,6 +67,12 @@ export class EmployerHandle {
       data,
       total,
     };
+  }
+
+  async findEmployerById(employer_id: string): Promise<EmployerPresenter> {
+    const employer = await this.employerRepository.findOne(employer_id);
+    if (!employer) throw new EmployerNotFoundException({ employer_id });
+    return employer;
   }
 
   async deleteOneEmployer(employerId: string): Promise<EmployerPresenter> {
