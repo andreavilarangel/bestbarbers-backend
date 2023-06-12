@@ -392,8 +392,9 @@ model EmployerProductAndService {
   employer               Employer          @relation(fields: [employer_id], references: [id])
   product_and_service_id String
   product_and_service    ProductAndService @relation(fields: [product_and_service_id], references: [id])
-  comission_percentage   Float
   value                  Float
+  comission_percentage   Float
+  comission_value        Float?
   time_required          String
   created_at             DateTime          @default(now())
   updated_at             DateTime          @default(now()) @updatedAt

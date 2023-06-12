@@ -13,12 +13,13 @@ import { BarbershopHandle } from '../Barbershop/Barbershop.handle';
 import { EmployerHandle } from '../Employer/Employer.handle';
 import { BlockedTimeHandle } from '../BlockedTime/BlockedTime.handle';
 import { BarbershopOpeningHourHandle } from '../BarbershopOpeningHour/BarbershopOpeningHour.handle';
-
+import { EmployerProductAndServiceHandle } from '../EmployerProductAndService/EmployerProductAndService.handle';
 import { hours_generator, checkTimeAvailability } from 'src/utils';
 
 @Injectable()
 export class AppointmentHandle {
   constructor(
+    private readonly employerProductAndServiceHandle: EmployerProductAndServiceHandle,
     private readonly barbershopOpeningHourHandle: BarbershopOpeningHourHandle,
     private readonly blockedTimeHandle: BlockedTimeHandle,
     private readonly employerHandle: EmployerHandle,
@@ -49,16 +50,38 @@ export class AppointmentHandle {
       client: { connect: { id: client_id } },
     });
 
-    products_and_services.forEach((item) =>
-      this.appointmentProductAndServiceRepository.create({
-        employer_percentage: 10,
-        employer_value: 10,
+    await products_and_services.map(async (item) => {
+      const check_find =
+        await this.employerProductAndServiceHandle.getEmployerProductAndService(
+          employer_id,
+          item.id,
+        );
+      if (!check_find) {
+        await this.employerProductAndServiceHandle.createOrUpdateEmployerProductAndService(
+          {
+            employer_id,
+            barbershop_id,
+            product_and_service_id: item.id,
+            ...item,
+          },
+        );
+      }
+      await this.appointmentProductAndServiceRepository.create({
+        employer_percentage:
+          check_find?.comission_percentage || item?.comission_percentage,
+        employer_value: check_find?.value || item?.value,
         barbershop: { connect: { id: barbershop_id } },
         employer: { connect: { id: employer_id } },
-        product_service: { connect: { id: item.id } },
+        product_service: {
+          connect: {
+            id:
+              check_find?.product_and_service_id ||
+              item?.product_and_service_id,
+          },
+        },
         appointment: { connect: { id: appointment.id } },
-      }),
-    );
+      });
+    });
 
     return appointment;
   }
@@ -158,5 +181,14 @@ export class AppointmentHandle {
     };
 
     return turns;
+  }
+
+  async deleteAppointmentById(
+    appointmentId: string,
+  ): Promise<AppointmentPresenter> {
+    return this.appointmentRepository.update(appointmentId, {
+      inactive: true,
+      canceled_at: new Date(),
+    });
   }
 }

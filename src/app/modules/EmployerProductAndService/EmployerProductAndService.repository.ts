@@ -45,6 +45,9 @@ export class EmployerProductAndServiceRepository {
         employer_id,
         product_and_service_id,
       },
+      include: {
+        product_and_service: true,
+      },
     });
   }
 

@@ -6,6 +6,8 @@ import { EmployerHandle } from '../Employer/Employer.handle';
 import { BlockedTimeHandle } from '../BlockedTime/BlockedTime.handle';
 import { UserHandle } from '../User/User.handle';
 import { BarbershopOpeningHourHandle } from '../BarbershopOpeningHour/BarbershopOpeningHour.handle';
+import { EmployerProductAndServiceHandle } from '../EmployerProductAndService/EmployerProductAndService.handle';
+import { ProductAndServiceHandle } from '../ProductAndService/ProductAndService.handle';
 
 @Module({
   imports: [RepositoriesModule],
@@ -16,6 +18,8 @@ import { BarbershopOpeningHourHandle } from '../BarbershopOpeningHour/Barbershop
     BlockedTimeHandle,
     UserHandle,
     BarbershopOpeningHourHandle,
+    EmployerProductAndServiceHandle,
+    ProductAndServiceHandle,
   ],
   exports: [AppointmentHandle],
 })

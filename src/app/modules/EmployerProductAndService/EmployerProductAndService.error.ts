@@ -35,7 +35,8 @@ export class EmployerProductAndServiceBadRequestException extends BadException {
     super(
       {
         message:
-          message || 'Não foi possível atualizar o colaborador, o produto e o serviço',
+          message ||
+          'Não foi possível atualizar o colaborador, o produto e o serviço',
         prefix,
       },
       data,

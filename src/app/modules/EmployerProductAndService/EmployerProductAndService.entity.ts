@@ -25,6 +25,9 @@ export class EmployerProductAndServiceEntity
   @ApiPropertyOptional({ example: 30 })
   comission_percentage: number;
 
+  @IsOptional()
+  comission_value: number;
+
   @ApiPropertyOptional({ example: 100 })
   value: number;
 

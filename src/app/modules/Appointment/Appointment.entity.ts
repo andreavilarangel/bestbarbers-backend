@@ -41,7 +41,7 @@ export class AppointmentEntity implements Appointment {
   type: AppointmentTypes;
 
   @IsString()
-  @ApiProperty({ example: 'pending' })
+  @ApiProperty({ default: 'pending' })
   status: AppointmentStatus;
 
   @ApiProperty({ default: false })
