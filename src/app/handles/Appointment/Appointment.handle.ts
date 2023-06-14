@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { getISODay } from 'date-fns';
+import { omit } from 'radash';
 import {
   AppointmentCreateDTO,
   AppointmentUpdateDTO,
@@ -28,28 +29,9 @@ export class AppointmentHandle {
     private readonly appointmentProductAndServiceRepository: AppointmentProductAndServiceRepository,
   ) {}
 
-  async createOneAppointment(
-    newAppointment: AppointmentCreateDTO,
-  ): Promise<AppointmentPresenter> {
-    const {
-      barbershop_id,
-      client_id,
-      employer_id,
-      date,
-      start_hour,
-      finish_hour,
-      products_and_services,
-    } = newAppointment;
-
-    const appointment = await this.appointmentRepository.create({
-      date,
-      start_hour,
-      finish_hour,
-      barbershop: { connect: { id: barbershop_id } },
-      employer: { connect: { id: employer_id } },
-      client: { connect: { id: client_id } },
-    });
-
+  async checkProductsAndServices(data) {
+    const { products_and_services, employer_id, barbershop_id, appointment } =
+      data;
     await products_and_services.map(async (item) => {
       const check_find =
         await this.employerProductAndServiceHandle.getEmployerProductAndService(
@@ -82,15 +64,56 @@ export class AppointmentHandle {
         appointment: { connect: { id: appointment.id } },
       });
     });
+  }
 
+  async createOneAppointment(
+    newAppointment: AppointmentCreateDTO,
+  ): Promise<AppointmentPresenter> {
+    const {
+      barbershop_id,
+      client_id,
+      employer_id,
+      date,
+      start_hour,
+      finish_hour,
+    } = newAppointment;
+
+    const appointment = await this.appointmentRepository.create({
+      date,
+      start_hour,
+      finish_hour,
+      barbershop: { connect: { id: barbershop_id } },
+      employer: { connect: { id: employer_id } },
+      client: { connect: { id: client_id } },
+    });
+    await this.checkProductsAndServices({ ...newAppointment, appointment });
     return appointment;
   }
 
   async updateOneAppointment(
     appointmentId: string,
     dataAppointment: AppointmentUpdateDTO,
-  ): Promise<AppointmentPresenter> {
-    return this.appointmentRepository.update(appointmentId, dataAppointment);
+  ): Promise<any> {
+    const appointment = await this.appointmentRepository.update(appointmentId, {
+      ...omit(dataAppointment, ['products_and_services']),
+    });
+    const [data, total] =
+      await this.appointmentProductAndServiceRepository.findAll({
+        where: {
+          appointment_id: appointmentId,
+        },
+      });
+
+    if (data.length) {
+      await data.forEach(async (i) =>
+        this.appointmentProductAndServiceRepository.delete(i.id),
+      );
+    }
+    await this.checkProductsAndServices({
+      ...dataAppointment,
+      appointment,
+    });
+    return appointment;
   }
 
   async findOneAppointmentById(

@@ -21,5 +21,5 @@ export class AvailableTimesDTO {
   current_date: string;
   current_hour: string;
 }
-export class AppointmentUpdateDTO extends PartialType(AppointmentCreateDTO) {}
+export class AppointmentUpdateDTO extends AppointmentCreateDTO {}
 export class AppointmentFindAllDTO extends PaginationDTO {}
