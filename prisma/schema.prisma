@@ -46,47 +46,50 @@ model User {
 }
 
 model Barbershop {
-  id                           String                         @id @default(uuid())
-  user_id                      String
-  user                         User                           @relation(fields: [user_id], references: [id])
-  name                         String
-  description                  String?
-  cnpj                         String?
-  phone                        String?
-  rating                       Float?
-  agenda_interval              Int?
-  status                       String?
-  slug                         String?
-  profile_image_url            String?
-  trial_start_date             String?
-  trial_end_date               String?
-  account_status               String?
-  subscription_status          String?
-  payment_issue_date           String?
-  last_payment_date            String?
-  payments_counter             Int?
-  asaas_barbershop_id          String?
-  asaas_token_access           String?
-  payment_on_app_enabled       String?
-  signature_club_enabled       Boolean?                       @default(false)
-  inactive                     Boolean?                       @default(false)
-  created_at                   DateTime                       @default(now())
-  updated_at                   DateTime                       @default(now()) @updatedAt
-  BarbershopOpeningHour        BarbershopOpeningHour[]
-  Employer                     Employer[]
-  ProductAndService            ProductAndService[]
-  PaymentMethod                PaymentMethod[]
-  BlockedTime                  BlockedTime[]
-  Address                      Address[]
-  BarbershopClient             BarbershopClient[]
-  BarbershopClientObservation  BarbershopClientObservation[]
-  BarbershopSignatureMember    BarbershopSignatureMember[]
-  Appointment                  Appointment[]
-  BarbershopTransaction        BarbershopTransaction[]
-  AppointmentProductAndService AppointmentProductAndService[]
-  AppointmentPaymentMethod     AppointmentPaymentMethod[]
-  AppointmentReview            AppointmentReview[]
-  EmployerProductAndService    EmployerProductAndService[]
+  id                          String                        @id @default(uuid())
+  user_id                     String
+  user                        User                          @relation(fields: [user_id], references: [id])
+  name                        String
+  description                 String?
+  cnpj                        String?
+  phone                       String?
+  rating                      Float?
+  agenda_interval             Int?
+  status                      String?
+  slug                        String?
+  profile_image_url           String?
+  trial_start_date            String?
+  trial_end_date              String?
+  account_status              String?
+  subscription_status         String?
+  payment_issue_date          String?
+  last_payment_date           String?
+  payments_counter            Int?
+  asaas_barbershop_id         String?
+  asaas_token_access          String?
+  payment_on_app_enabled      String?
+  signature_club_enabled      Boolean?                      @default(false)
+  inactive                    Boolean?                      @default(false)
+  created_at                  DateTime                      @default(now())
+  updated_at                  DateTime                      @default(now()) @updatedAt
+  BarbershopOpeningHour       BarbershopOpeningHour[]
+  Employer                    Employer[]
+  Product                     Product[]
+  Service                     Service[]
+  PaymentMethod               PaymentMethod[]
+  BlockedTime                 BlockedTime[]
+  Address                     Address[]
+  BarbershopClient            BarbershopClient[]
+  BarbershopClientObservation BarbershopClientObservation[]
+  BarbershopSignatureMember   BarbershopSignatureMember[]
+  Appointment                 Appointment[]
+  BarbershopTransaction       BarbershopTransaction[]
+  AppointmentProduct          AppointmentProduct[]
+  AppointmentService          AppointmentService[]
+  AppointmentPaymentMethod    AppointmentPaymentMethod[]
+  AppointmentReview           AppointmentReview[]
+  EmployerProduct             EmployerProduct[]
+  EmployerService             EmployerService[]
 
   @@map("barbershops")
 }
@@ -107,22 +110,24 @@ model BarbershopOpeningHour {
 }
 
 model Employer {
-  id                           String                         @id @default(uuid())
-  barbershop_id                String
-  barbershop                   Barbershop                     @relation(fields: [barbershop_id], references: [id])
-  user                         User?                          @relation(fields: [user_id], references: [id])
-  user_id                      String?
-  asaas_employer_id            String?
-  created_by_user_id           String?
-  inactive                     Boolean?                       @default(false)
-  created_at                   DateTime                       @default(now())
-  updated_at                   DateTime                       @default(now()) @updatedAt
-  BlockedTime                  BlockedTime[]
-  Appointment                  Appointment[]
-  BarbershopTransaction        BarbershopTransaction[]
-  AppointmentProductAndService AppointmentProductAndService[]
-  AppointmentReview            AppointmentReview[]
-  EmployerProductAndService    EmployerProductAndService[]
+  id                    String                  @id @default(uuid())
+  barbershop_id         String
+  barbershop            Barbershop              @relation(fields: [barbershop_id], references: [id])
+  user                  User?                   @relation(fields: [user_id], references: [id])
+  user_id               String?
+  asaas_employer_id     String?
+  created_by_user_id    String?
+  inactive              Boolean?                @default(false)
+  created_at            DateTime                @default(now())
+  updated_at            DateTime                @default(now()) @updatedAt
+  BlockedTime           BlockedTime[]
+  Appointment           Appointment[]
+  BarbershopTransaction BarbershopTransaction[]
+  AppointmentProduct    AppointmentProduct[]
+  AppointmentService    AppointmentService[]
+  AppointmentReview     AppointmentReview[]
+  EmployerProduct       EmployerProduct[]
+  EmployerService       EmployerService[]
 
   @@map("employees")
 }
@@ -154,25 +159,41 @@ enum ProductAndServiceType {
   product
 }
 
-model ProductAndService {
-  id                           String                         @id @default(uuid())
-  barbershop_id                String
-  barbershop                   Barbershop                     @relation(fields: [barbershop_id], references: [id])
-  name                         String
-  value                        Float
-  time_required                String?
-  type                         ProductAndServiceType          @default(service)
-  default_comission            Float
-  product_category_id          String?
-  image_url                    String?
-  inactive                     Boolean?                       @default(false)
-  created_at                   DateTime                       @default(now())
-  updated_at                   DateTime                       @default(now()) @updatedAt
-  BarbershopSignatureMember    BarbershopSignatureMember[]
-  AppointmentProductAndService AppointmentProductAndService[]
-  EmployerProductAndService    EmployerProductAndService[]
+model Product {
+  id                 String               @id @default(uuid())
+  barbershop_id      String
+  barbershop         Barbershop           @relation(fields: [barbershop_id], references: [id])
+  name               String
+  value              Float
+  default_comission  Float
+  image_url          String?
+  inactive           Boolean?             @default(false)
+  created_at         DateTime             @default(now())
+  updated_at         DateTime             @default(now()) @updatedAt
+  AppointmentProduct AppointmentProduct[]
+  EmployerProduct    EmployerProduct[]
 
-  @@map("products_and_services")
+  @@map("products")
+}
+
+model Service {
+  id                        String                      @id @default(uuid())
+  barbershop_id             String
+  barbershop                Barbershop                  @relation(fields: [barbershop_id], references: [id])
+  name                      String
+  value                     Float
+  time_required             String?
+  type                      ProductAndServiceType       @default(service)
+  default_comission         Float
+  image_url                 String?
+  inactive                  Boolean?                    @default(false)
+  created_at                DateTime                    @default(now())
+  updated_at                DateTime                    @default(now()) @updatedAt
+  BarbershopSignatureMember BarbershopSignatureMember[]
+  AppointmentService        AppointmentService[]
+  EmployerService           EmployerService[]
+
+  @@map("services")
 }
 
 model PaymentMethod {
@@ -262,20 +283,20 @@ model BarbershopClientObservation {
 }
 
 model BarbershopSignatureMember {
-  id               String            @id @default(uuid())
+  id               String     @id @default(uuid())
   barbershop_id    String
-  barbershop       Barbershop        @relation(fields: [barbershop_id], references: [id])
+  barbershop       Barbershop @relation(fields: [barbershop_id], references: [id])
   client_id        String
-  client           Client            @relation(fields: [client_id], references: [id])
+  client           Client     @relation(fields: [client_id], references: [id])
   service_id       String
-  service          ProductAndService @relation(fields: [service_id], references: [id])
+  service          Service    @relation(fields: [service_id], references: [id])
   signature_status String
   due_date         String
   start_date       String
   finish_date      String?
-  inactive         Boolean?          @default(false)
-  created_at       DateTime          @default(now())
-  updated_at       DateTime          @default(now()) @updatedAt
+  inactive         Boolean?   @default(false)
+  created_at       DateTime   @default(now())
+  updated_at       DateTime   @default(now()) @updatedAt
 
   @@map("barbershop_signature_members")
 }
@@ -293,25 +314,26 @@ enum AppointmentStatus {
 }
 
 model Appointment {
-  id                           String                         @id @default(uuid())
-  barbershop_id                String
-  barbershop                   Barbershop                     @relation(fields: [barbershop_id], references: [id])
-  client_id                    String
-  client                       Client                         @relation(fields: [client_id], references: [id])
-  employer_id                  String
-  employer                     Employer                       @relation(fields: [employer_id], references: [id])
-  date                         String
-  start_hour                   String
-  finish_hour                  String
-  type                         AppointmentTypes               @default(normal)
-  status                       AppointmentStatus              @default(awaiting)
-  canceled_at                  DateTime?
-  inactive                     Boolean?                       @default(false)
-  created_at                   DateTime                       @default(now())
-  updated_at                   DateTime                       @default(now()) @updatedAt
-  BarbershopTransaction        BarbershopTransaction[]
-  AppointmentProductAndService AppointmentProductAndService[]
-  AppointmentPaymentMethod     AppointmentPaymentMethod[]
+  id                       String                     @id @default(uuid())
+  barbershop_id            String
+  barbershop               Barbershop                 @relation(fields: [barbershop_id], references: [id])
+  client_id                String
+  client                   Client                     @relation(fields: [client_id], references: [id])
+  employer_id              String
+  employer                 Employer                   @relation(fields: [employer_id], references: [id])
+  date                     String
+  start_hour               String
+  finish_hour              String
+  type                     AppointmentTypes           @default(normal)
+  status                   AppointmentStatus          @default(awaiting)
+  canceled_at              DateTime?
+  inactive                 Boolean?                   @default(false)
+  created_at               DateTime                   @default(now())
+  updated_at               DateTime                   @default(now()) @updatedAt
+  BarbershopTransaction    BarbershopTransaction[]
+  AppointmentProduct       AppointmentProduct[]
+  AppointmentService       AppointmentService[]
+  AppointmentPaymentMethod AppointmentPaymentMethod[]
 
   @@map("appointments")
 }
@@ -350,22 +372,40 @@ model BarbershopTransaction {
   @@map("barbershop_transactions")
 }
 
-model AppointmentProductAndService {
-  id                  String            @id @default(uuid())
+model AppointmentProduct {
+  id                  String       @id @default(uuid())
   barbershop_id       String
-  barbershop          Barbershop        @relation(fields: [barbershop_id], references: [id])
+  barbershop          Barbershop   @relation(fields: [barbershop_id], references: [id])
   employer_id         String?
-  employer            Employer?         @relation(fields: [employer_id], references: [id])
+  employer            Employer?    @relation(fields: [employer_id], references: [id])
   appointment_id      String?
-  appointment         Appointment?      @relation(fields: [appointment_id], references: [id])
-  product_service_id  String
-  product_service     ProductAndService @relation(fields: [product_service_id], references: [id])
+  appointment         Appointment? @relation(fields: [appointment_id], references: [id])
+  product_id          String
+  product             Product      @relation(fields: [product_id], references: [id])
   employer_percentage Float
   employer_value      Float
-  created_at          DateTime          @default(now())
-  updated_at          DateTime          @default(now()) @updatedAt
+  created_at          DateTime     @default(now())
+  updated_at          DateTime     @default(now()) @updatedAt
 
-  @@map("appointments_products_and_services")
+  @@map("appointments_products")
+}
+
+model AppointmentService {
+  id                  String       @id @default(uuid())
+  barbershop_id       String
+  barbershop          Barbershop   @relation(fields: [barbershop_id], references: [id])
+  employer_id         String?
+  employer            Employer?    @relation(fields: [employer_id], references: [id])
+  appointment_id      String?
+  appointment         Appointment? @relation(fields: [appointment_id], references: [id])
+  service_id          String
+  service             Service      @relation(fields: [service_id], references: [id])
+  employer_percentage Float
+  employer_value      Float
+  created_at          DateTime     @default(now())
+  updated_at          DateTime     @default(now()) @updatedAt
+
+  @@map("appointments_services")
 }
 
 model AppointmentPaymentMethod {
@@ -384,22 +424,40 @@ model AppointmentPaymentMethod {
   @@map("appointments_payment_methods")
 }
 
-model EmployerProductAndService {
-  id                     String            @id @default(uuid())
-  barbershop_id          String
-  barbershop             Barbershop        @relation(fields: [barbershop_id], references: [id])
-  employer_id            String
-  employer               Employer          @relation(fields: [employer_id], references: [id])
-  product_and_service_id String
-  product_and_service    ProductAndService @relation(fields: [product_and_service_id], references: [id])
-  value                  Float
-  comission_percentage   Float
-  comission_value        Float?
-  time_required          String
-  created_at             DateTime          @default(now())
-  updated_at             DateTime          @default(now()) @updatedAt
+model EmployerProduct {
+  id                   String     @id @default(uuid())
+  barbershop_id        String
+  barbershop           Barbershop @relation(fields: [barbershop_id], references: [id])
+  employer_id          String
+  employer             Employer   @relation(fields: [employer_id], references: [id])
+  product_id           String
+  product              Product    @relation(fields: [product_id], references: [id])
+  value                Float
+  comission_percentage Float
+  comission_value      Float?
+  time_required        String
+  created_at           DateTime   @default(now())
+  updated_at           DateTime   @default(now()) @updatedAt
 
-  @@map("employees_products_and_services")
+  @@map("employees_products")
+}
+
+model EmployerService {
+  id                   String     @id @default(uuid())
+  barbershop_id        String
+  barbershop           Barbershop @relation(fields: [barbershop_id], references: [id])
+  employer_id          String
+  employer             Employer   @relation(fields: [employer_id], references: [id])
+  service_id           String
+  service              Service    @relation(fields: [service_id], references: [id])
+  value                Float
+  comission_percentage Float
+  comission_value      Float?
+  time_required        String
+  created_at           DateTime   @default(now())
+  updated_at           DateTime   @default(now()) @updatedAt
+
+  @@map("employees_services")
 }
 
 model AppointmentReview {

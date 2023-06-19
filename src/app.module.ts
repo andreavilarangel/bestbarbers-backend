@@ -7,13 +7,14 @@ import { BarbershopModule } from './app/modules/Barbershop/Barbershop.module';
 import { ClientModule } from './app/modules/Client/Client.module';
 import { EmployerModule } from './app/modules/Employer/Employer.module';
 import { BarbershopOpeningHourModule } from './app/modules/BarbershopOpeningHour/BarbershopOpeningHour.module';
-import { ProductAndServiceModule } from './app/modules/ProductAndService/ProductAndService.module';
 import { PaymentMethodModule } from './app/modules/PaymentMethod/PaymentMethod.module';
 import { BlockedTimeModule } from './app/modules/BlockedTime/BlockedTime.module';
 import { AddressModule } from './app/modules/Address/Address.module';
 import { BarbershopClientModule } from './app/modules/BarbershopClient/BarbershopClient.module';
 import { AppointmentModule } from './app/modules/Appointment/Appointment.module';
 import { EmployerProductAndServiceModule } from './app/modules/EmployerProductAndService/EmployerProductAndService.module';
+import { ProductModule } from './app/modules/Product/Product.module';
+import { ServiceModule } from './app/modules/Service/Service.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { EmployerProductAndServiceModule } from './app/modules/EmployerProductAn
     ClientModule,
     EmployerModule,
     BarbershopOpeningHourModule,
-    ProductAndServiceModule,
+    ProductModule,
+    ServiceModule,
     PaymentMethodModule,
     BlockedTimeModule,
     BarbershopClientModule,

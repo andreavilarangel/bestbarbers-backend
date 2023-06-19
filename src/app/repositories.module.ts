@@ -5,7 +5,6 @@ import { BarbershopRepository } from './modules/Barbershop/Barbershop.repository
 import { ClientRepository } from './modules/Client/Client.repository';
 import { EmployerRepository } from './modules/Employer/Employer.repository';
 import { BarbershopOpeningHourRepository } from './modules/BarbershopOpeningHour/BarbershopOpeningHour.repository';
-import { ProductAndServiceRepository } from './modules/ProductAndService/ProductAndService.repository';
 import { PaymentMethodRepository } from './modules/PaymentMethod/PaymentMethod.repository';
 import { BlockedTimeRepository } from './modules/BlockedTime/BlockedTime.repository';
 import { AddressRepository } from './modules/Address/Address.repository';
@@ -13,6 +12,8 @@ import { BarbershopClientRepository } from './modules/BarbershopClient/Barbersho
 import { AppointmentRepository } from './modules/Appointment/Appointment.repository';
 import { AppointmentProductAndServiceRepository } from './modules/AppointmentProductAndService/AppointmentProductAndService.repository';
 import { EmployerProductAndServiceRepository } from './modules/EmployerProductAndService/EmployerProductAndService.repository';
+import { ServiceRepository } from './modules/Service/Service.repository';
+import { ProductRepository } from './modules/Product/Product.repository';
 
 @Module({
   imports: [DatabaseModule],
@@ -23,7 +24,8 @@ import { EmployerProductAndServiceRepository } from './modules/EmployerProductAn
     ClientRepository,
     EmployerRepository,
     BarbershopOpeningHourRepository,
-    ProductAndServiceRepository,
+    ServiceRepository,
+    ProductRepository,
     PaymentMethodRepository,
     BlockedTimeRepository,
     BarbershopClientRepository,
@@ -38,7 +40,8 @@ import { EmployerProductAndServiceRepository } from './modules/EmployerProductAn
     ClientRepository,
     EmployerRepository,
     BarbershopOpeningHourRepository,
-    ProductAndServiceRepository,
+    ServiceRepository,
+    ProductRepository,
     PaymentMethodRepository,
     BlockedTimeRepository,
     BarbershopClientRepository,

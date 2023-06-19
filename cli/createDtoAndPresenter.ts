@@ -26,7 +26,7 @@ export const createDtoAndPresenter = (name: string) => {
   const dirPresenter = `src/app/modules/${name}`;
 
   const contentPresenter = `
-    import { ${name}Entity } from './${name}/${name}.entity'
+    import { ${name}Entity } from './${name}.entity'
     export class ${name}Presenter extends ${name}Entity {}
   `;
   fs.writeFile(
